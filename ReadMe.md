@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/maTHmU/nV.svg?branch=master)](https://travis-ci.org/maTHmU/nV)
+
 如果你只需要安装使用，请阅读Install.txt。
 如果你想进行开发，请阅读Develop.txt。
 
