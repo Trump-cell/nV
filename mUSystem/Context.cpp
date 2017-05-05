@@ -91,7 +91,12 @@ CAPI CPROC(System_ToExpression)
 	if(StrQ(At(x,0)))
 	{
 		var r = ParseString(CStr(At(x,0)));
-		return r ? r : Nil;
+		if (r == Failed)
+			return r;
+		size_t n = Size(r);
+		if (n > 0)
+			return At(r, n - 1);
+		return r;
 	}
 	return 0;
 }

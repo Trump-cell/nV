@@ -5,7 +5,7 @@
 SetAttributes[All,Protected]
 SetAttributes[None,Protected]
 
-CProc["musystem",COper,CInstall,Complex,CUninstall,Box,Defer,Timing,MatchQ,MemberQ,ReplaceRepeated, Replace,ReplaceAll,OddQ,EvenQ,SetAttributes,Pretty,StringJoin,Join,Attributes,NumberQ,AtomQ,IntegerQ,SymbolQ,StringQ,Clear,BeginPackage,EndPackage,Begin,End,Evaluate,Unevaluated,Dispatch,Length,Path,Head,Context, Contexts,ContextPath,Apply,Map,Unset,FullForm,ToString,ToExpression, Exit,Quit,Set,SetDelayed,Hold,Run,Array,Table,Do, N,IntegerPart,Floor,Ceiling,Round,Expand,Variables,Coefficient, Exponent,CoefficientList,FromCoefficientList,StringLength, Set,Property,SetDelayed,CompoundExpression,Power,Mod]
+CProc["musystem",COper,CInstall,Complex,CUninstall,Box,Defer,Timing,MatchQ,MemberQ,ReplaceRepeated, Replace,ReplaceAll,OddQ,EvenQ,SetAttributes,Pretty,StringJoin,Join,Attributes,NumberQ,AtomQ,IntegerQ,SymbolQ,StringQ,Clear,BeginPackage,EndPackage,Begin,End,Evaluate,Unevaluated,Dispatch,Length,Path,Head,Context, Contexts,ContextPath,Apply,Map,Unset,Full,ToString,ToExpression, Exit,Quit,Set,SetDelayed,Hold,Run,Array,Table,Do, N,IntegerPart,Floor,Ceiling,Round,Expand,Variables,Coefficient, Exponent,CoefficientList,FromCoefficientList,Set,Property,SetDelayed,CompoundExpression,Power,Mod]
 CProc["musystem", Increment, PreIncrement, Decrement, PreDecrement]
 CProc["musystem", Quiet, DownValues, UpValues, Information, Protect, Unprotect, ListQ, NumericQ, Rest, Prepend, Dimensions, LeafCount, Min, Max]
 CProc["musystem", (*Abort, Interrupt, AbortProtect, CheckAbort,*) Catch, Throw, Sow, Reap, Map, ConstantArray]
@@ -93,7 +93,7 @@ End[]
 << NotebookDirectory[] <> "D.m"
 << NotebookDirectory[] <> "Range.m"
 << NotebookDirectory[] <> "String.m"
-(*<< NotebookDirectory[] <> "TeX.m"*)
+<< NotebookDirectory[] <> "TeX.m"
 
 << Path["mULink/EmbednV.m"]
 << NotebookDirectory[] <> "../Integrate/init.m"

@@ -7,7 +7,15 @@ namespace mU {
 //////////////////////////////////////
 void BoxPrint(Var x, wostream &f, size_t y) {
     switch (Type(x)) {
-    case TYPE(obj):
+	case TYPE(obj): {
+		f << L'\"';
+		if (ObjQ(x, TAG(Complex)))
+			f << L"\\[ImaginaryI]";
+		else
+			Print(x, f);
+		f << L'\"';
+	}
+	break;
     case TYPE(int):
     case TYPE(rat):
     case TYPE(flt):
@@ -210,7 +218,10 @@ void BoxPrint(Var x, wostream &f, size_t y) {
                     BoxPrint(At(b, 1), f);
                     f << L"]";
                     return;
-                }
+				} else if (h == TAG(Complex) && ZeroQ(At(b,0)) && OneQ(At(b,1))) {
+					f << L"\\[ImaginaryI]";
+					return;
+				}
 #define T(x,y)\
 else if(h == tag_##x)\
 {\

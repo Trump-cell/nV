@@ -3,7 +3,6 @@
 Begin["System`"]
 
 (*StringOperations.cpp*)
-CProc["musystem",StringDrop]
-CProc["musystem",StringReplace]
+CProc["musystem",StringLength,StringInsert,StringTake,StringDrop,StringReplace]
 
 End[]

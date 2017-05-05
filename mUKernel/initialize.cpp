@@ -50,7 +50,7 @@ TAG(NumberQ), TAG(AtomQ), TAG(IntegerQ), TAG(SymbolQ), TAG(StringQ),
 TAG(Pretty), TAG(Input), TAG(Print), TAG(Clear),
 TAG(BeginPackage), TAG(EndPackage), TAG(Begin), TAG(End),
 TAG(Evaluate), TAG(Dispatch), TAG(Length), TAG(Path), TAG(Head), TAG(Context),
-TAG(Contexts), TAG(ContextPath), TAG(Apply), TAG(Map), TAG(Unset), TAG(FullForm),
+TAG(Contexts), TAG(ContextPath), TAG(Apply), TAG(Map), TAG(Unset), TAG(Full),
 TAG(ToString), TAG(ToExpression),
 TAG(Exit), TAG(Quit), TAG(Hold), TAG(Run), /*TAG(Task), TAG(Kill),*/ TAG(Array),
 TAG(Table), TAG(Do), TAG(Box), TAG(N), TAG(IntegerPart),
@@ -58,9 +58,7 @@ TAG(Floor), TAG(Ceiling), TAG(Round),
 TAG(Expand), TAG(Variables), TAG(Coefficient),
 TAG(Exponent), TAG(Deg), TAG(CoefficientList), TAG(FromCoefficientList),
 TAG(Graphics2D), TAG(Graphics3D),
-TAG(Options), TAG(StringLength), TAG(StringInsert), TAG(StringTake),
-TAG(StringDrop),
-TAG(DownValues), TAG(UpValues), TAG(Protect), TAG(Unprotect),
+TAG(Options), TAG(DownValues), TAG(UpValues), TAG(Protect), TAG(Unprotect),
 TAG(Quiet), TAG(ListQ), TAG(NumericQ), TAG(First), TAG(Rest),
 TAG(Prepend), TAG(Dimensions), TAG(LeafCount), TAG(ConstantArray),
 TAG(Abort), TAG(Interrupt), TAG(AbortProtect), TAG(CheckAbort),
@@ -222,7 +220,7 @@ void Initialize()
     DEF_SYSTEM_TAG_SYM(Apply)
     DEF_SYSTEM_TAG_SYM(Map)
     DEF_SYSTEM_TAG_SYM(Unset)
-    DEF_SYSTEM_TAG_SYM(FullForm)
+    DEF_SYSTEM_TAG_SYM(Full)
     DEF_SYSTEM_TAG_SYM(ToString)
     DEF_SYSTEM_TAG_SYM(ToExpression)
 	DEF_SYSTEM_TAG_SYM(Exit)
@@ -250,10 +248,6 @@ void Initialize()
     DEF_SYSTEM_TAG_SYM(Graphics2D)
     DEF_SYSTEM_TAG_SYM(Graphics3D)
 	DEF_SYSTEM_TAG_SYM(Options)
-    DEF_SYSTEM_TAG_SYM(StringLength)
-    DEF_SYSTEM_TAG_SYM(StringInsert)
-    DEF_SYSTEM_TAG_SYM(StringTake)
-    DEF_SYSTEM_TAG_SYM(StringDrop)
     DEF_SYSTEM_TAG_SYM(DownValues)
     DEF_SYSTEM_TAG_SYM(UpValues)
     DEF_SYSTEM_TAG_SYM(Protect)

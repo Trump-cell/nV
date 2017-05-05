@@ -104,7 +104,7 @@ var ToExpression(const wstring& x) {
 	size_t n = Size(r);
 	if (n > 0)
 		return At(r, n - 1);
-	return Null;
+	return r;
 }
 var Read(wistream &f, Var x)
 {

@@ -431,7 +431,7 @@ namespace
 	}
 }
 
-CAPI CPROC(System_FullForm)
+CAPI CPROC(System_Full)
 {
 	wostringstream t;
 	FullPrint(At(x,0),t);

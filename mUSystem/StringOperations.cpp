@@ -9,6 +9,100 @@
 
 using namespace mU;
 
+CAPI CPROC(System_StringLength)
+{
+	if(StrQ(At(x,0))) return Int(S::Length(At(x,0)));
+	return 0;
+}
+CAPI CPROC(System_StringInsert)
+{
+	var c = At(x,0);
+	if(StrQ(c))
+	{
+		mU::uint n = S::Length(c);
+		var r = Str();
+		CStr(r) = CStr(c);
+		if(Size(x) > 2 && StrQ(At(x,1)) && IntQ(At(x,2)))
+		{
+			int a = Z::SI(At(x,2));
+			a < 0 ? a += n : --a;
+			if(a < 0 || a >= n)
+				return r;
+			S::Insert(r,At(x,1),a);
+			return r;
+		}
+	}
+	return 0;
+}
+CAPI CPROC(System_StringTake)
+{
+	var c = At(x,0);
+	if(StrQ(c))
+	{
+		mU::uint n = S::Length(c);
+		var d = At(x,1);
+		if(VecQ(d))
+		{
+			int a = Z::SI(At(d,0));
+			a < 0 ? a += n : --a;
+			if(a < 0 || a >= n)
+				return c;
+			if(Size(d) > 1)
+			{
+				int b = Z::SI(At(d,1));
+				b < 0 ? b += n : --b;
+				if(b < 0 || b >= n)
+					return c;
+				return S::Substr(c,a,b < a ? 0 : b - a + 1);
+			}
+			else
+				return S::Substr(c,a,1);
+		}
+		else if(IntQ(d))
+		{
+			int a = Z::SI(d);
+			return a < 0 ? S::Substr(c,a + n,-a) : S::Substr(c,0,a);
+		}
+	}
+	return 0;
+}
+/*
+CAPI CPROC(System_StringDrop)
+{
+	var c = At(x,0);
+	if(StrQ(c))
+	{
+		mU::uint n = S::Length(c);
+		var r = Str();
+		CStr(r) = CStr(c);
+		var d = At(x,1);
+		if(VecQ(d))
+		{
+			int a = Z::SI(At(d,0));
+			a < 0 ? a += n : --a;
+			if(a < 0 || a >= n)
+				return r;
+			if(Size(d) > 1)
+			{
+				int b = Z::SI(At(d,1));
+				b < 0 ? b += n : --b;
+				if(b < 0 || b >= n)
+					return r;
+				S::Erase(r,a,b < a ? 0 : b - a + 1);
+			}
+			else
+				S::Erase(r,a,1);
+		}
+		else if(IntQ(d))
+		{
+			int a = Z::SI(d);
+			a < 0 ? S::Erase(r,a + n,-a) : S::Erase(r,0,a);
+		}
+		return r;
+	}
+	return 0;
+}
+*/
 var StringDrop_uni_str(Var x)
 {
 	SequenceSpec s(x, 1);
