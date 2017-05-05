@@ -116,7 +116,7 @@ CAPI const char*  nV_eval(Kernel* kernel, const char* str) {
 } 
 #if 1//!__EMSCRIPTEN__
 CAPI int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
-	Kernel* pKernel = nV_init();
+	Kernel* pKernel = nV_init(kernel);
 	Kernel& k = *pKernel;
 	Parser& p = *(k.parser);
 
