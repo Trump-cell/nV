@@ -14,10 +14,10 @@
 #ifdef _WIN32
 #include <windows.h> 
 #include <ShellAPI.h>
-#ifdef BOOST_ALL_DYN_LINK
+//#ifdef BOOST_ALL_DYN_LINK
 #include <boost/scoped_array.hpp>
 #include <nV/Exceptions.h>
-#endif
+//#endif
 #else
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -182,7 +182,7 @@ wstring to_wstring(const char *src, size_t len)
 
 	return wstring(src, src + len); // FIXME: placebo implementation
 
-	scoped_array<wchar_t> buffer(new wchar_t[len]);
+	boost::scoped_array<wchar_t> buffer(new wchar_t[len]);
 	int count;
 #ifdef _WIN32
 	count = MultiByteToWideChar(CP_ACP,

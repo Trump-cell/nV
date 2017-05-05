@@ -1,0 +1,6 @@
+#!/bin/sh
+
+#emcc -s DISABLE_EXCEPTION_CATCHING=0 -s MAIN_MODULE=2 -s TOTAL_MEMORY=64MB -O3 ../../bin/mU.cpp.o ../../lib/libgmp.so ../../lib/libmpfr.so ../../lib/libmukernel.so ../../lib/libmusystem.so ../../lib/libnvnumber.so ../../lib/libnvpolynomial.so ../../lib/libnvmatrix.so --pre-js pre-mu.js -o mu.js
+#emcc -s DISABLE_EXCEPTION_CATCHING=0 -s MAIN_MODULE=2 -s TOTAL_MEMORY=64MB -O3 ../../lib/libgmp.so ../../lib/libmpfr.so ../../lib/libmukernel.so ../../lib/libmusystem.so ../../lib/libnvnumber.so ../../lib/libnvpolynomial.so ../../lib/libnvmatrix.so ../../lib/libmulink.so ../../lib/libnvkernel.so ../../lib/libnvparser.so ../../lib/libnvsystem.so ../../lib/libnvgraphics.so --pre-js pre-mu.js -o mu.js
+#emcc -s DISABLE_EXCEPTION_CATCHING=0 -s MAIN_MODULE=2 -s TOTAL_MEMORY=64MB -O3 ../../lib/libgmp.so ../../lib/libmpfr.so ../../lib/libmukernel.so ../../lib/libmusystem.so ../../lib/libnvnumber.so ../../lib/libnvpolynomial.so ../../lib/libnvmatrix.so --pre-js pre-mu.js -o mu.js
+emcc -s DISABLE_EXCEPTION_CATCHING=0 -s MAIN_MODULE=2 -s TOTAL_MEMORY=64MB -O3 ../../lib/libgmp.so ../../lib/libmpfr.so ../../lib/libmukernel.so ../../lib/libmusystem.so ../../lib/libnvnumber.so ../../lib/libnvpolynomial.so ../../lib/libnvmatrix.so --preload-file ../lib/mU@/usr/local/lib/mU -o mu.html
