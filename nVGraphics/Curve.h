@@ -38,7 +38,7 @@ namespace nV {
 
 			ArrayList<LineStrip*> lineStrips;
 
-			//ÊÇ·ñÓĞÆæµã
+			//æ˜¯å¦æœ‰å¥‡ç‚¹
 			bool singularity;
 			std::vector<singularitynode *> singularityset;
 

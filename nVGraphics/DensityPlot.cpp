@@ -126,7 +126,7 @@ namespace Graphics {
 		   xmax=0;
 		   ymin=0;
 		   ymax=0;
-	   }//z值均无效，图不能画出
+	   }//z鍊煎潎鏃犳晥锛屽浘涓嶈兘鐢诲嚭
 	   std::vector<struct two_dev >poly_dev;
 	   for(int i=0;i<nx-1;i++)
 		{

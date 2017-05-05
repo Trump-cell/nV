@@ -27,7 +27,7 @@ private:
 	uint curnum;
 	uint maxpnum;
     uint *pnum;//the number of point in each line
-	bool* singular_flag;//每条线是否为奇点函数
+	bool* singular_flag;//姣忔潯绾挎槸鍚︿负濂囩偣鍑芥暟
     int filling;
 	int fillcur1,fillcur2;
 	double XMin,XMax;

@@ -23,7 +23,7 @@ class PolarCurve : public Curve {
 public:
     double tmin, tmax, spt, rmax, rmin, spr;
     double dt, graphScale;
-    //ArrayList<double> arrayT; //存每个点的t值，与verts一一对应
+    //ArrayList<double> arrayT; //瀛樻瘡涓偣鐨則鍊硷紝涓巚erts涓�涓�瀵瑰簲
     F1P *f;
 
     ArrayList<ArrayList<double> *> arrayTtotal;

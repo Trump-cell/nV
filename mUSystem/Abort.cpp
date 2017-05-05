@@ -5,6 +5,7 @@
 
 using namespace mU;
 
+#if 0
 CPROC_INT(System_Abort, 0)
 {
 	mU::abort();
@@ -39,6 +40,7 @@ CPROC_INT(System_CheckAbort, 2)
 		return Eval(At(x, 1));
 	}
 }
+#endif
 
 CPROC_INT2(System_Throw, 1, 2)
 {

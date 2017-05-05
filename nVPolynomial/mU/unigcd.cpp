@@ -1,6 +1,6 @@
 #include "common.h"
 /** \file 
-\brief Ò»Ôª¶àÏîÊ½GCD.
+\brief ä¸€å…ƒå¤šé¡¹å¼GCD.
 */
 #include <mU/Polynomial_impl.h>
 
@@ -11,7 +11,7 @@ namespace{
 }
 
 /**
-\brief »ùbÏÂÕûÊınµÄ³¤¶È
+\brief åŸºbä¸‹æ•´æ•°nçš„é•¿åº¦
 */
 void IntegerLength_BigBase(mpz_ptr r,mpz_ptr n,mpz_ptr b)
 {
@@ -34,9 +34,9 @@ void IntegerLength_BigBase(mpz_ptr r,mpz_ptr n,mpz_ptr b)
 	}
 }
 
-/** \brief ÕûÏµÊı¶àÏîÊ½ÎŞÇî·¶Êı.
-\param f ÕûÏµÊı¶àÏîÊ½.
-\param r ÏµÊıÏòÁ¿µÄÎŞÇî·¶Êı.
+/** \brief æ•´ç³»æ•°å¤šé¡¹å¼æ— ç©·èŒƒæ•°.
+\param f æ•´ç³»æ•°å¤šé¡¹å¼.
+\param r ç³»æ•°å‘é‡çš„æ— ç©·èŒƒæ•°.
 */
 void UniMaxNormZ(mpz_ptr r,const poly_z & f)
 {
@@ -52,9 +52,9 @@ void UniMaxNormZ(mpz_ptr r,const poly_z & f)
 	return ;
 }
 
-/** \brief ÕûÏµÊı¶àÏîÊ½1-·¶Êı.
-\param f ÕûÏµÊı¶àÏîÊ½.
-\return ÏµÊıÏòÁ¿µÄ1-·¶Êı.
+/** \brief æ•´ç³»æ•°å¤šé¡¹å¼1-èŒƒæ•°.
+\param f æ•´ç³»æ•°å¤šé¡¹å¼.
+\return ç³»æ•°å‘é‡çš„1-èŒƒæ•°.
 */
 void UniOneNormZ(mpz_ptr r,const poly_z & f)
 {
@@ -69,10 +69,10 @@ void UniOneNormZ(mpz_ptr r,const poly_z & f)
 	mpz_clear(temp);
 }
 
-/** \brief FpÓòÉÏ¶àÏîÊ½GCD.
-\param f,g ÓòÉÏ¶àÏîÊ½.
-\param r ×î´ó¹«Òò×Ó.
-\note EuclidËã·¨.
+/** \brief FpåŸŸä¸Šå¤šé¡¹å¼GCD.
+\param f,g åŸŸä¸Šå¤šé¡¹å¼.
+\param r æœ€å¤§å…¬å› å­.
+\note Euclidç®—æ³•.
 */
 void UniGcdZp(poly_z & r,const poly_z & f,const poly_z & g,mpz_ptr p)
 {
@@ -100,9 +100,9 @@ void UniGcdZp(poly_z & r,const poly_z & f,const poly_z & g,mpz_ptr p)
 	u.resize(0);v.resize(0);q.resize(0);
 }
 
-/** \brief FpÓòÉÏ¶àÏîÊ½GCD.
-\param f,g ÓòÉÏ¶àÏîÊ½.
-\param r,s,t ÆäÖĞrÎª×î´ó¹«Òò×Ó,s,tÎªBezoutÏµÊı¶àÏîÊ½.
+/** \brief FpåŸŸä¸Šå¤šé¡¹å¼GCD.
+\param f,g åŸŸä¸Šå¤šé¡¹å¼.
+\param r,s,t å…¶ä¸­rä¸ºæœ€å¤§å…¬å› å­,s,tä¸ºBezoutç³»æ•°å¤šé¡¹å¼.
 */
 void UniGcdZp_Ext(poly_z & r,poly_z & s,poly_z & t,const poly_z & f,const poly_z & g,mpz_ptr p)
 {
@@ -149,9 +149,9 @@ void UniGcdZp_Ext(poly_z & r,poly_z & s,poly_z & t,const poly_z & f,const poly_z
 	u.resize(0);v.resize(0);q.resize(0);s1.resize(0);s2.resize(0);t1.resize(0);t2.resize(0);l1.resize(0);l2.resize(0);
 }
 
-/** \brief ÕûÏµÊı¶àÏîÊ½µÄÈİ¶È.
-\param f ÕûÏµÊı¶àÏîÊ½.
-\param r ÕûÊıÈİ¶È,°üº¬Õı¸ººÅ,Ê¹µÃ±¾Ô­²¿·ÖlcÎªÕıÕûÊı.
+/** \brief æ•´ç³»æ•°å¤šé¡¹å¼çš„å®¹åº¦.
+\param f æ•´ç³»æ•°å¤šé¡¹å¼.
+\param r æ•´æ•°å®¹åº¦,åŒ…å«æ­£è´Ÿå·,ä½¿å¾—æœ¬åŸéƒ¨åˆ†lcä¸ºæ­£æ•´æ•°.
 */
 void UniContZ(mpz_ptr r,const poly_z & f)
 {
@@ -186,10 +186,10 @@ void UniContZ(mpz_ptr r,const poly_z & f)
 	return ;
 }
 
-/** \brief ÕûÏµÊı¶àÏîÊ½±¾Ô­²¿·Ö.
-\param f ÕûÏµÊı¶àÏîÊ½.
-\param r ±¾Ô­²¿·Ö.
-\return ±¾Ô­²¿·Ö,ÆälcÎªÕıÕûÊı.
+/** \brief æ•´ç³»æ•°å¤šé¡¹å¼æœ¬åŸéƒ¨åˆ†.
+\param f æ•´ç³»æ•°å¤šé¡¹å¼.
+\param r æœ¬åŸéƒ¨åˆ†.
+\return æœ¬åŸéƒ¨åˆ†,å…¶lcä¸ºæ­£æ•´æ•°.
 */
 void UniPPZ(poly_z & r,const poly_z & f)
 {
@@ -205,11 +205,11 @@ void UniPPZ(poly_z & r,const poly_z & f)
 }
 
 /** 
-\brief ÕûÏµÊı¶àÏîÊ½×î´ó¹«Òò×Ó.
-\param f,g ÕûÏµÊı±¾Ô­¶àÏîÊ½,ÇÒ\f$\deg f=n\ge\deg g\ge 1\f$.
-\param r ×î´ó¹«Òò×Ó.
-\note Ğ¡ËØÊıÄ£·½·¨.
-\todo ÀíÂÛÎÄµµ´Ë´¦ÓĞÎó.
+\brief æ•´ç³»æ•°å¤šé¡¹å¼æœ€å¤§å…¬å› å­.
+\param f,g æ•´ç³»æ•°æœ¬åŸå¤šé¡¹å¼,ä¸”\f$\deg f=n\ge\deg g\ge 1\f$.
+\param r æœ€å¤§å…¬å› å­.
+\note å°ç´ æ•°æ¨¡æ–¹æ³•.
+\todo ç†è®ºæ–‡æ¡£æ­¤å¤„æœ‰è¯¯.
 */
 void UniGcdZ_SmallPrime1(poly_z & r,const poly_z & f,const poly_z & g)
 {
@@ -327,10 +327,10 @@ void UniGcdZ_SmallPrime1(poly_z & r,const poly_z & f,const poly_z & g)
 }
 
 /** 
-\brief ÕûÏµÊı¶àÏîÊ½×î´ó¹«Òò×Ó.
-\param f,g ÕûÏµÊı¶àÏîÊ½.
-\return ×î´ó¹«Òò×Ó.
-\note µ÷ÓÃ´óËØÊıËã·¨»òĞ¡ËØÊıËã·¨.
+\brief æ•´ç³»æ•°å¤šé¡¹å¼æœ€å¤§å…¬å› å­.
+\param f,g æ•´ç³»æ•°å¤šé¡¹å¼.
+\return æœ€å¤§å…¬å› å­.
+\note è°ƒç”¨å¤§ç´ æ•°ç®—æ³•æˆ–å°ç´ æ•°ç®—æ³•.
 */
 void UniGcdZ(poly_z & r,const poly_z & f,const poly_z & g)
 {
@@ -372,10 +372,10 @@ void UniGcdZ(poly_z & r,const poly_z & f,const poly_z & g)
 	return ;
 }
 
-/** \brief FpÓòÉÏ¶àÏîÊ½LCM.
-\param f,g ÓòÉÏ¶àÏîÊ½.
-\param r ×îĞ¡¹«±¶Êı.
-\note µ÷ÓÃUniGcdZp
+/** \brief FpåŸŸä¸Šå¤šé¡¹å¼LCM.
+\param f,g åŸŸä¸Šå¤šé¡¹å¼.
+\param r æœ€å°å…¬å€æ•°.
+\note è°ƒç”¨UniGcdZp
 */
 void UniLcmZp(poly_z & r,const poly_z & f,const poly_z & g,mpz_ptr p)
 {
@@ -387,10 +387,10 @@ void UniLcmZp(poly_z & r,const poly_z & f,const poly_z & g,mpz_ptr p)
 }
 
 /** 
-\brief ÕûÏµÊı¶àÏîÊ½×îĞ¡¹«±¶Êı.
-\param f,g ÕûÏµÊı¶àÏîÊ½.
-\return ×îĞ¡¹«±¶Êı.
-\note µ÷ÓÃUniGcdZ
+\brief æ•´ç³»æ•°å¤šé¡¹å¼æœ€å°å…¬å€æ•°.
+\param f,g æ•´ç³»æ•°å¤šé¡¹å¼.
+\return æœ€å°å…¬å€æ•°.
+\note è°ƒç”¨UniGcdZ
 */
 void UniLcmZ(poly_z & r,const poly_z & f,const poly_z & g)
 {

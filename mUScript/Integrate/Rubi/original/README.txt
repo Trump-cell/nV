@@ -1,3 +1,3 @@
-À´×Ôhttp://www.apmaths.uwo.ca/~arich/
+æ¥è‡ªhttp://www.apmaths.uwo.ca/~arich/
 
-Ô­À´¶ÔrulesµÄÐÞ¸ÄÒÑ¾­È«²¿Çå³ý£¬·µ»ØÊ¹ÓÃÔ­°æ¡£¸ÐÐ»Albert D. Rich·¢À´µÄÍêÕûÔËÐÐ³ÌÐò¡£
+åŽŸæ¥å¯¹rulesçš„ä¿®æ”¹å·²ç»å…¨éƒ¨æ¸…é™¤ï¼Œè¿”å›žä½¿ç”¨åŽŸç‰ˆã€‚æ„Ÿè°¢Albert D. Richå‘æ¥çš„å®Œæ•´è¿è¡Œç¨‹åºã€‚

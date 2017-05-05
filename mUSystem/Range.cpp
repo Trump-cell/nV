@@ -9,11 +9,11 @@ using namespace mU;
 
 CAPI CPROC_INT (System_Range, 3)
 {
-	//#define MAXIMUM_SIZE_OF_RANGE 10000	//Mathematica²¢Ã»ÓĞ´óĞ¡¼ì²é£¬Ö±½Óµ¼ÖÂÖ´ĞĞĞÔRange[100000000]ºóÏµÍ³±ÀÀ£
+	//#define MAXIMUM_SIZE_OF_RANGE 10000	//Mathematicaå¹¶æ²¡æœ‰å¤§å°æ£€æŸ¥ï¼Œç›´æ¥å¯¼è‡´æ‰§è¡Œæ€§Range[100000000]åç³»ç»Ÿå´©æºƒ
 	var x1 = At(x, 0), x2 = At(x, 1), x3 = At(x, 2);
 	var s = Evalf(Eval(Optimi(Ex(TAG(Divide), Vec(Ex(TAG(Plus), Vec(Ex(TAG(Minus), Vec(x1)), x2)), x3)))));
-			//Eval()ÎŞ·¨´¦Àí3/PiµÄÇéĞÎ£¨NumQ(3/Pi)==false£©£¬¶øEvalfËã´óÕûÊıÏà¼õµÄÊ±ºòÓÖ»á³öÎÊÌâ£¬¹Ê²ÉÈ¡´ËÈ¨ÒËÖ®¼Æ£¬
-			//Ï£ÍûÒÔºó¿ÉÒÔ½«Õâ¸öÊ½×ÓĞ´µÃÆ¯ÁÁÒ»µã
+			//Eval()æ— æ³•å¤„ç†3/Piçš„æƒ…å½¢ï¼ˆNumQ(3/Pi)==falseï¼‰ï¼Œè€ŒEvalfç®—å¤§æ•´æ•°ç›¸å‡çš„æ—¶å€™åˆä¼šå‡ºé—®é¢˜ï¼Œæ•…é‡‡å–æ­¤æƒå®œä¹‹è®¡ï¼Œ
+			//å¸Œæœ›ä»¥åå¯ä»¥å°†è¿™ä¸ªå¼å­å†™å¾—æ¼‚äº®ä¸€ç‚¹
 	if (NumQ(s)) {
 		//assert(Compare(s,Int(sint(MAXIMUM_SIZE_OF_RANGE)))<=0);
 		sint sn = static_cast<sint>(floor(N::D(s)))+1;

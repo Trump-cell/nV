@@ -1563,7 +1563,7 @@ CAPI void VALUE(Factor)(Kernel& k, var& r, Tuple& x) {
 
 #define Export(function)																						\
 	CAPI void CVALUE(System,function)(Kernel& k, var& r, Tuple& x) {	\
-		VALUE(function) (k,r,x);																				\
+		VALUE(function)(k,r,x);																				\
 		r=CPE::fromCPE(k,r);																						\
 	}
 Export(Variables)

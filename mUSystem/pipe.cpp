@@ -149,17 +149,6 @@ struct wpipestream : wiostream
 	HANDLE hThread, hProcess;
 	wpipebuf buffer;
 };
-#else
-namespace mU {
-// TODO:  µœ÷π‹µ¿Õ®–≈¿‡
-class wpipestream : public std::wiostream
-{
-public:
-	wpipestream(const wstring &x) {}
-	void close() {}
-};
-#endif
-
 struct pipe_t : stream_t
 {
 	pipe_t(const wstring &x) { rep = new wpipestream(x); }
@@ -167,4 +156,9 @@ struct pipe_t : stream_t
 	void print(wostream &f) { f << L"Pipe[" << rep << L']'; }
 };
 var Pipe(const wstring &x) { return new pipe_t(x); }
+#else
+namespace mU {
+// TODO: ÂÆûÁé∞ÁÆ°ÈÅìÈÄö‰ø°Á±ª
+var Pipe(const wstring &x) { return Null; }
+#endif
 }

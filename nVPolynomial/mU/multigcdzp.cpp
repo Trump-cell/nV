@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief ¶àÔª¶àÏîÊ½GCD in Zp[X]
+\brief å¤šå…ƒå¤šé¡¹å¼GCD in Zp[X]
 */
 #include <mU/Polynomial_impl.h>
 
@@ -173,7 +173,7 @@ void MultiGcdZp_Dense_Interpolation(sparse_z & r,const sparse_z & f, const spars
 		m1=hv.deg(0);
 		size=hv.size();
 		if(m1>m)continue;
-		//ÕıÔò»¯
+		//æ­£åˆ™åŒ–
 		mpz_set(inverse,hv[size-1].coe);
 		mpz_invert(inverse,inverse,p);
 		for(uint i=0;i<size;++i)
@@ -284,10 +284,10 @@ void MultiMulZp(sparse_z & r, const sparse_z & f,const sparse_z & g,mpz_ptr p) {
 	MultiPolynomialMod(r, r, p);
 }
 
-/** \brief FpÓòÉÏ¶àÏîÊ½LCM.
-\param f,g ÓòÉÏ¶àÏîÊ½.
-\param r ×îĞ¡¹«±¶Êı.
-\note µ÷ÓÃMultiGcdZp
+/** \brief FpåŸŸä¸Šå¤šé¡¹å¼LCM.
+\param f,g åŸŸä¸Šå¤šé¡¹å¼.
+\param r æœ€å°å…¬å€æ•°.
+\note è°ƒç”¨MultiGcdZp
 */
 void MultiLcmZp(sparse_z & r, const sparse_z & f,const sparse_z & g,mpz_ptr p)
 {

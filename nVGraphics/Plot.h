@@ -36,7 +36,7 @@ namespace nV {
 			//expression
 			var expression;
 
-			//ÊÇ·ñÓĞÆæµã
+			//æ˜¯å¦æœ‰å¥‡ç‚¹
 			//bool singularity;
 			//std::vector<int> singularityset;
 
@@ -67,22 +67,22 @@ namespace nV {
 		protected:
 			void setRule(var title, var rule);
 
-			//Á½Ìõº¯ÊıÌî³ä
+			//ä¸¤æ¡å‡½æ•°å¡«å……
 			var addVecReversed(var vec1, var vec2, var expr1, var expr2, var &out_verts);
 
-			//×ø±êÖáÌî³ä
+			//åæ ‡è½´å¡«å……
 			var addVecReversed(var vec1, var vec2);
 
-            //Ææµãº¯ÊıµÄ×ø±êÖáÌî³ä
+            //å¥‡ç‚¹å‡½æ•°çš„åæ ‡è½´å¡«å……
             /*var addVecReversed(var vec1, var vec2, var expr1, var &out_verts, 
                  Curve *cur1, Curve *cur2, const std::vector<singularitynode *> &singularityset);*/
 
-			//Ò»¸öÓĞÆæµã£¬ÁíÒ»¸öÃ»ÓĞÆæµãµÄÁ½¸öº¯ÊıÌî³ä
+			//ä¸€ä¸ªæœ‰å¥‡ç‚¹ï¼Œå¦ä¸€ä¸ªæ²¡æœ‰å¥‡ç‚¹çš„ä¸¤ä¸ªå‡½æ•°å¡«å……
 			var addVecReversed(var vec1, var vec2, var expr1, var expr2,
                 var &out_verts, Curve *cur1, Curve *cur2,
                 const std::vector<singularitynode *> &singularityset);
 
-            //Á½¸ö¶¼ÓĞÆæµãµÄÁ½¸öº¯ÊıÌî³ä
+            //ä¸¤ä¸ªéƒ½æœ‰å¥‡ç‚¹çš„ä¸¤ä¸ªå‡½æ•°å¡«å……
             var addVecReversed(Curve * cur1,Curve * cur2,var vec1, var vec2, 
                 var expr1, var expr2, std::vector<singularitynode *> &node_a1,
                 std::vector<singularitynode *> &node_a2,var &out_verts);
@@ -95,7 +95,7 @@ namespace nV {
             var addVecReversed(var **line_indices_f, var expr_f, var &verts_f,
                 Curve ** curs_f, int fillcur1_f, int fillcur2_f, int curnum_f, uint i,uint j);
 
-			//ÅĞ¶ÏxÇø¼äÉÏº¯ÊıÊÇ·ñÓĞÆæµã
+			//åˆ¤æ–­xåŒºé—´ä¸Šå‡½æ•°æ˜¯å¦æœ‰å¥‡ç‚¹
             bool hassingularity(F1P *f, std::vector<singularitynode *> &singularityset,
                 double &ymin, double &ymax, std::vector<domain *> &nanrangeset,
                 double spx = 0.0, double spy = 0.0,

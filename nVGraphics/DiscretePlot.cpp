@@ -668,7 +668,7 @@ void DiscretePlot::makePointList( )
 		}
 
             //
-            //去除斜率太大的点
+            //鍘婚櫎鏂滅巼澶ぇ鐨勭偣
             //
 		bool vrm = true; //vert removed
 		bool *flag = new bool[vert.size()];

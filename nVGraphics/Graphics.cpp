@@ -20,10 +20,10 @@
 using namespace nV;
 using namespace Graphics;
 
-CAPI void Install(Kernel& k) {
+CAPI void nvgraphics_Install(Kernel& k) {
     //wcout << "#Graphics# Install Successfully!" << endl;
 }
-CAPI void Uninstall(nV::Kernel& k) {
+CAPI void nvgraphics_Uninstall(nV::Kernel& k) {
     wcout << "#Graphics# Uninstall Successfully!" << endl;
 }
 

@@ -3,19 +3,19 @@
 
 using namespace mU;
 
-CAPI void mUInstall() {
+CAPI void mulink_mUInstall() {
 	nvobj_t::Init();
     // wcout << "#EmbednV# Install Successfully!" << endl;
 }
-CAPI void mUUninstall() {
+CAPI void mulink_mUUninstall() {
 	nvobj_t::Close();
     // wcout << "#EmbednV# Uninstall Successfully!" << endl;
 }
 
-CAPI CPROC_INT(nV_nV, 1) {
+CPROC_INT(nV_nV, 1) {
 	return nvobj_t::New(At(x,0));
 }
-CAPI CPROC_INT(nV_Eval, 1) {
+CPROC_INT(nV_Eval, 1) {
 	if (StrQ(At(x,0))) {
 		wstringstream ss;
 		ss << CStr(At(x,0));
@@ -40,7 +40,7 @@ CAPI CPROC(nV_Main) {
 	}
 	return Null;
 }
-CAPI CPROC_INT(nV_mU, 1) {
+CPROC_INT(nV_mU, 1) {
 	if (Tag(At(x,0)) == nvobj_t::$nVObj)
 		return nV::to_mu(nvobj(At(x,0)));
 	return 0;

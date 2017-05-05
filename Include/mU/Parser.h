@@ -8,9 +8,9 @@ class parser
 public:
 	DLL parser();
 	DLL parser(wistream&);
-	DLL void start(wistream&); //ºÍĞÂµÄÊı¾İÁ÷Ïà¹ØÁª
-	DLL void parse(); //parseÒ»¸öÍêÕû±í´ïÊ½
-	DLL var result(); //È¡µÃµ±Ç°parseµÄ½á¹û
+	DLL void start(wistream&); //å’Œæ–°çš„æ•°æ®æµç›¸å…³è”
+	DLL void parse(); //parseä¸€ä¸ªå®Œæ•´è¡¨è¾¾å¼
+	DLL var result(); //å–å¾—å½“å‰parseçš„ç»“æœ
 	DLL void clear();
 	DLL bool has_more() { return lookahead != EOI; }
 
@@ -18,7 +18,7 @@ public:
 	size_t lineno;
 	size_t column;
 
-	DLL static const wchar *character_name(wchar x); //unicode×Ö·ûµÄÃû³Æ
+	DLL static const wchar *character_name(wchar x); //unicodeå­—ç¬¦çš„åç§°
 
 	enum token_t {
 		IDENTIFIER, INTEGER, REAL, STRING, PTR_OP, INC_OP, DEC_OP, LEFT_OP, RIGHT_OP,
@@ -35,13 +35,13 @@ public:
 	struct oper_t
 	{
 		token_t token;
-		const wchar *name; //Ãû×Ö
-		const wchar *show; //ÏÔÊ¾
+		const wchar *name; //åå­—
+		const wchar *show; //æ˜¾ç¤º
 		bool postfix;
 		bool prefix;
-		bool rassoc; //ÊÇ·ñÓÒ½áºÏ
-		size_t prec; //ÓÅÏÈ¼¶
-		Var symbol; //¶ÔÓ¦symbol
+		bool rassoc; //æ˜¯å¦å³ç»“åˆ
+		size_t prec; //ä¼˜å…ˆçº§
+		Var symbol; //å¯¹åº”symbol
 		oper_t(token_t _token,const wchar *_name,
 			const wchar *_show, bool _postfix = false,
 			bool _prefix = false,bool _rassoc = false) : 
@@ -50,7 +50,7 @@ public:
 			prefix(_prefix),rassoc(_rassoc),
 			prec(s_prec),symbol(Sym(name, System)) {}
 	};
-	DLL static const oper_t *lookup_postfix_oper(Var); //ÔËËã·ûµÄÊä³öÏÔÊ¾£¬ÈçPlusµ½+
+	DLL static const oper_t *lookup_postfix_oper(Var); //è¿ç®—ç¬¦çš„è¾“å‡ºæ˜¾ç¤ºï¼Œå¦‚Plusåˆ°+
 	DLL static const oper_t *lookup_prefix_oper(Var);
 	DLL static const oper_t *lookup_infix_oper(Var);
 	DLL static size_t max_prec() { return s_prec; }
@@ -64,7 +64,7 @@ private:
 		instr_expression, instr_symbol, instr_integer,
 		instr_float, instr_string, instr_null = -1
 	};
-	struct char_t //unicodeÂëÎ»ºÍÃû³Æ¶ÔÓ¦
+	struct char_t //unicodeç ä½å’Œåç§°å¯¹åº”
 	{
 		wint_t unicode;
 		const wchar *name;
@@ -72,26 +72,26 @@ private:
 		char_t(size_t _unicode,const wchar *_name) : 
 		unicode(_unicode),name(_name),symbol(Sym(name, System)) {}
 	};
-	DLL static std::vector<char_t> s_char; //ÄÜÈÏÊ¶µÄÌØÊâ×Ö·û
-	DLL static stdext::hash_map<wint_t,size_t> s_unicode; //unicodeÂëÎ»µ½s_charÏÂ±ê
-	DLL static stdext::hash_map<wstring,size_t> s_name; //ÌØÊâÃû³Æµ½s_charÏÂ±ê
-	DLL static size_t s_prec; //µ±Ç°×î¸ßÓÅÏÈ¼¶
+	DLL static std::vector<char_t> s_char; //èƒ½è®¤è¯†çš„ç‰¹æ®Šå­—ç¬¦
+	DLL static stdext::hash_map<wint_t,size_t> s_unicode; //unicodeç ä½åˆ°s_charä¸‹æ ‡
+	DLL static stdext::hash_map<wstring,size_t> s_name; //ç‰¹æ®Šåç§°åˆ°s_charä¸‹æ ‡
+	DLL static size_t s_prec; //å½“å‰æœ€é«˜ä¼˜å…ˆçº§
 
-	DLL static std::vector<oper_t> s_oper; //´æËùÓĞÔËËã·û
-	DLL static std::map<token_t,size_t> s_postfix_token, s_prefix_token, s_infix_token; //´Ótoken_tÃ¶¾ÙÖµµ½s_operÏÂ±êÓ³Éä
-	DLL static stdext::hash_map<Var,size_t> s_postfix_symbol, s_prefix_symbol, s_infix_symbol; //´ÓÄ³¸ö·ûºÅµ½s_operÏÂ±êÓ³Éä
-	DLL static std::set<token_t> s_end; //ÓÃÀ´ÅĞ¶ÏexpressionÉ¨ÃèÊÇ·ñ½áÊø
+	DLL static std::vector<oper_t> s_oper; //å­˜æ‰€æœ‰è¿ç®—ç¬¦
+	DLL static std::map<token_t,size_t> s_postfix_token, s_prefix_token, s_infix_token; //ä»token_tæšä¸¾å€¼åˆ°s_operä¸‹æ ‡æ˜ å°„
+	DLL static stdext::hash_map<Var,size_t> s_postfix_symbol, s_prefix_symbol, s_infix_symbol; //ä»æŸä¸ªç¬¦å·åˆ°s_operä¸‹æ ‡æ˜ å°„
+	DLL static std::set<token_t> s_end; //ç”¨æ¥åˆ¤æ–­expressionæ‰«ææ˜¯å¦ç»“æŸ
 	DLL static size_t operPLUS, operSTAR;
 	DLL static int precInequality;
 	DLL static std::set<token_t> s_inequality;
-	DLL static void init(); //³õÊ¼»¯ËùÓĞstatic±äÁ¿
+	DLL static void init(); //åˆå§‹åŒ–æ‰€æœ‰staticå˜é‡
 
-	/* Ò»ÏÂÎå¸ö³ÉÔ±ÊÇlexerÏòparserµÄ½»Á÷±äÁ¿£¬scan()»áĞŞ¸Ä */
-	wstring text; //token_t¶ÔÓ¦×Ö·û´®
+	/* ä¸€ä¸‹äº”ä¸ªæˆå‘˜æ˜¯lexerå‘parserçš„äº¤æµå˜é‡ï¼Œscan()ä¼šä¿®æ”¹ */
+	wstring text; //token_tå¯¹åº”å­—ç¬¦ä¸²
 	token_t lookahead;
 	token_t lookback;
-	bool skip; //±¾´ÎscanÊÇ·ñÌø¹ı¿Õ¸ñ
-	bool linebreak; //ÊÇ·ñÌø¹ı»»ĞĞ·û
+	bool skip; //æœ¬æ¬¡scanæ˜¯å¦è·³è¿‡ç©ºæ ¼
+	bool linebreak; //æ˜¯å¦è·³è¿‡æ¢è¡Œç¬¦
 
 private:
 	wistream *m_in;
@@ -99,18 +99,18 @@ private:
 	void more();
 
 	std::stack<wchar> char_stack;
-	wchar read(bool in_string_literal=false); //µ×²ã£¬ºöÂÔ×¢ÊÍ£¬×ª»»×Ö·û
-	token_t scan(); //µ÷ÓÃlexer£¡
+	wchar read(bool in_string_literal=false); //åº•å±‚ï¼Œå¿½ç•¥æ³¨é‡Šï¼Œè½¬æ¢å­—ç¬¦
+	token_t scan(); //è°ƒç”¨lexerï¼
 	
-	struct node_t //Óï·¨·ÖÎöµ½´úÂëÉú³ÉÖĞ¼äÊı¾İ½á¹¹
+	struct node_t //è¯­æ³•åˆ†æåˆ°ä»£ç ç”Ÿæˆä¸­é—´æ•°æ®ç»“æ„
 	{
 		tag_t tag;
-		int value; //ÒÀ¾İ¾ßÌåtag¶ø¶¨¡£½¨Òé¸Ä³Éunion»òenum£¬Ò²¿ÉÒÔºÍtag_tºÏ²¢
+		int value; //ä¾æ®å…·ä½“tagè€Œå®šã€‚å»ºè®®æ”¹æˆunionæˆ–enumï¼Œä¹Ÿå¯ä»¥å’Œtag_tåˆå¹¶
 	};
-	std::vector<node_t> m_node; //±í´ïÊ½Ê÷½áµã
-	std::multimap<size_t,size_t> m_child; //ºÍm_nodeÒ»Æğ¹¹³ÉÊ÷£¬´Ó¸¸Ç×Ö¸Ïòº¢×Ó
-	stdext::hash_set<wstring> m_entry; //×Ö·û´®³Ø£¬wstringµÄc_str()·µ»Ø×Ö·û´®µØÖ·²»»á¸Ä±ä£¬ÓÃÀ´½ÚÔ¼ÄÚ´æ
-	std::map<size_t,const wchar*> m_note; //´Óm_nodeÏÂ±êÖ¸Ïòm_entry¹ÜÀíµÄÄÚÈİ
+	std::vector<node_t> m_node; //è¡¨è¾¾å¼æ ‘ç»“ç‚¹
+	std::multimap<size_t,size_t> m_child; //å’Œm_nodeä¸€èµ·æ„æˆæ ‘ï¼Œä»çˆ¶äº²æŒ‡å‘å­©å­
+	stdext::hash_set<wstring> m_entry; //å­—ç¬¦ä¸²æ± ï¼Œwstringçš„c_str()è¿”å›å­—ç¬¦ä¸²åœ°å€ä¸ä¼šæ”¹å˜ï¼Œç”¨æ¥èŠ‚çº¦å†…å­˜
+	std::map<size_t,const wchar*> m_note; //ä»m_nodeä¸‹æ ‡æŒ‡å‘m_entryç®¡ç†çš„å†…å®¹
 
 	std::stack<size_t> oper_stack;
 	std::stack<size_t> oprn_stack;
@@ -118,29 +118,29 @@ private:
 		mode_start, mode_prefix, mode_infix, mode_primary,
 		mode_postfix, mode_suffix, mode_end = -1
 	};
-	struct frame_t //Ã¿Ò»²ãexpression½¨Á¢Ò»¸ö£¬¸Ã²ãÓï·¨·ÖÎöÍê±ÏÏú»Ù
+	struct frame_t //æ¯ä¸€å±‚expressionå»ºç«‹ä¸€ä¸ªï¼Œè¯¥å±‚è¯­æ³•åˆ†æå®Œæ¯•é”€æ¯
 	{
-		size_t offset; //Õ»µ×£ºoper_stack, oprn_stack¡£ËùÓĞframe_tÕ»¶ÑÔÚÒ»Æğ
+		size_t offset; //æ ˆåº•ï¼šoper_stack, oprn_stackã€‚æ‰€æœ‰frame_tæ ˆå †åœ¨ä¸€èµ·
 		mode_t mode;
-		size_t op; //µ±Ç°É¨µ½µÄ»¹Î´ÈëÕ»µÄ²Ù×÷·ûÔÚs_operÏÂ±ê¼°Æä
-		int prec; //ÓÅÏÈ¼¶
+		size_t op; //å½“å‰æ‰«åˆ°çš„è¿˜æœªå…¥æ ˆçš„æ“ä½œç¬¦åœ¨s_operä¸‹æ ‡åŠå…¶
+		int prec; //ä¼˜å…ˆçº§
 
 		frame_t(size_t o,mode_t m,int p = 0) :
 		offset(o),mode(m),op(0),prec(p) {}
 	};
-	size_t node(tag_t t,int v); //create new node£¬·ÅÈëm_node£¬·µ»ØÏÂ±ê
-	void insert(size_t i, size_t j); //Ìí¼Ó¸¸×Ó¹ØÏµ
-	const wchar* entry(const wstring &s); //ÔÚm_entry²åÈë/²éÕÒ²¢·µ»Ø
-	void note(size_t i, const wstring &s); //m_noteĞÂ¼ÓÓò£¬Ö¸¶¨×Ö·û´®
+	size_t node(tag_t t,int v); //create new nodeï¼Œæ”¾å…¥m_nodeï¼Œè¿”å›ä¸‹æ ‡
+	void insert(size_t i, size_t j); //æ·»åŠ çˆ¶å­å…³ç³»
+	const wchar* entry(const wstring &s); //åœ¨m_entryæ’å…¥/æŸ¥æ‰¾å¹¶è¿”å›
+	void note(size_t i, const wstring &s); //m_noteæ–°åŠ åŸŸï¼ŒæŒ‡å®šå­—ç¬¦ä¸²
 
-	/* LRÄ£Ê½ */
+	/* LRæ¨¡å¼ */
 	void shift(frame_t &s);
 	void reduce(frame_t &s);
-	bool compare(frame_t &s); //¹¤¾ßº¯Êı£¬±È½ÏÓÅÏÈ¼¶£¬¸ß£¿µÍ£¿ÏàÍ¬->ÓÒ½áºÏ£¿
-	/* ¹¤¾ßº¯Êı£¬token¼¶±ğµ×²ã²Ù×÷ */
-	void accept(); //½ÓÊÜÏÂÒ»¸ötoken
-	void match(token_t t); //ÏÂÒ»¸ötoken±ØĞëÎªÖ¸¶¨µÄ£¬·ñÔò±¨´í
-	/* LLÄ£Ê½ */
+	bool compare(frame_t &s); //å·¥å…·å‡½æ•°ï¼Œæ¯”è¾ƒä¼˜å…ˆçº§ï¼Œé«˜ï¼Ÿä½ï¼Ÿç›¸åŒ->å³ç»“åˆï¼Ÿ
+	/* å·¥å…·å‡½æ•°ï¼Œtokençº§åˆ«åº•å±‚æ“ä½œ */
+	void accept(); //æ¥å—ä¸‹ä¸€ä¸ªtoken
+	void match(token_t t); //ä¸‹ä¸€ä¸ªtokenå¿…é¡»ä¸ºæŒ‡å®šçš„ï¼Œå¦åˆ™æŠ¥é”™
+	/* LLæ¨¡å¼ */
 	size_t expression(int);
 	size_t inequality();
 	size_t expression();
@@ -148,15 +148,15 @@ private:
 	size_t sequence();
 	size_t primary();
 
-	std::vector<var> m_code; //¹ÜÀí×îºóÉú³ÉµÄvarÊ÷µÄËùÓĞvar
+	std::vector<var> m_code; //ç®¡ç†æœ€åç”Ÿæˆçš„varæ ‘çš„æ‰€æœ‰var
 	std::stack<std::pair<Var,size_t> > code_stack;
 	typedef std::multimap<size_t,size_t>::const_iterator iter_t;
 	iter_t lower(size_t i);
 	iter_t upper(size_t i);
 	size_t count(size_t i);
-	void emit(Var); //Ìî³ä±í´ïÊ½
-	void head(size_t n); //Éú³É³¤Îªn£¨Í·²¿Ò²Ëã£©µÄ±í´ïÊ½
-	void gen(size_t m); //½«ÖĞ¼äÊı¾İ½á¹¹µÄmÎª¸ùµÄ×ÓÊ÷´úÂëÉú³Éµ½¶ÔÓ¦varÊ÷£¬·ÅÈëm_code
+	void emit(Var); //å¡«å……è¡¨è¾¾å¼
+	void head(size_t n); //ç”Ÿæˆé•¿ä¸ºnï¼ˆå¤´éƒ¨ä¹Ÿç®—ï¼‰çš„è¡¨è¾¾å¼
+	void gen(size_t m); //å°†ä¸­é—´æ•°æ®ç»“æ„çš„mä¸ºæ ¹çš„å­æ ‘ä»£ç ç”Ÿæˆåˆ°å¯¹åº”varæ ‘ï¼Œæ”¾å…¥m_code
 };
 //////////////////////////////////////
 }

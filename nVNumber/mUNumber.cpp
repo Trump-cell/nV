@@ -11,7 +11,7 @@ namespace List = maTHmU::Objects::List;
 
 using namespace mU;
 
-CAPI void mUInstall() {
+CAPI void nvnumber_mUInstall() {
 	static bool Initialized = false;
 	if(Initialized) return;
 
@@ -22,7 +22,7 @@ CAPI void mUInstall() {
 	
 	Initialized = true;
 }
-CAPI void mUUninstall() {
+CAPI void nvnumber_mUUninstall() {
 	//wcout << "#nVNumber# Uninstall Successfully!" << std::endl;
 }
 

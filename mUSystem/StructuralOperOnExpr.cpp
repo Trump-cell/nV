@@ -527,7 +527,7 @@ namespace
 
 CPROC_INT2_OPT(System_Map, 2, 3, (Heads, False))
 {
-	// TODO: 考虑对argnum == 2的情形做优化
+	// TODO: 鑰冭檻瀵筧rgnum == 2鐨勬儏褰㈠仛浼樺寲
 	LevelSpec levels;
 	if (argnum == 3)
 	{
@@ -542,7 +542,7 @@ CPROC_INT2_OPT(System_Map, 2, 3, (Heads, False))
 
 CPROC_INT2_OPT(System_Apply, 2, 3, (Heads, False))
 {
-	// TODO: 考虑对argnum == 2的情形做优化
+	// TODO: 鑰冭檻瀵筧rgnum == 2鐨勬儏褰㈠仛浼樺寲
 	LevelSpec levels(0);
 	if (argnum == 3)
 	{

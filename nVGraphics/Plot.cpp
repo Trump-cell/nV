@@ -176,8 +176,8 @@ namespace nV {
                 }
             }
             if (filling == FILL_NULL) {
-                //ÃüÁî¸öÊıÎª1µÄÇé¿ö
-                var shapelist;	//ÃüÁî¸öÊı
+                //å‘½ä»¤ä¸ªæ•°ä¸º1çš„æƒ…å†µ
+                var shapelist;	//å‘½ä»¤ä¸ªæ•°
                 if (!colorFunctionSet) {
                     shapelist = list(curnum,SYS(Shape));
                     for (uint i = 0; i < curnum; i++) {
@@ -583,7 +583,7 @@ namespace nV {
                 totaldata += (vec1.tuple()[i + 1].tuple().size - 1);
             }
 
-            //y1,y2·Ö±ğÎª¶ÔÓ¦1ºÅºÍ2ºÅº¯ÊıÔÚx±ß½ç´¦µÄº¯ÊıÖµ
+            //y1,y2åˆ†åˆ«ä¸ºå¯¹åº”1å·å’Œ2å·å‡½æ•°åœ¨xè¾¹ç•Œå¤„çš„å‡½æ•°å€¼
             double y1 = f1.getSingleData(xmax);
             double y2 = f2.getSingleData(xmax);
             if(!((y1 > ymax && y2 > ymax) || (y1 < ymin && y2 < ymin) || (( y1 > ymin) && (y1 < ymax)) && ((y2 > ymin) && (y2 < ymax)))) {
@@ -722,7 +722,7 @@ namespace nV {
 
         //
         //
-        //ÅĞ¶¨Ææµã£¬²¢ÏŞ¶¨yminºÍymax
+        //åˆ¤å®šå¥‡ç‚¹ï¼Œå¹¶é™å®šyminå’Œymax
         //
         //
         bool Plot::hassingularity(F1P *f, std::vector<singularitynode *> &singularityset,
@@ -770,7 +770,7 @@ namespace nV {
 			}
 
             //
-            //È¥³ıĞ±ÂÊÌ«´óµÄµã
+            //å»é™¤æ–œç‡å¤ªå¤§çš„ç‚¹
             //
 			bool vrm = true; //vert removed
             bool isnanfunction = false;
@@ -814,14 +814,14 @@ namespace nV {
 			}
 
             //
-            //Ì½²âº¯ÊıµÄ¶¨ÒåÓò
+            //æ¢æµ‹å‡½æ•°çš„å®šä¹‰åŸŸ
             //
             if(isnanfunction) {
                 detectnanborder(f, nanrangeset, nannodesite, nanflag, flag, vert);
             }
 
             //
-            //ÅĞ¶¨ÆæµãµÄÎ»ÖÃ
+            //åˆ¤å®šå¥‡ç‚¹çš„ä½ç½®
             //
             if(singularity) {
                 if(isnanfunction) {
@@ -1004,9 +1004,9 @@ namespace nV {
 
                 uint totaldata = 0;
                 var old_out_verts = out_verts;
-                //size of out_verts equal old_out_vertsµÄ´óĞ¡¼ÓÉÏ
-                //Ã¿Á½¸öÏàÁÚ·Ö½çµã´¦Ææº¯Êı¶ÔÓ¦µÄÁ½¸öymaxºÍÁ½¸öymin£¬ºÍ´ËÁ½´¦Á¬Ğøº¯Êı¶ÔÓ¦µÄyÖµ ¼ÓÉÏ
-                //Á½¸ö±ß½çµã´¦Á½¸öymaxºÍÁ½¸öymin
+                //size of out_verts equal old_out_vertsçš„å¤§å°åŠ ä¸Š
+                //æ¯ä¸¤ä¸ªç›¸é‚»åˆ†ç•Œç‚¹å¤„å¥‡å‡½æ•°å¯¹åº”çš„ä¸¤ä¸ªymaxå’Œä¸¤ä¸ªyminï¼Œå’Œæ­¤ä¸¤å¤„è¿ç»­å‡½æ•°å¯¹åº”çš„yå€¼ åŠ ä¸Š
+                //ä¸¤ä¸ªè¾¹ç•Œç‚¹å¤„ä¸¤ä¸ªymaxå’Œä¸¤ä¸ªymin
                 out_verts = list(old_out_verts.tuple().size + (singularityset.size() * 6) + 5);
 
                 for(uint i = 0; i < old_out_verts.tuple().size - 1; i++) {
@@ -1142,7 +1142,7 @@ namespace nV {
                             }
                         }
                     }
-                    //y1,y2·Ö±ğÎª¶ÔÓ¦1ºÅºÍ2ºÅº¯ÊıÔÚx±ß½ç´¦µÄº¯ÊıÖµ
+                    //y1,y2åˆ†åˆ«ä¸ºå¯¹åº”1å·å’Œ2å·å‡½æ•°åœ¨xè¾¹ç•Œå¤„çš„å‡½æ•°å€¼
                     double y1 = f1.getSingleData(xmax);
                     if(!isNaN(y1)) {
                     } else {

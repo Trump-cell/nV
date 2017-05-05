@@ -1,5 +1,3 @@
-<< Path["System/init.m"]
-
 If[${INI_USE_NTL_FLINT},
 nV`Eval["<< Path[\"nVLink/NTL/LinkNTL.n\"]"];
 nV`Eval["<< Path[\"nVLink/flint/LinkFLINT.n\"]"]

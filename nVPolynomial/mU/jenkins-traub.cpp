@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief Jenkins-Traub�㷨
+\brief Jenkins-Traub算法
 */
 #include "polyfloat.h"
 

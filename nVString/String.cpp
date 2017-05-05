@@ -5,9 +5,9 @@
 
 using namespace nV;
 
-CAPI void Install(Kernel& k) {
+CAPI void nvstring_Install(Kernel& k) {
     //wcout << "#String# Install Successfully!" << endl;
 }
-CAPI void Uninstall(nV::Kernel& k) {
+CAPI void nvstring_Uninstall(nV::Kernel& k) {
     wcout << "#String# Uninstall Successfully!" << endl;
 }

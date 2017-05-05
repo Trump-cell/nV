@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief 多元多项式GCD in Z[X]
+\brief 澶氬厓澶氶」寮廏CD in Z[X]
 */
 #include <mU/Polynomial_impl.h>
 
@@ -500,10 +500,10 @@ void MultiGcdZ(sparse_z & r, const sparse_z & f,const sparse_z & g)
 }
 
 /** 
-\brief 整系数多项式最小公倍数.
-\param f,g 整系数多项式.
-\return 最小公倍数.
-\note 调用MultiGcdZ
+\brief 鏁寸郴鏁板椤瑰紡鏈�灏忓叕鍊嶆暟.
+\param f,g 鏁寸郴鏁板椤瑰紡.
+\return 鏈�灏忓叕鍊嶆暟.
+\note 璋冪敤MultiGcdZ
 */
 void MultiLcmZ(sparse_z & r, const sparse_z & f,const sparse_z & g)
 {

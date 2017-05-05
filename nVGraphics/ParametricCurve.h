@@ -21,7 +21,7 @@ public:
     double tmin, tmax, spt;
     double dt, graphScale;
     ArrayList<ArrayList<double> *> arrayTtotal;
-    //ArrayList<double> arrayT; //存每个点的t值，与verts一一对应
+    //ArrayList<double> arrayT; //瀛樻瘡涓偣鐨則鍊硷紝涓巚erts涓�涓�瀵瑰簲
     F1P *fx, *fy;
 
     bool tWithDomain_x;

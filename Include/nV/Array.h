@@ -5,8 +5,8 @@
 #include <algorithm>
 
 namespace nV {
-// 包装std::vector
-// TODO: std::tuple少一次解引用，是否更好？
+// 鍖呰std::vector
+// TODO: std::tuple灏戜竴娆¤В寮曠敤锛屾槸鍚︽洿濂斤紵
 template <class T>
 class Array : public Object {
 public:

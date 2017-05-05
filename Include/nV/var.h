@@ -11,6 +11,11 @@
 #ifdef _DEBUG
 #include <typeinfo>
 #endif
+#if __EMSCRIPTEN__
+#include <emscripten.h>
+#else
+#define EMSCRIPTEN_KEEPALIVE
+#endif
 
 #undef CAPI
 #undef API
@@ -24,7 +29,7 @@
 #define API __declspec(dllimport)
 #endif
 #else
-#define CAPI extern "C"
+#define CAPI extern "C" EMSCRIPTEN_KEEPALIVE
 #define API
 #endif
 

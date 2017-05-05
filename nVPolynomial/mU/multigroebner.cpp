@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief ¶àÔª¶àÏîÊ½Groebner»ù
+\brief å¤šå…ƒå¤šé¡¹å¼GroebneråŸº
 */
 #include <mU/Polynomial_impl.h>
 #ifdef OLDPOLYNOMIAL_EXPORTS//if being compiled in nV

@@ -31,7 +31,7 @@ class ParametricCurve3D : public Curve3D {
 public:
     double tmin, tmax, spt;
     double dt;
-    ArrayList<ArrayList<double> *> arrayTtotal; //存每个点的t值，与verts一一对应
+    ArrayList<ArrayList<double> *> arrayTtotal; //瀛樻瘡涓偣鐨則鍊硷紝涓巚erts涓�涓�瀵瑰簲
     F1P *fx, *fy, *fz;
 
     ArrayList<LineStrip*> lineStrips;

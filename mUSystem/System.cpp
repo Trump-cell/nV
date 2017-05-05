@@ -8,7 +8,7 @@
 
 using namespace mU;
 
-CAPI void mUInstall() {
+CAPI void musystem_mUInstall() {
 	static bool Initialized = false;
 	if (Initialized) return;
 
@@ -90,6 +90,6 @@ CAPI void mUInstall() {
 	
 	Initialized = true;
 }
-CAPI void mUUninstall() {
+CAPI void musystem_mUUninstall() {
 	wcout << "#System# Uninstall Successfully!" << std::endl;
 }

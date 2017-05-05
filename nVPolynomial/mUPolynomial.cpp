@@ -6,16 +6,16 @@
 
 /**
 \file
-\brief ÕûÏµÊıÒ»Ôª¶àÏîÊ½Òò×Ó·Ö½â
-\todo ÌØ±ğµØ£¬Òª¼ÓÉÏ²»¿ÉÔ¼ĞÔµÄ¼ì²â£¬¿ìËÙ·Ö½âÖîÈçx^10000-2; x^n-1ĞÍ¶àÏîÊ½µÄ·Ö½â
+\brief æ•´ç³»æ•°ä¸€å…ƒå¤šé¡¹å¼å› å­åˆ†è§£
+\todo ç‰¹åˆ«åœ°ï¼Œè¦åŠ ä¸Šä¸å¯çº¦æ€§çš„æ£€æµ‹ï¼Œå¿«é€Ÿåˆ†è§£è¯¸å¦‚x^10000-2; x^n-1å‹å¤šé¡¹å¼çš„åˆ†è§£
 */
 
 namespace mU {
 	
 /**
-\brief ÕûÏµÊı¶àÏîÊ½Òò×Ó·Ö½â.
-\param f ÕûÏµÊıÒ»Ôª¶àÏîÊ½.
-\return fµÄ·Ö½â½á¹û.
+\brief æ•´ç³»æ•°å¤šé¡¹å¼å› å­åˆ†è§£.
+\param f æ•´ç³»æ•°ä¸€å…ƒå¤šé¡¹å¼.
+\return fçš„åˆ†è§£ç»“æœ.
 */
 var UniFacZ(Var f)
 {
@@ -67,7 +67,7 @@ var UniFacZp(Var f,Var p)
 
 using namespace mU;
 
-CAPI void mUInstall()
+CAPI void nvpolynomial_mUInstall()
 {
 	static bool Initialized = false;
 	if(Initialized) return;
@@ -86,7 +86,7 @@ CAPI void mUInstall()
 
 	Initialized = true;
 }
-CAPI void mUUninstall() {
+CAPI void nvpolynomial_mUUninstall() {
 	wcout << "#Polynomial# Uninstall Successfully!" << std::endl;
 }
 
@@ -499,10 +499,10 @@ CPROC_ATOMIC_INT(System_FactorList, 1)
 		Push(r,f);
 		return r;
 	}
-	//¶àÔªÇéĞÎ
+	//å¤šå…ƒæƒ…å½¢
 	if(Size(v)>1)return 0;
 
-	//·ÇÕûÏµÊıÇéĞÎ
+	//éæ•´ç³»æ•°æƒ…å½¢
 	var fc;
 	fc = Coefficients(Expand(f),At(v,0));
 	for(size_t i = 0; i < Size(fc); ++i)
@@ -555,7 +555,7 @@ CPROC_ATOMIC_INT(System_Factor, 1)
 	return result;
 }
 
-//todo ²»Í¬µÄ×ÖµäĞò
+//todo ä¸åŒçš„å­—å…¸åº
 CPROC_ATOMIC(System_CharacterSet)
 {
 	var v_var;

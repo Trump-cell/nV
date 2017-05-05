@@ -117,7 +117,7 @@ void Parser::Parsing::shift(Frame &s) {
     case mode_primary://primary.
     case mode_postfix://postfix.
         //->suffix
-        if (mLookahead == LBRACKET) {		//∑Ω¿®∫≈
+        if (mLookahead == LBRACKET) {		//ÊñπÊã¨Âè∑
             s.op = suffix();
             s.mode = mode_suffix;
             return;
@@ -144,7 +144,7 @@ void Parser::Parsing::shift(Frame &s) {
         }
         if (mLookahead == BLANK && mLookback == SYMBOL) {
             //SYMBOL BLANK -> SYMBOL COLON BLANK
-            s.op = grammar.operCOLON;					//√∞∫≈
+            s.op = grammar.operCOLON;					//ÂÜíÂè∑
             s.mode = mode_infix;
             return;
         }

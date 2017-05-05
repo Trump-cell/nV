@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include <boost/system/error_code.hpp>
-#include <boost/version.hpp>
+//#include <boost/system/error_code.hpp>
+//#include <boost/version.hpp>
 #ifdef _WIN32
 #include <Windows.h>
 #else
@@ -61,6 +61,7 @@ namespace nV
 
 	};
 
+#if 0
 	class SystemError : public RuntimeException
 	{
 	public:
@@ -97,5 +98,6 @@ namespace nV
 #define OS_API_CALL_R(r, api_func, ...)		\
 	if ((r = api_func(__VA_ARGS__)) == -1)	\
 		throw SystemError();
+#endif
 #endif
 }

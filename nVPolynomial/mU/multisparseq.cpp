@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief ¶àÔª¶àÏîÊ½»ù±¾º¯Êı in Q[x]
+\brief å¤šå…ƒå¤šé¡¹å¼åŸºæœ¬å‡½æ•° in Q[x]
 */
 #include <mU/Polynomial_impl.h>
 

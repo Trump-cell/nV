@@ -181,7 +181,7 @@ Tuple* Serializer::Loading::load_tuple(istream& i, field_head& fh) {
 }
 Key* Serializer::Loading::load_key(istream& i, field_head& fh) {
 	switch(fh.index){
-		case (wchar_t)Key::Null: return 0;	//这里应该返回什么？
+		case (wchar_t)Key::Null: return 0;	//杩欓噷搴旇杩斿洖浠�涔堬紵
 		case (wchar_t)Key::String: 
 			{
 				wstring str(fh.value.size+1, _W('\0'));
@@ -195,7 +195,7 @@ Key* Serializer::Loading::load_key(istream& i, field_head& fh) {
 	}
 }
 namespace {
-//需测试
+//闇�娴嬭瘯
 void split_string(wstring &src, const wstring& s, std::vector<wstring>& result) {
 	size_t begin = 0, index = 0;
 	for (; (index = src.find_first_of(s, begin)) != wstring::npos; begin = index + 1){

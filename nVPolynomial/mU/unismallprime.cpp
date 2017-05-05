@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief Ğ¡ËØÊıBerlekampËã·¨.
+\brief å°ç´ æ•°Berlekampç®—æ³•.
 */
 #include <mU/Polynomial_impl.h>
 #include <iostream>
@@ -267,10 +267,10 @@ void NullSpaceZp_SmallPrime(std::vector<poly_int> & basis,mat_int & m,uint n,int
 }
 
 /**
-\brief BerlekampËã·¨.
-\param f ÓĞÏŞÓòÉÏ¶àÏîÊ½.monic
+\brief Berlekampç®—æ³•.
+\param f æœ‰é™åŸŸä¸Šå¤šé¡¹å¼.monic
 \param p characteristic. small prime
-\param faclist ·µ»ØÒò×Ólist.
+\param faclist è¿”å›å› å­list.
 */
 void BerlekampZp_SmallPrime(const poly_z & f,mpz_ptr p,std::vector<poly_z> & faclist)
 {

@@ -30,7 +30,7 @@ public:
 //    jobject obj;
 	PyObject *obj;
     virtual ~PythonObject() {
-        //ÐèÌí¼Ó
+        //éœ€æ·»åŠ 
 		Py_DECREF(obj);
     }
     API virtual PythonObject* clone() const;

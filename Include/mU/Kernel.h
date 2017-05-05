@@ -7,7 +7,7 @@
 namespace mU {
 //////////////////////////////////////
 
-// ÄÚºË³õÊ¼»¯º¯Êı
+// å†…æ ¸åˆå§‹åŒ–å‡½æ•°
 API void Initialize();
 inline string mU_Home()
 {
@@ -15,7 +15,7 @@ inline string mU_Home()
 	return mu_home ? mu_home : MU_HOME;
 }
 
-// ±í´ïÊ½ÅÅĞòÏà¹Øº¯Êı
+// è¡¨è¾¾å¼æ’åºç›¸å…³å‡½æ•°
 API int Compare(Var,Var);
 inline bool Before(Var x, Var y) { return Compare(x,y) < 0; }
 inline bool Same(Var x, Var y) { return Compare(x,y) == 0; }
@@ -33,7 +33,7 @@ inline void Sort(Var x) { std::sort(CVec(x).begin(),CVec(x).end(),Less); }
 
 API bool FreeQ(Var,Var);
 
-// ·ûºÅ¶¨ÒåÏà¹Ø
+// ç¬¦å·å®šä¹‰ç›¸å…³
 typedef std::map<Var,var> map_t;
 typedef std::map<var,var,Before2> dict_t;
 struct def_t {
@@ -105,7 +105,7 @@ API void Flatten(Var,Var,Var);
 API void FlattenAll(Var,Var);
 API void FlattenAll(Var,Var,Var);
 
-// ²âÊÔÄ³¸ö±í´ïÊ½ÖĞÊÇ·ñ²»º¬ÓĞÄ£Ê½??
+// æµ‹è¯•æŸä¸ªè¡¨è¾¾å¼ä¸­æ˜¯å¦ä¸å«æœ‰æ¨¡å¼??
 API bool FixQ(Var);
 
 API var Supply(Var,Var,Var);
@@ -130,7 +130,7 @@ var Subs(const T& m, Var x)
 	return x;
 }
 
-// ·ûºÅ±íÏà¹Ø
+// ç¬¦å·è¡¨ç›¸å…³
 API var Contexts;
 API stdext::hash_map<Var,const wchar*> ContextName;
 API std::stack<Var> ContextStack;

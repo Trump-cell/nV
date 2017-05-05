@@ -104,7 +104,7 @@ void Parser::Loading::load(std::ifstream& i_node, std::ifstream& i_note, std::if
 		wstring pws(size/2 + 1,0);
 		if (!i_note.read((char*)&*(pws.begin()), size)){
 			i_note.close();
-			i_rootindex.close();		//Èç¹û²»×¢ÊÍµô´Ë¾ä£¬ÔÚrelease°æ±¾»á·¢Éú´íÎó£¬ºÜ¹îÒìµÄ´íÎó£¬²»ÖªµÀÎªÉ¶£¿
+			i_rootindex.close();		//å¦‚æžœä¸æ³¨é‡ŠæŽ‰æ­¤å¥ï¼Œåœ¨releaseç‰ˆæœ¬ä¼šå‘ç”Ÿé”™è¯¯ï¼Œå¾ˆè¯¡å¼‚çš„é”™è¯¯ï¼Œä¸çŸ¥é“ä¸ºå•¥ï¼Ÿ
 			throw std::logic_error("the note file is wrong!");
 		}
 		pNote->push_back(pws);

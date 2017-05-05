@@ -6,34 +6,55 @@
 #include <mU/UnicodeDevice.h>
 #include <mU/utils.h>
 
+#if __cplusplus >= 199711L && _MSC_VER != 1500
+#include <thread>
+using namespace std;
+#else
+#include <boost/thread.hpp>
+#include <boost/thread/thread.hpp>
+using namespace boost;
+#endif
+
 namespace mU {
 bool backend_mode = getenv("MU_BACKEND") != 0;
 inline void prompt() { wcout<<L"mU> "; if (backend_mode) wcout << L"\n" << std::flush; }
 inline void newline() { wcout<<L"  > "; }
 void find_result(parser *p, var *r)
 {
-	try
-	{
+	//try
+	//{
 		(*r) = SafeEval(Optimi(p->result()));
-	}
-	catch (boost::thread_interrupted &)
+	//}
+	/*catch (thread_interrupted &)
 	{
 		(*r) = mU::Aborted;
-	}
+	}*/
 }
 }
 using namespace mU;
 
-extern "C"
-//#ifdef _WIN32
-#ifdef _MSC_VER
-__declspec(dllexport)
-#endif
-int mU_main(int argc,char *argv[]) {
+CAPI void mU_init() { Initialize(); }
+CAPI const char*  mU_eval(const char* str) { 
+	static string s;
+	wostringstream t;
+	var r = ParseString(to_wstring(str,strlen(str)));
+	if (r == Failed)
+		Print(r, t);
+        else
+	    for (int i = 0; i < Size(r); ++i) {
+		Print(Pretty(At(r,i)), t);
+		t << endl;
+            }
+	wstring w = t.str();
+	s = to_string(w.c_str(), w.size());
+	return s.c_str();
+} 
+#if 1//!__EMSCRIPTEN__
+CAPI int mU_main(int argc,char *argv[]) {
+	mU_init();
 //	setlocale(LC_ALL,"");
 //	std::locale::global(std::locale(""));
 	//wcerr.rdbuf(0);
-	Initialize();
 #ifdef _WIN32
 	Get(mbs2wcs(mU_Home() + "/conf/mU.ini"));
 #else
@@ -64,7 +85,7 @@ int mU_main(int argc,char *argv[]) {
 	
 	wstring buf, line;
 
-	while(std::getline(wcin,line))
+	while((bool)getline(wcin,line))
 	{
 		parser p;
 		if(line.empty())
@@ -109,8 +130,9 @@ int mU_main(int argc,char *argv[]) {
 			}
 		}
 		++InputLineCounter;
-		boost::thread worker(find_result, &p, &r);
+		thread worker(find_result, &p, &r);
 		worker.join();
+		find_result(&p, &r);
 		if(r && r != Null) Println(r);
 		buf.clear();
 		prompt();
@@ -118,3 +140,4 @@ int mU_main(int argc,char *argv[]) {
 
 	return 0;
 }
+#endif

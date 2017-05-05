@@ -1,7 +1,7 @@
 #include "common.h"
 /**
 \file
-\brief ÓĞ¹Ø¸´Êı
+\brief æœ‰å…³å¤æ•°
 */
 #include "polyfloat.h"
 

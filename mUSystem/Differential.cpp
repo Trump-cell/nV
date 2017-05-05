@@ -9,7 +9,7 @@ var D(Var x,Var y)
 	map_t e;
 	e[TAG(Derivative)]=TAG($Derivative);
 	var r=Subs(e,x);
-	//ǿ����ֵ��Ҫ����
+	//强制求值？要化简
 	return Expand(Eval(Ex(TAG($D),Vec(r,y))));
 }
 }
@@ -31,9 +31,9 @@ CAPI CPROC(System_D)
 				for (size_t i=0;i<n;i++)
 					r=D(r,At(para,0));
 			}
-			//�������Ž׵ĵ������޹��򷵻�0
+			//处理符号阶的导数，无关则返回0
 			else if (FreeQ(r,At(para,0))) return Int(0L);
-			//����ԭ������
+			//否则原样返回
 			else return 0;
 		}
 		else
@@ -51,7 +51,12 @@ CAPI CPROC(System_D)
 	return r;
 }
 
-CAPI COPER(System_$Derivative)
+CAPI 
+#if __EMSCRIPTEN__
+COPER(System__Derivative)
+#else
+COPER(System_$Derivative)
+#endif
 {
 	if (Size(y)==1) {
 		var head=Tag(At(y,0));
@@ -92,8 +97,13 @@ CAPI COPER(System_Derivative)
 		return Ex(TAG(Function),Vec(r));
 }
 
-//\todo ��ø��ýű�д
-CAPI CPROC(System_$MultiD)
+//\todo 最好改用脚本写
+CAPI 
+#if __EMSCRIPTEN__
+CPROC(System__MultiD)
+#else
+CPROC(System_$MultiD)
+#endif
 {
 	var f=At(x,0);
 	var g=At(x,1);

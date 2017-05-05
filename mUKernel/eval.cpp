@@ -443,7 +443,7 @@ var Eval(Var x)
 	case TYPE(ex):
 		return EvalEx(x);
 	default:
-		assert(false);		// TODO: ±¨¸æ´íÎó
+		assert(false);		// TODO: æŠ¥å‘Šé”™è¯¯
 		return Null;
 	}
 }

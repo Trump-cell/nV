@@ -39,18 +39,18 @@ CAPI CPROC(System_StringDrop)
 		for (i = 0; i < Size(c); i++)
 		{
 			At(y,0)=At(c,i);
-			Push(r, StringDrop_uni_str(y));	//ÕâÌõÓï¾äÊÇ·ñ°²È«£¿
+			Push(r, StringDrop_uni_str(y));	//è¿™æ¡è¯­å¥æ˜¯å¦å®‰å…¨ï¼Ÿ
 		}
 		return r;
 	}
 	return 0;
 }
 
-//»ù±¾ÊµÏÖÁËMathematicaÑùÀýÖÐµÄ¹¦ÄÜ£¬³ýÁËÓÉÓÚ×ªÒå×Ö·û¹¦ÄÜ²»¹»ÍêÉÆ£¬Ö´ÐÐÒÔÏÂ´úÂë£º
+//åŸºæœ¬å®žçŽ°äº†Mathematicaæ ·ä¾‹ä¸­çš„åŠŸèƒ½ï¼Œé™¤äº†ç”±äºŽè½¬ä¹‰å­—ç¬¦åŠŸèƒ½ä¸å¤Ÿå®Œå–„ï¼Œæ‰§è¡Œä»¥ä¸‹ä»£ç ï¼š
 // StringDrop["\[FilledDiamond]\[Alpha]\[Beta]\[Gamma]\[LongLeftRightArrow]\[ScriptCapitalA]\[ScriptCapitalB]\[ScriptCapitalC]\[ReturnIndicator]", -4]
-//³öÏÖÈçÏÂ½á¹û£º
+//å‡ºçŽ°å¦‚ä¸‹ç»“æžœï¼š
 //\:25c6
-//²¢ÇÒ³ÌÐò±ÀÀ£
+//å¹¶ä¸”ç¨‹åºå´©æºƒ
 
 bool StringMatch_1(Var s, Var sub, uint n)
 {
@@ -111,13 +111,13 @@ CPROC_INT2_OPT(System_StringReplace, 2, 3, (IgnoreCase, False))
 		var y = x, r(Vec());
 		for (i = 0; i < Size(c); i++)
 		{
-			Push(r, StringReplace_uni_str(At(c, i), At(x, 1), step));	//ÕâÌõÓï¾äÊÇ·ñ°²È«£¿
+			Push(r, StringReplace_uni_str(At(c, i), At(x, 1), step));	//è¿™æ¡è¯­å¥æ˜¯å¦å®‰å…¨ï¼Ÿ
 		}
 		return r;
 	}
 	return 0;
 }
 
-//¶ÔÓÚ×î»ù±¾µÄ×Ó´®Ìæ»»£¬ÊµÏÖÇé¿öÁ¼ºÃ¡£
-//°üÀ¨¶à¸ö×Ö·û´®µÄÇéÐÎ£¬ÒÔ¼°ÏÞÖÆÌæ»»´ÎÊýµÄÇéÐÎ¡£
-//ÉÐ²»Ö§³ÖÈÎºÎ×Ö·û´®Ä£Ê½
+//å¯¹äºŽæœ€åŸºæœ¬çš„å­ä¸²æ›¿æ¢ï¼Œå®žçŽ°æƒ…å†µè‰¯å¥½ã€‚
+//åŒ…æ‹¬å¤šä¸ªå­—ç¬¦ä¸²çš„æƒ…å½¢ï¼Œä»¥åŠé™åˆ¶æ›¿æ¢æ¬¡æ•°çš„æƒ…å½¢ã€‚
+//å°šä¸æ”¯æŒä»»ä½•å­—ç¬¦ä¸²æ¨¡å¼

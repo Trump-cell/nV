@@ -6,6 +6,7 @@
 
 namespace nV {
 var Parser::eval() {
+    std::vector<var> results;
     var r;
     while (parsing->mLookahead != EOI) {
         try {
@@ -23,8 +24,9 @@ var Parser::eval() {
             kernel.start();
             throw;
         }
+	results.push_back(r);
     }
-    return r;
+    return nV::list(results.size(), results.begin());
 }
 var Parser::parseall() {
     while (parsing->mLookahead != EOI) {

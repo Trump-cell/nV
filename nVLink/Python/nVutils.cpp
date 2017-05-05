@@ -15,7 +15,7 @@ static var py_list_convert(PyObject *o)
 
 static var py_tuple_convert (PyObject *o)
 {
-	//ÔİÊ±ÈÏÎªlistºÍtupleÏàÍ¬
+	//æš‚æ—¶è®¤ä¸ºlistå’Œtupleç›¸åŒ
 	var r = py_list_convert(o);
 	return r;
 }
@@ -33,11 +33,11 @@ var py_convert( PyObject *o)
 	} else if (PyString_Check(o)) {
 		char *s;
 		int len;
-		//PyString_AsStringAndSize·µ»ØÖµÎª0ÊÇÕı³£µÄ£¿ÔõÃ´Óë±ê×¼ËµÃ÷²»Ò»Ñù
+		//PyString_AsStringAndSizeè¿”å›å€¼ä¸º0æ˜¯æ­£å¸¸çš„ï¼Ÿæ€ä¹ˆä¸æ ‡å‡†è¯´æ˜ä¸ä¸€æ ·
 		if (0 != PyString_AsStringAndSize(o, &s, &len) || s == NULL){
 			return 0;
 		}
-		//ÕâÖÖ¸³Öµ·½Ê½ÍêÈ«Âğ£¿
+		//è¿™ç§èµ‹å€¼æ–¹å¼å®Œå…¨å—ï¼Ÿ
 		r = new String(mbs2wcs(s));
 
 		free(s);
@@ -46,7 +46,7 @@ var py_convert( PyObject *o)
 		r = new Integer(PyInt_AsLong(o));
 	}
 	else if (PyLong_Check(o)) {
-		//¿ÉÒÔ¿¼ÂÇÓÃ_PyLong_AsByteArray£¬¿ÉÄÜ±È½Ï¿ì
+		//å¯ä»¥è€ƒè™‘ç”¨_PyLong_AsByteArrayï¼Œå¯èƒ½æ¯”è¾ƒå¿«
 		PyObject* pys = _PyLong_Format(o,10,0,0);
 		char* s = PyString_AsString(pys);
 		r = new Integer(s, 10);
@@ -54,7 +54,7 @@ var py_convert( PyObject *o)
 	else if (PyFloat_Check(o)) {
 		char s[120];
 		PyFloat_AsString(s, (PyFloatObject*)o);
-		r = new Real(s,10,0);		//ĞèÒªĞŞ¸Ä
+		r = new Real(s,10,0);		//éœ€è¦ä¿®æ”¹
 	}
 	else if ( PyList_Check(o) ){
 		r = py_list_convert(o);

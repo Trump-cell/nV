@@ -6,10 +6,10 @@
 
 using namespace nV;
 
-CAPI void Install(Kernel& k) {
+CAPI void nvnumber_Install(Kernel& k) {
     //wcout << "#Number# Install Successfully!" << endl;
     Number::Randomize();
 }
-CAPI void Uninstall(nV::Kernel& k) {
+CAPI void nvnumber_Uninstall(nV::Kernel& k) {
     wcout << "#Number# Uninstall Successfully!" << endl;
 }

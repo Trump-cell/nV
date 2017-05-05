@@ -7,6 +7,11 @@
 #include <vector>
 #include <boost/unordered_set.hpp>
 #include <boost/unordered_map.hpp>
+#if EMSCRIPTEN
+#include <emscripten/emscripten.h>
+#else
+#define EMSCRIPTEN_KEEPALIVE
+#endif
 
 namespace nV {
 struct Assign : public Object {

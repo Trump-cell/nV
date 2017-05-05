@@ -1,7 +1,7 @@
 #pragma once
 #include "Grammar.h"
 
-// TODO: ¿ÉÍ¨¹ıÓïÑÔ¶¯Ì¬ĞŞ¸ÄÓï·¨¶¨Òå,ÀàËÆÓÚLisp,Maxima,LaTeX(\catcode)
+// TODO: å¯é€šè¿‡è¯­è¨€åŠ¨æ€ä¿®æ”¹è¯­æ³•å®šä¹‰,ç±»ä¼¼äºLisp,Maxima,LaTeX(\catcode)
 
 namespace nV {
 class Parser {
@@ -31,7 +31,7 @@ public:
 		tag_dollar
 	};
 	enum Instr {
-		//×Ö½ÚÂë/Stack/FullForm/MX
+		//å­—èŠ‚ç /Stack/FullForm/MX
 		instr_null,
 		instr_symbol,
 		instr_key,

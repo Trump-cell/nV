@@ -28,6 +28,9 @@ string cpath(const char* x) {
 }
 void* cload(const char* x) {
 	string s = cpath(x);
+#if __EMSCRIPTEN__
+	return dlopen(NULL, 0);
+#else
 #ifdef _WIN32
 	void *r = LoadLibraryA((mU_Home() + "/bin/" + s).c_str());
 	return r ? r : LoadLibraryA(s.c_str());
@@ -35,15 +38,20 @@ void* cload(const char* x) {
 	void * r = dlopen((mU_Home() + "/lib/" + s).c_str(), RTLD_LAZY);
 	return r ? r : dlopen(s.c_str(), RTLD_LAZY);
 #endif
+#endif
 }
 void* cnoload(const char* x) {
 	string s = cpath(x);
+#if __EMSCRIPTEN__
+	return dlopen(NULL, 0);
+#else
 #ifdef _WIN32
 	void *r = GetModuleHandleA((mU_Home() + "/bin/" + s).c_str());
 	return r ? r : GetModuleHandleA(s.c_str());
 #else
 	void *r = dlopen((mU_Home() + "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
 	return r ? r : dlopen(s.c_str(), RTLD_LAZY | RTLD_NOLOAD);
+#endif
 #endif
 }
 void cunload(void* x) {
@@ -67,7 +75,7 @@ bool cinstall(const char* x) {
     void* m = cload(x);
     if (!m)
         return false;
-    void* ptr = csym(m, "mUInstall");
+    void* ptr = csym(m, (string(x) + "_mUInstall").c_str());
     if (ptr)
         reinterpret_cast<Ptr>(ptr)();
     return true;
@@ -77,7 +85,7 @@ bool cuninstall(const char* x) {
     void* m = cnoload(x);
     if (!m)
         return false;
-    void* ptr = csym(m, "mUUninstall");
+    void* ptr = csym(m, (string(x) + "_mUUninstall").c_str());
     if (ptr)
         reinterpret_cast<Ptr>(ptr)();
     cunload(m);
@@ -85,8 +93,11 @@ bool cuninstall(const char* x) {
 }
 string cname(Var x) {
     wstring s = ContextName[Context(x)];
-	std::replace(s.begin(), s.end(), _W('`'),_W('_'));
-	s += Name(x);
+    s += Name(x);
+    std::replace(s.begin(), s.end(), _W('`'),_W('_'));
+#if __EMSCRIPTEN__
+    std::replace(s.begin(), s.end(), _W('$'),_W('_'));
+#endif
     return cstr(s.c_str());
 }
 void* cfunc(void* m, Var x) {

@@ -7,7 +7,7 @@
 
 using namespace nV;
 
-CAPI void Install(Kernel& k) {
+CAPI void nvsystem_Install(Kernel& k) {
 #define M(x,y) k.attributes[SYS(x)].insert($.y);
     M(CInterface, HoldRest)
 #undef M
@@ -16,6 +16,6 @@ CAPI void Install(Kernel& k) {
     k.beginContext(sys);
     Input(k, r, path() + _W("System/System.n"));
 }
-CAPI void Uninstall(Kernel& k) {
+CAPI void nvsystem_Uninstall(Kernel& k) {
     wcout << "#System# Uninstall Successfully!" << endl;
 }

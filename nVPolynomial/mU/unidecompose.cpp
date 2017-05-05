@@ -1,6 +1,6 @@
 #include "common.h"
 /** \file
-\brief ¸´ºÏº¯Êı·Ö½â
+\brief å¤åˆå‡½æ•°åˆ†è§£
 */
 #include <mU/Polynomial_impl.h>
 
@@ -142,11 +142,11 @@ void nomarlize_partlist(std::vector<poly_q> & partlist)
 }
 
 /**
-\brief ÓĞÀíÏµÊı¶àÏîÊ½¿ª·½£¨ÇóÃİ£©Ëã·¨.
-\param g ÓĞÀíÏµÊı¶àÏîÊ½.
-\param a ÓĞÀíÊı,ÓûÇóµÄÃİ´Î.
+\brief æœ‰ç†ç³»æ•°å¤šé¡¹å¼å¼€æ–¹ï¼ˆæ±‚å¹‚ï¼‰ç®—æ³•.
+\param g æœ‰ç†ç³»æ•°å¤šé¡¹å¼.
+\param a æœ‰ç†æ•°,æ¬²æ±‚çš„å¹‚æ¬¡.
 \param r 
-\note EulerËã·¨.
+\note Eulerç®—æ³•.
 */
 void UniNthRootQ_Euler(poly_q & r,const poly_q & g,mpq_ptr a,uint s)
 {
@@ -176,11 +176,11 @@ void UniNthRootQ_Euler(poly_q & r,const poly_q & g,mpq_ptr a,uint s)
 }
 
 /**
-\brief ÓĞÀíÏµÊı¶àÏîÊ½µÄµ¹×ª.
-\param r fµÄµ¹×ª
-\param f ÓĞÀíÏµÊı¶àÏîÊ½.
-\param n ³¤¶È>=s.deg
-\note ×¨ÓÃÓÚ¸´ºÏ·Ö½âËã·¨ÖĞ.
+\brief æœ‰ç†ç³»æ•°å¤šé¡¹å¼çš„å€’è½¬.
+\param r fçš„å€’è½¬
+\param f æœ‰ç†ç³»æ•°å¤šé¡¹å¼.
+\param n é•¿åº¦>=s.deg
+\note ä¸“ç”¨äºå¤åˆåˆ†è§£ç®—æ³•ä¸­.
 */
 void UniReversalQ(poly_q & r,const poly_q & s,uint n)
 {
@@ -196,9 +196,9 @@ void UniReversalQ(poly_q & r,const poly_q & s,uint n)
 }
 
 /**
-\brief ÓĞÀíÏµÊı¶àÏîÊ½µÄÍêÈ«¸´ºÏ·Ö½â.
-\param f ÓĞÀíÏµÊı¶àÏîÊ½.
-\param partlist ĞÎÈç\f$\{f_1,f_2,\ldots,f_k\}\f$µÄlist,ÆäÖĞ\f$f=f_1\circ f_2\circ\cdots\circ f_k\f$.
+\brief æœ‰ç†ç³»æ•°å¤šé¡¹å¼çš„å®Œå…¨å¤åˆåˆ†è§£.
+\param f æœ‰ç†ç³»æ•°å¤šé¡¹å¼.
+\param partlist å½¢å¦‚\f$\{f_1,f_2,\ldots,f_k\}\f$çš„list,å…¶ä¸­\f$f=f_1\circ f_2\circ\cdots\circ f_k\f$.
 */
 void UniFuncionalDecompositionQ(std::vector<poly_q> & partlist,const poly_q & f)
 {
@@ -236,9 +236,9 @@ void UniFuncionalDecompositionQ(std::vector<poly_q> & partlist,const poly_q & f)
 }
 
 /**
-\brief ÕûÏµÊı¶àÏîÊ½µÄÍêÈ«¸´ºÏ·Ö½â.
-\param f ÕûÏµÊı¶àÏîÊ½.
-\param partlist ĞÎÈç\f$\{f_1,f_2,\ldots,f_k\}\f$µÄlist,ÆäÖĞ\f$f=f_1\circ f_2\circ\cdots\circ f_k\f$.
+\brief æ•´ç³»æ•°å¤šé¡¹å¼çš„å®Œå…¨å¤åˆåˆ†è§£.
+\param f æ•´ç³»æ•°å¤šé¡¹å¼.
+\param partlist å½¢å¦‚\f$\{f_1,f_2,\ldots,f_k\}\f$çš„list,å…¶ä¸­\f$f=f_1\circ f_2\circ\cdots\circ f_k\f$.
 */
 void UniFuncionalDecompositionZ(mpq_ptr a,std::vector<poly_z> & partlist,const poly_z & f)
 {

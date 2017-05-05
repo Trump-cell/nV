@@ -21,7 +21,7 @@ namespace Graphics {
 		};
 		struct Triangle{
            int p11, p12, p13;
-		   bool flag;// ±êÖ¾Èı½ÇĞÎÊÇ·ñÓĞNaN»òµ¼Êı·Ç³£´óµÄµã£¬ÈôÓĞ£¬Îªtrue£¬²»»­
+		   bool flag;// æ ‡å¿—ä¸‰è§’å½¢æ˜¯å¦æœ‰NaNæˆ–å¯¼æ•°éå¸¸å¤§çš„ç‚¹ï¼Œè‹¥æœ‰ï¼Œä¸ºtrueï¼Œä¸ç”»
            Triangle(int a, int b, int c,bool flag) : p11(a), p12(b), p13(c),flag(flag) {}
 
         };

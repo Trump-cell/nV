@@ -19,7 +19,7 @@ namespace mU{
 
 using namespace nV;
 
-CAPI void Install(Kernel& k) {
+CAPI void nvpolynomial_Install(Kernel& k) {
     $Polynomial = SYS(Polynomial);
     $CPE = SYS(CPE);
     $CRE = SYS(CRE);
@@ -32,6 +32,6 @@ CAPI void Install(Kernel& k) {
 		//ComplexInitialize();
     //wcout << "#Polynomial# Install Successfully!" << endl;
 }
-CAPI void Uninstall(nV::Kernel& k) {
+CAPI void nvpolynomial_Uninstall(nV::Kernel& k) {
     wcout << "#Polynomial# Uninstall Successfully!" << endl;
 }

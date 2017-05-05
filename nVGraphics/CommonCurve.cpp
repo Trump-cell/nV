@@ -64,7 +64,7 @@ namespace nV{
 			ArrayList<double> kcaled; //save the k calculated
             double derivative = f->getDerivative(lineStrip->vert[0]->x, dx);
             if(!isNaN(derivative)) {
-                kcaled.add(derivative / graphScale); //get k0, kcaledÊÇÒ»½×µ¼Êý
+                kcaled.add(derivative / graphScale); //get k0, kcaledæ˜¯ä¸€é˜¶å¯¼æ•°
             } else {
                 kcaled.add(MAX_DERIVATIVE);
             }
@@ -76,7 +76,7 @@ namespace nV{
 					i++;
                     derivative = f->getDerivative(lineStrip->vert[i]->x, dx);
                     if(!isNaN(derivative)) {
-                        kcaled.add(derivative / graphScale); //get ki, kcaledÊÇÒ»½×µ¼Êý
+                        kcaled.add(derivative / graphScale); //get ki, kcaledæ˜¯ä¸€é˜¶å¯¼æ•°
                     } else {
                         kcaled.add(MAX_DERIVATIVE);
                     }

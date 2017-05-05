@@ -11,10 +11,16 @@
 #include <deque>
 #include <string>
 #include <vector>
+#if __cplusplus >= 199711L && _MSC_VER != 1500
+//#include <thread>
+#include <system_error>
+#else
+//#include <boost/thread.hpp>
+//#include <boost/thread/thead.hpp>
 #include <boost/system/error_code.hpp>
-#include <boost/thread.hpp>
-#include <boost/thread/tss.hpp>
 #include <boost/version.hpp>
+#endif
+
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #include <windows.h>
@@ -165,6 +171,13 @@ namespace mU
 	{
 	public:
 		SystemError()
+#if __cplusplus >= 199711L && _MSC_VER != 1500
+#ifdef _WIN32
+			: error(GetLastError(), std::system_category())
+#else
+			: error(errno, std::system_category())
+#endif
+#else
 #if (BOOST_VERSION >= 104400)
 #ifdef _WIN32
 			: error(GetLastError(), boost::system::system_category())
@@ -178,9 +191,14 @@ namespace mU
 			: error(errno, boost::system::system_category)
 #endif
 #endif
+#endif
 		{}
 	private:
+#if __cplusplus >= 199711L && _MSC_VER != 1500
+		std::error_condition error;
+#else
 		boost::system::error_condition error;
+#endif
 	};
 
 #ifdef _WIN32
@@ -199,17 +217,17 @@ namespace mU
 		throw SystemError();
 #endif
 
-	API boost::thread_specific_ptr<bool> abortion_requested;
+	//API boost::thread_specific_ptr<bool> abortion_requested;
 	API std::stack<var> AtomicSymbolStack;
 
 	class AtomicContext
 	{
 	private:
-		boost::this_thread::disable_interruption boost_disable;
+		//boost::this_thread::disable_interruption boost_disable;
 	public:
 		AtomicContext() 
 		{ 
-			if (abortion_requested.get() == 0) abortion_requested.reset(new bool(false));
+			//if (abortion_requested.get() == 0) abortion_requested.reset(new bool(false));
 			AtomicSymbolStack.push(CprocSymbolStack.top());
 		}
 		~AtomicContext() 
@@ -219,8 +237,10 @@ namespace mU
 	};
 
 	API void check_for_abortion();	// throw AbortException
+#if 0
 	API void abort(boost::thread *);
 	API void abort();
+#endif
 
 	struct KernelMessage
 	{
@@ -268,7 +288,7 @@ inline void CLogMessage(Var tag, Var arg1, Var arg2, Var arg3, Var arg4)
 
 inline Exception::Exception()
 {
-	if (!boost::this_thread::interruption_enabled() && !AtomicSymbolStack.empty())
+	if (/*!boost::this_thread::interruption_enabled() &&*/ !AtomicSymbolStack.empty())
 	{
 		CLogMessage(TAG(atomicx), AtomicSymbolStack.top());
 	}

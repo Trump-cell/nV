@@ -2,8 +2,14 @@
 #include <mU/System.h>
 #include <mU/UnicodeDevice.h>
 
+#if __cplusplus >= 199711L
+namespace mU {
+var Link(const wstring &x, size_t y) { return Null; }
+var Server(const wstring &x, size_t y) { return Null; }
+var Request(Var x) { return Null; }
+#else
+#include <boost/asio.hpp>
 namespace io = boost::iostreams;
-
 namespace mU {
 struct link_t : stream_t
 {
@@ -20,8 +26,6 @@ struct link_t : stream_t
 	~link_t() { delete rep; }
 	void print(wostream &f) { f << L"Link[" << rep << L']'; }
 };
-var Link(const wstring &x, size_t y) { return new link_t(x,y); }
-
 struct server_t : obj_t
 {
 	server_t(const wstring &x, size_t y) : acceptor(io_service,
@@ -32,6 +36,7 @@ struct server_t : obj_t
 	boost::asio::io_service io_service;
 	boost::asio::ip::tcp::acceptor acceptor;
 };
+var Link(const wstring &x, size_t y) { return new link_t(x,y); }
 var Server(const wstring &x, size_t y) { return new server_t(x,y); }
 var Request(Var x)
 {
@@ -43,5 +48,5 @@ var Request(Var x)
 		= new io::stream<UnicodeDevice<socket_t> >(stream);
 	return new link_t(p);
 }
-#undef T
+#endif
 }

@@ -38,7 +38,7 @@ ImplicitSurface::ImplicitSurface(F3P* f3p, double xmin, double xmax, double ymin
         m_edges[i] = 0;
     }
     /* find point on surface, beginning search at (x, y, z): */
-    //²»´ÓÇúÃæÉÏµÄµã¿ªÊ¼ËÑË÷
+    //ä¸ä»Žæ›²é¢ä¸Šçš„ç‚¹å¼€å§‹æœç´¢
 // 	srand(1);
 // 	in = find(1,(xmax+xmin)/2,(ymax+ymin)/2,(zmax+zmin)/2);
 // 	out = find(0,(xmax+xmin)/2,(ymax+ymin)/2,(zmax+zmin)/2);
@@ -97,7 +97,7 @@ ImplicitSurface::~ImplicitSurface() {
     m_triangleindices.clear();
 }
 
-/* free_all: free allthe memory we¡¯ve allocated (except cubetable) */
+/* free_all: free allthe memory weâ€™ve allocated (except cubetable) */
 void ImplicitSurface::free_all () {
     int i, index;
     CORNERLIST *l, *lnext;
@@ -133,7 +133,7 @@ void ImplicitSurface::testface (int i, int j, int k, CUBE *old, int face, int c1
     static int facebit[6] = {2, 2, 1, 1, 0, 0};
     int n, pos = old->corners[c1]->value > 0.0 ? 1 : 0, bit = facebit[face];
     /* test if no surface crossing, cube out of bounds, or already visited: */
-    //Õâ¸öÓÅ»¯²»ÀûÓÚÏÞ¶¨»æÍ¼·¶Î§
+    //è¿™ä¸ªä¼˜åŒ–ä¸åˆ©äºŽé™å®šç»˜å›¾èŒƒå›´
 // 	if ((old->corners[c2]->value > 0) == pos &&
 // 		(old->corners[c3]->value > 0) == pos &&
 // 		(old->corners[c4]->value > 0) == pos)

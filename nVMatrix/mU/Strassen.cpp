@@ -3,7 +3,7 @@
 
 namespace mU{
 namespace Matrix{
-var StrassenDMM(Var A,Var B,size_t m,size_t p,size_t n,size_t bound)//m为M行数，n为N列数，p为n行数，bound为递归下界
+var StrassenDMM(Var A,Var B,size_t m,size_t p,size_t n,size_t bound)//m涓篗琛屾暟锛宯涓篘鍒楁暟锛宲涓簄琛屾暟锛宐ound涓洪�掑綊涓嬬晫
 {		
 	if(m<=bound||n<=bound||p<=bound)
 		return Matrix::Dot(A,B);
@@ -82,7 +82,7 @@ var StrassenDMM(Var A,Var B,size_t m,size_t p,size_t n,size_t bound)//m为M行数，
 }
 var StrassenMM(Var M,Var N)
 {
-	const size_t bound=64;//递归下界
+	const size_t bound=64;//閫掑綊涓嬬晫
 	size_t m=Size(M),p=Size(N),n=Size(At(N,0));
 	if (m<bound || p<bound || n<bound)
 	{

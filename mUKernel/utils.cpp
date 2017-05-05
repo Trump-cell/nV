@@ -164,7 +164,7 @@ wstring to_wstring(const char *src, size_t len)
 		case ERROR_NO_UNICODE_TRANSLATION:
 			throw InvalidCodePointException();
 		default:
-			throw RuntimeException();	// FIXME: È·ÇĞµÄ´íÎóÀàĞÍ
+			throw RuntimeException();	// FIXME: ç¡®åˆ‡çš„é”™è¯¯ç±»å‹
 		}
 	}
 #else
@@ -188,7 +188,7 @@ wstring to_wstring(const char *src, size_t len)
 	case codecvt_base::noconv:
 		throw InvalidCodePointException();
 	default:
-		throw RuntimeException();	// FIXME: È·ÇĞµÄ´íÎóÀàĞÍ
+		throw RuntimeException();	// FIXME: ç¡®åˆ‡çš„é”™è¯¯ç±»å‹
 	}
 	count = out_next - buffer.get();
 #endif
@@ -209,8 +209,8 @@ string to_string(const mU::wchar *src, size_t len)
 	BOOL used_def_char = false;
 	count = WideCharToMultiByte(CP_ACP,
 #ifdef __MINGW32__
-			// FIXME: Ó¦¸ÃÊÇWC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS
-			//        µ«mingw²»Ö§³Ö
+			// FIXME: åº”è¯¥æ˜¯WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS
+			//        ä½†mingwä¸æ”¯æŒ
 			0
 #else
 			WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS
@@ -231,7 +231,7 @@ string to_string(const mU::wchar *src, size_t len)
 		case ERROR_NO_UNICODE_TRANSLATION:
 			throw InvalidCodePointException();
 		default:
-			throw RuntimeException();	// FIXME: È·ÇĞµÄ´íÎóÀàĞÍ
+			throw RuntimeException();	// FIXME: ç¡®åˆ‡çš„é”™è¯¯ç±»å‹
 		}
 	}
 #else
@@ -255,7 +255,7 @@ string to_string(const mU::wchar *src, size_t len)
 	case codecvt_base::noconv:
 		throw InvalidCodePointException();
 	default:
-		throw RuntimeException();	// FIXME: È·ÇĞµÄ´íÎóÀàĞÍ
+		throw RuntimeException();	// FIXME: ç¡®åˆ‡çš„é”™è¯¯ç±»å‹
 	}
 	count = out_next - buffer.get();
 #endif

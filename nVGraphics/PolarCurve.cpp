@@ -339,7 +339,7 @@ void PolarCurve::makeplotrange(F1P *f, bool havenanrange, std::vector<domain *> 
     delete [] x;
     delete [] y;
     //
-    //去除斜率太大的点
+    //鍘婚櫎鏂滅巼澶ぇ鐨勭偣
     //
     bool vrm = true; //vert removed
     bool isnanfunction = false;

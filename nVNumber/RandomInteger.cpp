@@ -1,46 +1,46 @@
 #include "common.h"
 /** \file
-\brief »ù´¡ÊıÂÛº¯Êı.
+\brief åŸºç¡€æ•°è®ºå‡½æ•°.
 */
 #include <nV/Number.h>
 
 namespace nV {
 namespace Number {
-/** \brief ÊıÂÛÄ£¿é
+/** \brief æ•°è®ºæ¨¡å—
 
-°üº¬¸÷ÖÖÊıÂÛº¯Êı.
+åŒ…å«å„ç§æ•°è®ºå‡½æ•°.
 */
 
-gmp_randstate_t rstate; /**< Ëæ»ú×´Ì¬±äÁ¿. */
+gmp_randstate_t rstate; /**< éšæœºçŠ¶æ€å˜é‡. */
 
-/** \brief Ëæ»úÊı³õÊ¼»¯.
-	\note ĞèÔÚµ÷ÓÃ::RandomIntegerÖ®Ç°Ö´ĞĞ.
+/** \brief éšæœºæ•°åˆå§‹åŒ–.
+	\note éœ€åœ¨è°ƒç”¨::RandomIntegerä¹‹å‰æ‰§è¡Œ.
 */
 void Randomize() {
     gmp_randinit_default(rstate);
     gmp_randseed_ui(rstate, static_cast<uint>(time(NULL)));
 }
 
-/** \brief Ê¹ÓÃ\f$n\f$×÷ÎªËæ»úÊıÖÖ×ÓÖØÖÃËæ»úÊıÉú³ÉÆ÷.
-	\param n ÕûÊı.
+/** \brief ä½¿ç”¨\f$n\f$ä½œä¸ºéšæœºæ•°ç§å­é‡ç½®éšæœºæ•°ç”Ÿæˆå™¨.
+	\param n æ•´æ•°.
 */
 void SeedRandom(const Integer& x) {
     gmp_randseed(rstate, x.mpz);
 }
 
-/** \brief Ê¹ÓÃÏµÍ³Ê±¼ä×÷ÎªËæ»úÊıÖÖ×ÓÖØÖÃËæ»úÊıÉú³ÉÆ÷.
+/** \brief ä½¿ç”¨ç³»ç»Ÿæ—¶é—´ä½œä¸ºéšæœºæ•°ç§å­é‡ç½®éšæœºæ•°ç”Ÿæˆå™¨.
 */
 void SeedRandom() {
     gmp_randseed_ui(rstate, static_cast<uint>(time(NULL)));
 }
 
-/** \brief ²úÉúËæ»úÕûÊı.
-	\param n ÕıÕûÊı.
-	\return 0µ½nÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úÊı.
-	\param {a,b} ÕıÕûÊı¶Ô.
-	\return aµ½bÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úÊı.
-	\note ĞèÏÈÖ´ĞĞ::Randomize.
-	\todo ÅĞ¶Ï½ç.
+/** \brief äº§ç”Ÿéšæœºæ•´æ•°.
+	\param n æ­£æ•´æ•°.
+	\return 0åˆ°nä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºæ•°.
+	\param {a,b} æ­£æ•´æ•°å¯¹.
+	\return aåˆ°bä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºæ•°.
+	\note éœ€å…ˆæ‰§è¡Œ::Randomize.
+	\todo åˆ¤æ–­ç•Œ.
 */
 var RandomInteger(const Integer& x) {
     Integer* r = new Integer();
@@ -65,13 +65,13 @@ var RandomInteger(const Integer& x, const Integer& y) {
     return r;
 }
 
-/** \brief ²úÉúËæ»úËØÊı.
-\param n ´óÓÚ1µÄÕûÊı.
-\return 0µ½nÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úËØÊı.
-\param {a,b} °üº¬ËØÊıµÄÕıÕûÊı¶Ô.
-\return aµ½bÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úËØÊı.
-\note ĞèÏÈÖ´ĞĞ::Randomize.
-\todo ÅĞ¶Ï½ç.
+/** \brief äº§ç”Ÿéšæœºç´ æ•°.
+\param n å¤§äº1çš„æ•´æ•°.
+\return 0åˆ°nä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºç´ æ•°.
+\param {a,b} åŒ…å«ç´ æ•°çš„æ­£æ•´æ•°å¯¹.
+\return aåˆ°bä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºç´ æ•°.
+\note éœ€å…ˆæ‰§è¡Œ::Randomize.
+\todo åˆ¤æ–­ç•Œ.
 */
 var RandomPrime(const Integer& x) {
     var r = RandomInteger(x);

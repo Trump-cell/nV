@@ -1,6 +1,6 @@
 #include "common.h"
 /** \file
-\brief ÕûÊıÒò×Ó·Ö½â.
+\brief æ•´æ•°å› å­åˆ†è§£.
 */
 
 #include "objects/integer.h"
@@ -93,7 +93,7 @@ namespace
 namespace Modules {
 namespace NumberTheory {
 
-/** Ğ¡ËØÊı±í. */
+/** å°ç´ æ•°è¡¨. */
 uint32_t const small_primes[] =
 {
 	2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
@@ -1043,24 +1043,24 @@ uint32_t const small_primes[] =
 	99961, 99971, 99989, 99991
 };
 
-uint32_t small_prime_count = 1227; /**< ÊÔ³ı·¨ËØÊı¸öÊı. */
+uint32_t small_prime_count = 1227; /**< è¯•é™¤æ³•ç´ æ•°ä¸ªæ•°. */
 
-uint32_t per_round=32; /**< Ã¿ÂÖÔËËã´ÎÊı. */
-uint32_t rounds_min=14; /**< ×îĞ¡ÂÖÊı. */
-uint32_t repeats_max=4; /**< ×î´óÖØÊÔ´ÎÊı. */
+uint32_t per_round=32; /**< æ¯è½®è¿ç®—æ¬¡æ•°. */
+uint32_t rounds_min=14; /**< æœ€å°è½®æ•°. */
+uint32_t repeats_max=4; /**< æœ€å¤§é‡è¯•æ¬¡æ•°. */
 
-uint32_t b1_min=10; /**< B1×îĞ¡Öµ. */
-uint32_t b2_min=50; /**< B2×îĞ¡Öµ. */
-uint32_t b1_inc=30; /**< B1ÔöÁ¿. */
-uint32_t b2_inc=150; /**< B2ÔöÁ¿. */
-uint32_t curves_max=30; /**< ×î´óÖØÊÔ´ÎÊı. */
+uint32_t b1_min=10; /**< B1æœ€å°å€¼. */
+uint32_t b2_min=50; /**< B2æœ€å°å€¼. */
+uint32_t b1_inc=30; /**< B1å¢é‡. */
+uint32_t b2_inc=150; /**< B2å¢é‡. */
+uint32_t curves_max=30; /**< æœ€å¤§é‡è¯•æ¬¡æ•°. */
 
 
 
-/** \brief ·Ö½âÒò×ÓµÄPollard \f$\rho\f$·½·¨.
-	\param n, a, x0, rounds ÕûÊı.
-	\return 1»òÒ»¸ö·ÇÆ½·²Òò×Ó.
-	\todo BrentµÄ¸Ä½ø.
+/** \brief åˆ†è§£å› å­çš„Pollard \f$\rho\f$æ–¹æ³•.
+	\param n, a, x0, rounds æ•´æ•°.
+	\return 1æˆ–ä¸€ä¸ªéå¹³å‡¡å› å­.
+	\todo Brentçš„æ”¹è¿›.
 */
 Z PollardRho(VAR n,VAR a, VAR x0, uint32_t rounds) {
 	var x=x0, y=x0, q=Z(1), g;
@@ -1083,12 +1083,12 @@ Z PollardRho(VAR n,VAR a, VAR x0, uint32_t rounds) {
 	return 1;
 }
 
-/** \brief ÍÖÔ²ÇúÏßÆ½·½ÔËËã.
-	\param p \f$\{x,y\}\f$ÎªÍÖÔ²ÇúÏßÉÏÒ»µã.
-	\param n, a ÕûÊı.
-	\retval {-1,g} \f$g\f$Îª·ÇÆ½·²Òò×Ó.
-	\retval {x,y} ·µ»Ø\f$p\f$ÔÚÍÖÔ²ÇúÏß\f$y^2=x^3+ax+1\f$ÉÏµÄÆ½·½.
-	\retval {0,0} Ëã·¨Ê§°Ü.
+/** \brief æ¤­åœ†æ›²çº¿å¹³æ–¹è¿ç®—.
+	\param p \f$\{x,y\}\f$ä¸ºæ¤­åœ†æ›²çº¿ä¸Šä¸€ç‚¹.
+	\param n, a æ•´æ•°.
+	\retval {-1,g} \f$g\f$ä¸ºéå¹³å‡¡å› å­.
+	\retval {x,y} è¿”å›\f$p\f$åœ¨æ¤­åœ†æ›²çº¿\f$y^2=x^3+ax+1\f$ä¸Šçš„å¹³æ–¹.
+	\retval {0,0} ç®—æ³•å¤±è´¥.
 */
 
 list ECMSquare(LIST p, VAR n, VAR a) {
@@ -1110,12 +1110,12 @@ list ECMSquare(LIST p, VAR n, VAR a) {
 	}
 }
 
-/** \brief ÍÖÔ²ÇúÏß³Ë·¨ÔËËã.
-\param p1, p2 \f$\{x,y\}\f$ÎªÍÖÔ²ÇúÏßÉÏÁ½µã.
-\param n ÕûÊı.
-\retval {-1,g} \f$g\f$Îª·ÇÆ½·²Òò×Ó.
-\retval {x,y} ·µ»Ø\f$p1\cdot p2\f$.
-\retval {0,0} Ëã·¨Ê§°Ü.
+/** \brief æ¤­åœ†æ›²çº¿ä¹˜æ³•è¿ç®—.
+\param p1, p2 \f$\{x,y\}\f$ä¸ºæ¤­åœ†æ›²çº¿ä¸Šä¸¤ç‚¹.
+\param n æ•´æ•°.
+\retval {-1,g} \f$g\f$ä¸ºéå¹³å‡¡å› å­.
+\retval {x,y} è¿”å›\f$p1\cdot p2\f$.
+\retval {0,0} ç®—æ³•å¤±è´¥.
 */
 list ECMProduct(LIST p1, LIST p2, VAR n) {
 	var tempx, tempy;
@@ -1136,12 +1136,12 @@ list ECMProduct(LIST p1, LIST p2, VAR n) {
 	}
 }
 
-/** \brief ÍÖÔ²ÇúÏß³ËÃİÔËËã.
-\param p \f$\{x,y\}\f$ÎªÍÖÔ²ÇúÏßÉÏÒ»µã.
-\param n, a, e ÕûÊı.
-\retval {-1,g} \f$g\f$Îª·ÇÆ½·²Òò×Ó.
-\retval {x,y} ·µ»ØÔÚÍÖÔ²ÇúÏß\f$y^2=x^3+ax+1\f$ÉÏµÄ\f$p^e\f$.
-\retval {0,0} Ëã·¨Ê§°Ü.
+/** \brief æ¤­åœ†æ›²çº¿ä¹˜å¹‚è¿ç®—.
+\param p \f$\{x,y\}\f$ä¸ºæ¤­åœ†æ›²çº¿ä¸Šä¸€ç‚¹.
+\param n, a, e æ•´æ•°.
+\retval {-1,g} \f$g\f$ä¸ºéå¹³å‡¡å› å­.
+\retval {x,y} è¿”å›åœ¨æ¤­åœ†æ›²çº¿\f$y^2=x^3+ax+1\f$ä¸Šçš„\f$p^e\f$.
+\retval {0,0} ç®—æ³•å¤±è´¥.
 */
 list ECMPower (LIST p, VAR n, VAR a, uint32_t e) {
 	int32_t l=IntegerLength(Z(e),2);
@@ -1158,14 +1158,14 @@ list ECMPower (LIST p, VAR n, VAR a, uint32_t e) {
 	return sum;
 }
 
-/** \brief Òò×Ó·Ö½âµÄECMËã·¨.
-	\param p ³õÊ¼µã.
-	\param n ´ı·Ö½âÕûÊı.
-	\param a ÍÖÔ²ÇúÏß²ÎÊı.
-	\param B1, B2 Á½½×¶Î²ÎÊı.
-	\retval >0 1»ò·ÇÆ½·²Òò×Ó.
-	\retval 0 Ëã·¨Ê§°Ü.
-	\todo Ôö¼ÓËØÊıÉÏ½ç£¬¸Ä½øÌø³öÅĞ¶Ï
+/** \brief å› å­åˆ†è§£çš„ECMç®—æ³•.
+	\param p åˆå§‹ç‚¹.
+	\param n å¾…åˆ†è§£æ•´æ•°.
+	\param a æ¤­åœ†æ›²çº¿å‚æ•°.
+	\param B1, B2 ä¸¤é˜¶æ®µå‚æ•°.
+	\retval >0 1æˆ–éå¹³å‡¡å› å­.
+	\retval 0 ç®—æ³•å¤±è´¥.
+	\todo å¢åŠ ç´ æ•°ä¸Šç•Œï¼Œæ”¹è¿›è·³å‡ºåˆ¤æ–­
 */
 Z ECM(list p, VAR n, VAR a, uint32_t B1, uint32_t B2) {
 	list temp=p;
@@ -1196,9 +1196,9 @@ Z ECM(list p, VAR n, VAR a, uint32_t B1, uint32_t B2) {
 	return 0;
 }
 
-/** \brief Ê¹ÓÃÒÑ·Ö½â³öµÄËØÊıÊÔ³ıÊ£Óà´ı·Ö½â²¿·Ö.
-	\param factors ÒÑ·Ö½âÒò×Ó.
-	\param remain Ê£Óà´ı·Ö½â²¿·Ö.
+/** \brief ä½¿ç”¨å·²åˆ†è§£å‡ºçš„ç´ æ•°è¯•é™¤å‰©ä½™å¾…åˆ†è§£éƒ¨åˆ†.
+	\param factors å·²åˆ†è§£å› å­.
+	\param remain å‰©ä½™å¾…åˆ†è§£éƒ¨åˆ†.
 */
 void FactorDivide(list& factors,list& remain,int32_t mode) {
 	for (int32_t i=0;i<remain.size();i++) {
@@ -1217,11 +1217,11 @@ void FactorDivide(list& factors,list& remain,int32_t mode) {
 	FactorCrack(factors,remain,mode);
 }
 
-/** \brief Ê¹ÓÃÌ°ĞÄ²ßÂÔ·ÖÀë³öÒ»¸öÒò×Ó.
-	\param factors ÒÑ·Ö½âÒò×Ó.
-	\param remain Ê£Óà´ı·Ö½â²¿·Ö.
-	\note Ê¹ÓÃPollard \f$\rho\f$·½·¨ºÍECM·½·¨.
-	\todo Ôö¼ÓËØÊıÃİÅĞ¶Ï.
+/** \brief ä½¿ç”¨è´ªå¿ƒç­–ç•¥åˆ†ç¦»å‡ºä¸€ä¸ªå› å­.
+	\param factors å·²åˆ†è§£å› å­.
+	\param remain å‰©ä½™å¾…åˆ†è§£éƒ¨åˆ†.
+	\note ä½¿ç”¨Pollard \f$\rho\f$æ–¹æ³•å’ŒECMæ–¹æ³•.
+	\todo å¢åŠ ç´ æ•°å¹‚åˆ¤æ–­.
 */
 void FactorCrack(list& factors,list& remain,int32_t mode) {
 	if (!remain) return;
@@ -1235,7 +1235,7 @@ void FactorCrack(list& factors,list& remain,int32_t mode) {
 		return;
 	}
 
-	/* ²ÎÊıÀ´×Ôpari/gpµÄifactor1.c */
+	/* å‚æ•°æ¥è‡ªpari/gpçš„ifactor1.c */
 	uint32_t repeats=0,rounds;
 	int32_t a[]={1,-1,3,5,-5,7,11,-11};
 	int32_t s=IntegerLength(n,2);
@@ -1270,7 +1270,7 @@ void FactorCrack(list& factors,list& remain,int32_t mode) {
 			if (m>Z(1)) break;
 			}
 	}
-	/* ·ÖÀëÒò×Ó */
+	/* åˆ†ç¦»å› å­ */
 	if (m>Z(1)) {
 		std::pop_heap(remain.begin(),remain.end(),compare);
 		remain.pop();
@@ -1284,12 +1284,12 @@ void FactorCrack(list& factors,list& remain,int32_t mode) {
 	}
 }
 
-/** \brief ÕûÊıÒò×Ó·Ö½â.
-	\param N ´ı·Ö½âÕûÊı.
-	\param mode Èômode=1Ôò²ÉÓÃMoebiusÄ£Ê½ÔËĞĞ.
-	\return ËØÒò×Ó·Ö½â\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
-	\note Ê¹ÓÃÊÔ³ı·¨ºóµ÷ÓÃ::FactorCrack·ÖÀëÒò×Ó.
-	\todo ÓÅ»¯ÊÔ³ı·¨.
+/** \brief æ•´æ•°å› å­åˆ†è§£.
+	\param N å¾…åˆ†è§£æ•´æ•°.
+	\param mode è‹¥mode=1åˆ™é‡‡ç”¨Moebiusæ¨¡å¼è¿è¡Œ.
+	\return ç´ å› å­åˆ†è§£\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
+	\note ä½¿ç”¨è¯•é™¤æ³•åè°ƒç”¨::FactorCrackåˆ†ç¦»å› å­.
+	\todo ä¼˜åŒ–è¯•é™¤æ³•.
 */
 list FactorInteger(VAR N,int32_t mode) {
 	list factors,remain;
@@ -1319,9 +1319,9 @@ list FactorInteger(VAR N,int32_t mode) {
 	return factors;
 }
 
-/** \brief ÕûÊıÒò×Ó·Ö½â.
-	\param N ´ı·Ö½âÕûÊı.
-	\return ËØÒò×Ó·Ö½â\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
+/** \brief æ•´æ•°å› å­åˆ†è§£.
+	\param N å¾…åˆ†è§£æ•´æ•°.
+	\return ç´ å› å­åˆ†è§£\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
 */
 list FactorInteger(VAR N) {
 	return FactorInteger(N,0);

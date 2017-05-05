@@ -19,7 +19,7 @@ void PythonObject::Init(int argc, char* argv[]) {
 		Py_Initialize();
 		PySys_SetArgv(1, argv);
 
-		//ÉèÖÃimportÄ¿Â¼
+		//è®¾ç½®importç›®å½•
 		char *prefix_path = Py_GetPrefix();
 		Py_SetPythonHome(prefix_path);
 
@@ -46,7 +46,7 @@ void PythonObject::Init(int argc, char* argv[]) {
 			} else {
 				maind = PyModule_GetDict(mainm);
 				PyDict_SetItemString(maind, "nV", nVm);
-				//·ÅÕâ¸öµØ·½£¿£¿£¿£¿
+				//æ”¾è¿™ä¸ªåœ°æ–¹ï¼Ÿï¼Ÿï¼Ÿï¼Ÿ
 				Py_DECREF(nVm);
 			}
 		}
@@ -104,7 +104,7 @@ void PythonObject::print(wostream& o) const {
 		} else {
 			char *s;
 			int len;
-			//PyString_AsStringAndSize·µ»ØÖµÎª0ÊÇÕı³£µÄ£¿ÔõÃ´Óë±ê×¼ËµÃ÷²»Ò»Ñù
+			//PyString_AsStringAndSizeè¿”å›å€¼ä¸º0æ˜¯æ­£å¸¸çš„ï¼Ÿæ€ä¹ˆä¸æ ‡å‡†è¯´æ˜ä¸ä¸€æ ·
 			if (0 != PyString_AsStringAndSize(repr, &s, &len) || 0 == s) {
 				PyErr_SetString(PyExc_RuntimeError, "can not get string");
 				return;

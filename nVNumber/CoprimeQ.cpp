@@ -1,27 +1,27 @@
 #include "common.h"
 /** \file
-\brief ×î´ó¹«Òò×Ó¼°»¥ËØ¼ì²â.
+\brief æœ€å¤§å…¬å› å­åŠäº’ç´ æ£€æµ‹.
 */
 #include <nV/Number.h>
 
 namespace nV {
 namespace Number {
 
-/** \brief ÅĞ¶ÏÁ½¸öÕûÊıÊÇ·ñ»¥ËØ.
-\param n1,n2 ÕûÊı.
-\retval 1 ÊÇ.
-\retval 0 ·ñ.
+/** \brief åˆ¤æ–­ä¸¤ä¸ªæ•´æ•°æ˜¯å¦äº’ç´ .
+\param n1,n2 æ•´æ•°.
+\retval 1 æ˜¯.
+\retval 0 å¦.
 */
 bool CoprimeQ(const Integer& x, const Integer& y) {
     return mpz_cmp_ui(GCD(x, y).cast<Integer>().mpz, 1) == 0;
 }
 
-/** \brief ÅĞ¶Ï\f$m\f$ÊÇ·ñÄÜÕû³ı\f$n\f$.
-	\param n ÕûÊı.
-	\param m ·ÇÁãÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
-	\todo ÅĞ¶Ïm·ÇÁã.
+/** \brief åˆ¤æ–­\f$m\f$æ˜¯å¦èƒ½æ•´é™¤\f$n\f$.
+	\param n æ•´æ•°.
+	\param m éé›¶æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
+	\todo åˆ¤æ–­méé›¶.
 */
 bool Divisible(const Integer& x, const Integer& y) {
     if (mpz_fits_uint_p(y.mpz)) {
@@ -49,12 +49,12 @@ var DivideExact(const Integer& x, uint y) {
     return r;
 }
 
-/** \brief Çó\f$m\f$³ıÒÔ\f$n\f$µÄÉÌ.
-	\param m ÕûÊı.
-	\param n ·ÇÁãÕûÊı.
-	\return ÉÌ\f$\lfloor m/n\rfloor\f$.
-	\todo Ôö¼Ó·ÇÁãÅĞ¶Ï, Ôö¼Ó·ÇÕûÊı´¦Àí.
-	\todo ĞèÒªÎÄµµ²¹³ä.
+/** \brief æ±‚\f$m\f$é™¤ä»¥\f$n\f$çš„å•†.
+	\param m æ•´æ•°.
+	\param n éé›¶æ•´æ•°.
+	\return å•†\f$\lfloor m/n\rfloor\f$.
+	\todo å¢åŠ éé›¶åˆ¤æ–­, å¢åŠ éæ•´æ•°å¤„ç†.
+	\todo éœ€è¦æ–‡æ¡£è¡¥å…….
 */
 var Quotient(const Integer& x, const Integer& y) {
     Integer* r = new Integer();
@@ -66,9 +66,9 @@ var Quotient(const Integer& x, const Integer& y) {
     return r;
 }
 
-/** \brief Çó\f$m\f$³ıÒÔ\f$n\f$µÄÉÌ(ÒÑÖª\f$n\f$Õû³ı\f$m\f$).
-	\param m ÕûÊı.
-	\param n ·ÇÁãÕûÊı.
+/** \brief æ±‚\f$m\f$é™¤ä»¥\f$n\f$çš„å•†(å·²çŸ¥\f$n\f$æ•´é™¤\f$m\f$).
+	\param m æ•´æ•°.
+	\param n éé›¶æ•´æ•°.
 	\return \f$m/n\f$.
 */
 var ExactQuotient(const Integer& x, uint y) {
@@ -77,13 +77,13 @@ var ExactQuotient(const Integer& x, uint y) {
     return r;
 }
 
-/** \brief Çó\f$m\f$³ıÒÔ\f$n\f$µÄÓàÊı.
-	\param m ÕûÊı.
-	\param n ·ÇÁãÕûÊı.
-	\return ÓàÊı\f$m \bmod n\f$.
+/** \brief æ±‚\f$m\f$é™¤ä»¥\f$n\f$çš„ä½™æ•°.
+	\param m æ•´æ•°.
+	\param n éé›¶æ•´æ•°.
+	\return ä½™æ•°\f$m \bmod n\f$.
 	\note
-	\todo Ôö¼Ó·ÇÁãÅĞ¶Ï, Ôö¼Ó·ÇÕûÊı´¦Àí.
-	\todo ĞèÒªÎÄµµ²¹³ä.
+	\todo å¢åŠ éé›¶åˆ¤æ–­, å¢åŠ éæ•´æ•°å¤„ç†.
+	\todo éœ€è¦æ–‡æ¡£è¡¥å…….
 */
 var Mod(const Integer& x, const Integer& y) {
     Integer* r = new Integer();
@@ -107,11 +107,11 @@ var Mod2(const Integer& x, const Integer& y) {
 	mpz_clear(y_half);
 	return r;
 }
-/** \brief ÇóÕûÊıµÄÕûÊı´ÎÃİ.
-	\param a ÕûÊı.
-	\param b ·Ç¸ºÕûÊı.
+/** \brief æ±‚æ•´æ•°çš„æ•´æ•°æ¬¡å¹‚.
+	\param a æ•´æ•°.
+	\param b éè´Ÿæ•´æ•°.
 	\return \f$a^b\f$.
-	\note Ê¹ÓÃ×Ô×óÏòÓÒµÄ¶ş½ø·½·¨.
+	\note ä½¿ç”¨è‡ªå·¦å‘å³çš„äºŒè¿›æ–¹æ³•.
 	\todo a=0
 */
 var Power(const Integer& x, uint y) {
@@ -124,13 +124,13 @@ var Power(const Integer& x, uint y) {
     return r;
 }
 
-/** \brief Çó\f$a^b \bmod m\f$.
-	\param a,b ÕûÊı.
-	\param m ·ÇÁãÕûÊı.
+/** \brief æ±‚\f$a^b \bmod m\f$.
+	\param a,b æ•´æ•°.
+	\param m éé›¶æ•´æ•°.
 	\return \f$a^b \bmod m\f$.
-	\note Ä£Ãİmpz_powm²ÉÓÃ\f$2^k\f$½ø´°¿Ú·½·¨£¬\f$k\f$¸ù¾İÖ¸ÊıÑ¡Ôñ.
-	\note ¶ÔĞ¡Ä£Ê¹ÓÃÁËMontgomeryÔ¼»¯¹ı³Ì(Ö»Õë¶ÔÆæÊıÄ£),
-	²¢ÇÒ¶ÔPOWM_THRESHOLDÒÔÉÏÄ£Ê¹ÓÃ´øÓà³ı·¨.
+	\note æ¨¡å¹‚mpz_powmé‡‡ç”¨\f$2^k\f$è¿›çª—å£æ–¹æ³•ï¼Œ\f$k\f$æ ¹æ®æŒ‡æ•°é€‰æ‹©.
+	\note å¯¹å°æ¨¡ä½¿ç”¨äº†Montgomeryçº¦åŒ–è¿‡ç¨‹(åªé’ˆå¯¹å¥‡æ•°æ¨¡),
+	å¹¶ä¸”å¯¹POWM_THRESHOLDä»¥ä¸Šæ¨¡ä½¿ç”¨å¸¦ä½™é™¤æ³•.
 	\todo a=0.
 */
 
@@ -144,10 +144,10 @@ var PowerMod(const Integer& x, const Integer& y, const Integer& z) {
     return r;
 }
 
-/** \brief Çó\f$a\f$Ä£\f$n\f$µÄÄæ.
-	\param a, n ÕûÊı.
-	\return \f$a\f$Ä£\f$n\f$µÄÄæ.
-	\todo »¥ËØÅĞ¶¨.
+/** \brief æ±‚\f$a\f$æ¨¡\f$n\f$çš„é€†.
+	\param a, n æ•´æ•°.
+	\return \f$a\f$æ¨¡\f$n\f$çš„é€†.
+	\todo äº’ç´ åˆ¤å®š.
 */
 var InverseMod(const Integer& x, const Integer& y) {
     Integer* r = new Integer();
@@ -155,11 +155,11 @@ var InverseMod(const Integer& x, const Integer& y) {
     return r;
 }
 
-/** \brief ÇóÁ½¸öÕûÊıµÄ×î´ó¹«Òò×Ó.
-\param n1, n2 ÕûÊı.
-\return ×î´ó¹«Òò×Ó.
-\note mpz_gcd¶Ô½ÏĞ¡Êı¾İÊ¹ÓÃBinary GCD,
-¶Ô³¬¹ıGCD_ACCEL_THRESHOLDµÄÊı¾İÊ¹ÓÃJebelean-Weber-Sorenson¼ÓËÙËã·¨.
+/** \brief æ±‚ä¸¤ä¸ªæ•´æ•°çš„æœ€å¤§å…¬å› å­.
+\param n1, n2 æ•´æ•°.
+\return æœ€å¤§å…¬å› å­.
+\note mpz_gcdå¯¹è¾ƒå°æ•°æ®ä½¿ç”¨Binary GCD,
+å¯¹è¶…è¿‡GCD_ACCEL_THRESHOLDçš„æ•°æ®ä½¿ç”¨Jebelean-Weber-SorensonåŠ é€Ÿç®—æ³•.
 */
 var GCD(const Integer& x, const Integer& y) {
     Integer* r = new Integer();
@@ -175,9 +175,9 @@ var GCD(const Integer& x, const Integer& y) {
     return r;
 }
 
-/** \brief ÇóÁ½¸öÕûÊıµÄ×îĞ¡¹«±¶Êı.
-\param n1, n2 ÕûÊı.
-\return ×îĞ¡¹«±¶Êı.
+/** \brief æ±‚ä¸¤ä¸ªæ•´æ•°çš„æœ€å°å…¬å€æ•°.
+\param n1, n2 æ•´æ•°.
+\return æœ€å°å…¬å€æ•°.
 */
 var LCM(const Integer& x, const Integer& y) {
     Integer* r = new Integer();
@@ -193,11 +193,11 @@ var LCM(const Integer& x, const Integer& y) {
     return r;
 }
 
-/** \brief ÇóÁ½¸öÕûÊıµÄÀ©Õ¹×î´ó¹«Òò×Ó.
-\param n1, n2 ÕûÊı.
-\return À©Õ¹×î´ó¹«Òò×Ó\f$\{g,\{r_1,r_2\}\}\f$, Âú×ã\f$g=r_1n_1+r_2n_2\f$.
-\note ÔÚGCDEXT_THRESHOLDÒÔÉÏÊ¹ÓÃLehmer¼ÓËÙËã·¨.
-\todo À©Õ¹µ½ÈÎÒâ¸ö.
+/** \brief æ±‚ä¸¤ä¸ªæ•´æ•°çš„æ‰©å±•æœ€å¤§å…¬å› å­.
+\param n1, n2 æ•´æ•°.
+\return æ‰©å±•æœ€å¤§å…¬å› å­\f$\{g,\{r_1,r_2\}\}\f$, æ»¡è¶³\f$g=r_1n_1+r_2n_2\f$.
+\note åœ¨GCDEXT_THRESHOLDä»¥ä¸Šä½¿ç”¨LehmeråŠ é€Ÿç®—æ³•.
+\todo æ‰©å±•åˆ°ä»»æ„ä¸ª.
 */
 var ExtendedGCD(const Integer& x, const Integer& y) {
     var g = GCD(x, y);

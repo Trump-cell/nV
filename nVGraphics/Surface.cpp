@@ -329,7 +329,7 @@ void Surface::trySplitPolygonX(unsigned int id, int depth) {
         double x = (p1->x + p2->x) / 2;
         double y = p1->y;
         double netk3 = f->getDerivativeX(x, y, dx) / graphScalex;
-        if ((netk3 < netk1 && netk3 < netk2) || (netk3 > netk1 && netk3 > netk2)) { //�йյ�
+        if ((netk3 < netk1 && netk3 < netk2) || (netk3 > netk1 && netk3 > netk2)) { //有拐点
             double z = f->getSingleData(x, y);
             vert.add(new Point3d(x, y, z));
             vert_derivate.push_back(vert_d(f->getDerivativeX(x, y, dx), f->getDerivativeY(x, y, dy)));
@@ -612,7 +612,7 @@ void Surface::trySplitPolygonY(unsigned int id, int depth) {
         double x = p1->x;
         double y = (p1->y + p2->y) / 2;
         double netk3 = f->getDerivativeY(x, y, dy) / graphScaley;
-        if ((netk3 < netk1 && netk3 < netk2) || (netk3 > netk1 && netk3 > netk2)) { //�йյ�
+        if ((netk3 < netk1 && netk3 < netk2) || (netk3 > netk1 && netk3 > netk2)) { //有拐点
             double z = f->getSingleData(x, y);
             vert.add(new Point3d(x, y, z));
             vert_derivate.push_back(vert_d(f->getDerivativeX(x, y, dx), f->getDerivativeY(x, y, dy)));

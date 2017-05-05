@@ -45,7 +45,7 @@ PyObject *nVConvert(const Object& x)
 	if (x.type == $.Integer){
 		const mpz_t& mpz = x.cast<Integer>().mpz;
 
-		//ÕâÀïĞèÒªÅĞ¶ÏÊÇ×ª»»µ½PyInt»¹ÊÇPyLong
+		//è¿™é‡Œéœ€è¦åˆ¤æ–­æ˜¯è½¬æ¢åˆ°PyIntè¿˜æ˜¯PyLong
 		if (mpz_fits_slong_p(mpz)) {
 			ret = PyInt_FromLong((long)mpz_get_si(mpz));
 		}
@@ -58,7 +58,7 @@ PyObject *nVConvert(const Object& x)
 		}
     }
 	else if (x.type == $.Rational){
-		//Ä¿Ç°ÏÈ×ª»»Îª×Ö·û´®
+		//ç›®å‰å…ˆè½¬æ¢ä¸ºå­—ç¬¦ä¸²
 		const mpq_t& mpq = x.cast<Rational>().mpq;
 		char* gbuf = mpq_get_str(0, 10, mpq);
 		ret = PyString_FromString(gbuf);
@@ -69,10 +69,10 @@ PyObject *nVConvert(const Object& x)
 	    if (mpf_get_prec(mpf) == mpf_get_default_prec()) {
 			ret = PyFloat_FromDouble((double)mpf_get_d(mpf));
 		}
-		//¾«¶È±È½Ï´ó£¬×ª»»µ½×Ö·û´®
+		//ç²¾åº¦æ¯”è¾ƒå¤§ï¼Œè½¬æ¢åˆ°å­—ç¬¦ä¸²
 		else {
 			char *gbuf = mpf_get_str(0,0,10,0,mpf);
-			//ÔõÃ´Ïú»Ùpys
+			//æ€ä¹ˆé”€æ¯pys
 			PyObject* pys = PyString_FromString(gbuf);
 			ret = PyFloat_FromString(pys,0);
 		}
@@ -118,7 +118,7 @@ PyObject *nVConvert(const Tuple& x)
 {
 	PyObject *ret = 0;
 	PyObject *item;
-	if (x.tuple[0].symbol() == $.List){			//ÕâÖÖÅĞ¶Ï·½Ê½¶ÔÂğ£¿
+	if (x.tuple[0].symbol() == $.List){			//è¿™ç§åˆ¤æ–­æ–¹å¼å¯¹å—ï¼Ÿ
 		ret = PyList_New(x.size-1);
 		for (uint i = 1; i < x.size; ++i){
 			if (item = nVConvert(x.tuple[i])){
@@ -195,7 +195,7 @@ static PyObject *nVCall(PyObject *op, PyObject *args)
 	return ret;
 }
 
-static PyObject *nVObject_New(var r)					//Õâ¸öº¯Êı¿ÉÄÜĞèÒªÖØĞ´
+static PyObject *nVObject_New(var r)					//è¿™ä¸ªå‡½æ•°å¯èƒ½éœ€è¦é‡å†™
 {
 	PyObject* obj = _PyObject_New(&nVObject_Type);
 	obj = PyObject_Init(obj, &nVObject_Type);
@@ -210,7 +210,7 @@ static PyObject *nVObject_New(var r)					//Õâ¸öº¯Êı¿ÉÄÜĞèÒªÖØĞ´
 	return (PyObject*) obj;
 }
 
-void nVObject_dealloc(nVObject *self)				//Õâ¸öº¯Êı¿ÉÄÜĞèÒªÖØĞ´
+void nVObject_dealloc(nVObject *self)				//è¿™ä¸ªå‡½æ•°å¯èƒ½éœ€è¦é‡å†™
 {
 	((nVObject*)self)->r.~var();
 	self->ob_type->tp_free((PyObject *)self);
@@ -220,11 +220,11 @@ static PyObject *nVObject_getattr(PyObject *obj, PyObject *attr)
 {
 	PyObject *ret = NULL;
 
-	//´Ë´¦×îºÃÊÇPythonConvertº¯Êı£¬ÓÃÓÚ½«PyObject×ª»»ÎªnVÀïÃæµÄÊı¾İ½á¹¹
+	//æ­¤å¤„æœ€å¥½æ˜¯PythonConvertå‡½æ•°ï¼Œç”¨äºå°†PyObjectè½¬æ¢ä¸ºnVé‡Œé¢çš„æ•°æ®ç»“æ„
 	char *s;
 	Py_ssize_t len;
 
-	//PyString_AsStringAndSize·µ»ØÖµÎª0ÊÇÕı³£µÄ£¿ÔõÃ´Óë±ê×¼ËµÃ÷²»Ò»Ñù
+	//PyString_AsStringAndSizeè¿”å›å€¼ä¸º0æ˜¯æ­£å¸¸çš„ï¼Ÿæ€ä¹ˆä¸æ ‡å‡†è¯´æ˜ä¸ä¸€æ ·
 	if (0 != PyString_AsStringAndSize(attr, &s, &len) || 0 == s){
 		PyErr_SetString(PyExc_RuntimeError, "can not get string");
 		return 0;
@@ -236,7 +236,7 @@ static PyObject *nVObject_getattr(PyObject *obj, PyObject *attr)
 		return 0;
 	}
 		
-	//Õâ¸öµØ·½²»ºÃÓÃsymbolº¯Êı£¬getattr²»ÄÜÌí¼ÓĞÂµÄÊôĞÔ
+	//è¿™ä¸ªåœ°æ–¹ä¸å¥½ç”¨symbolå‡½æ•°ï¼Œgetatträ¸èƒ½æ·»åŠ æ–°çš„å±æ€§
 	var r = (((nVObject*)obj)->r).symbol()->symbol(wstr(mbs2wcs(s).c_str()));
 
 	if (r.ptr == NULL){
@@ -265,7 +265,7 @@ static int nVObject_setattr(PyObject *obj, PyObject *attr, PyObject *value)
 
 	char *s;
 	Py_ssize_t len;
-	//PyString_AsStringAndSize·µ»ØÖµÎª0ÊÇÕı³£µÄ£¿ÔõÃ´Óë±ê×¼ËµÃ÷²»Ò»Ñù
+	//PyString_AsStringAndSizeè¿”å›å€¼ä¸º0æ˜¯æ­£å¸¸çš„ï¼Ÿæ€ä¹ˆä¸æ ‡å‡†è¯´æ˜ä¸ä¸€æ ·
 	if (0 != PyString_AsStringAndSize(attr, &s, &len) || 0 == s) {
 		PyErr_SetString(PyExc_RuntimeError, "can not get string");
 		return -1;

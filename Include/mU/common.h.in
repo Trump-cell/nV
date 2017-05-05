@@ -52,13 +52,10 @@
 #include <boost/assign/list_of.hpp>
 #include <boost/logic/tribool.hpp>
 #include <boost/lexical_cast.hpp>
-#include <boost/thread.hpp>
-#include <boost/thread/thread.hpp>
 #include <boost/algorithm/string/find.hpp>
 #include <boost/algorithm/string/replace.hpp>
 #include <boost/scoped_array.hpp>
-#include <boost/asio.hpp>
-#include <boost/iostreams/stream.hpp>
 #include <boost/array.hpp>
+#include <boost/iostreams/stream.hpp>
 
 #define MU_HOME "@MU_HOME@"

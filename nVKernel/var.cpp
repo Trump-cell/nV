@@ -3,7 +3,7 @@
 
 namespace nV {
 void print(wchar x, wostream& o) {
-    if (isgraph(x) && isprint(x))
+    if (x < 0x80 || iswprint(x))
         o << x;
     else
         o << L"\\:" << std::hex
@@ -11,6 +11,14 @@ void print(wchar x, wostream& o) {
           << ((x >> 8) & 0xF)
           << ((x >> 4) & 0xF)
           << (x & 0xF);
+    /*if (isgraph(x) && isprint(x))
+        o << x;
+    else
+        o << L"\\:" << std::hex
+          << ((x >> 12) & 0xF)
+          << ((x >> 8) & 0xF)
+          << ((x >> 4) & 0xF)
+          << (x & 0xF);*/
 }
 #ifdef _DEBUG
 Var::~Var() {}

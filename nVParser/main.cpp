@@ -40,10 +40,10 @@ namespace nV {
 	}
 	bool readline(wistream& i, wstring& r) {
 		if(timeout_mode == 0){
-			return std::getline(i, r);
+			return (bool)std::getline(i, r);
 		}
 		else {
-			bool flag=true;
+			bool flag = true;
 #ifndef _WIN32
 			int     sockfd = 0;
 			fd_set  fdR;
@@ -56,10 +56,10 @@ namespace nV {
 				flag = false;
 				break;
 			default:
-				flag = std::getline(i, r);
+				flag = (bool)std::getline(i, r);
 			}
 #else
-			flag = std::getline(i, r);
+			flag = (bool)std::getline(i, r);
 #endif
 			return flag;
 		}
@@ -75,13 +75,7 @@ namespace nV {
 
 using namespace nV;
 
-extern "C"
-//#ifdef _WIN32
-#ifdef _MSC_VER
-__declspec(dllexport)
-#endif
-int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
-	read_mode();
+CAPI Kernel* nV_init(Kernel* kernel = 0) { 
 	try {
 		setlocale(LC_ALL, "");
 		wcin.imbue(std::locale(""));
@@ -95,8 +89,38 @@ int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
 		pKernel = new Kernel;
 		pKernel->parser = new Parser(*pKernel);
 	}
+	return pKernel;
+}
+CAPI const char*  nV_eval(Kernel* kernel, const char* str) { 
+	static string s;
+	Kernel& k = *kernel;
+	Parser& p = *(k.parser);
+	wstring w = to_wstring(str,strlen(str));
+    	wistringstream in(w);
+	var r;
+    	try {
+          p.start(in);
+          r = p.eval();
+    	} catch (std::exception& e) {
+        	k.logging(__FUNCTIONW__) << _W("Error occurred while eval ") << w << _W(", ")
+                                 << e.what() << _W("...") << endl;
+    	}
+	wostringstream out;
+	for (int i = 1; i < r.tuple().size; ++i) {
+	    grammar.print(k, out, k.value(tuple(SYS(Pretty), r.tuple()[i])));
+	    out << endl;
+	}
+	w = out.str();
+	s = to_string(w.c_str(), w.size());
+	return s.c_str();
+} 
+#if 1//!__EMSCRIPTEN__
+CAPI int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
+	Kernel* pKernel = nV_init();
 	Kernel& k = *pKernel;
-	Parser& p = *(pKernel->parser);
+	Parser& p = *(k.parser);
+
+	read_mode();
 	wifstream f;
 #ifdef _WIN32
 	open(p, f, (Kernel::nv_home() + "/conf/nV.ini").c_str());
@@ -192,3 +216,4 @@ int nV_main(int argc, char *argv[], Kernel* kernel = 0) {
 	}
 	return 0;
 }
+#endif

@@ -1,26 +1,26 @@
 #include "common.h"
 /** \file
-\brief ËØĞÔ¼ì²â.
+\brief ç´ æ€§æ£€æµ‹.
 */
 #include <nV/Number.h>
 
 namespace nV {
 namespace Number {
 
-/** \brief ÅĞ¶Ï\f$n\f$ÊÇ·ñÎªËØÊı.
-	\param n ÕûÊı.
-	\retval >0 ÊÇ.
-	\retval 0 ·ñ.
-	\note Ê¹ÓÃRabin-MillerÇ¿Î±ËØÊı¼ì²â.
+/** \brief åˆ¤æ–­\f$n\f$æ˜¯å¦ä¸ºç´ æ•°.
+	\param n æ•´æ•°.
+	\retval >0 æ˜¯.
+	\retval 0 å¦.
+	\note ä½¿ç”¨Rabin-Millerå¼ºä¼ªç´ æ•°æ£€æµ‹.
 */
 bool PrimeQ(const Integer& x) {
     return mpz_probab_prime_p(x.mpz, 10) > 0;
 }
 
-/** \brief Çó´óÓÚ\f$n\f$µÄµÚÒ»¸öËØÊı.
-	\param n ÕûÊı.
-	\return ´óÓÚ\f$n\f$µÄµÚÒ»¸öËØÊı.
-	\todo ·ÇÕûÊıÅĞ¶Ï.
+/** \brief æ±‚å¤§äº\f$n\f$çš„ç¬¬ä¸€ä¸ªç´ æ•°.
+	\param n æ•´æ•°.
+	\return å¤§äº\f$n\f$çš„ç¬¬ä¸€ä¸ªç´ æ•°.
+	\todo éæ•´æ•°åˆ¤æ–­.
 */
 var NextPrime(const Integer& x) {
     /*if (mpz_cmp_ui(x.mpz, 1) <= 0 && mpz_cmp_si(x.mpz, -2) >= 0)
@@ -42,19 +42,19 @@ var NextPrime(const Integer& x) {
     return r;
 }
 
-/** \brief ÇóÕûÊı\f$n\f$ÔÚ\f$b\f$½øÖÆ±íÊ¾ÏÂµÄ³¤¶È.
-	\param n ÕûÊı.
+/** \brief æ±‚æ•´æ•°\f$n\f$åœ¨\f$b\f$è¿›åˆ¶è¡¨ç¤ºä¸‹çš„é•¿åº¦.
+	\param n æ•´æ•°.
 	\param b 2 - 62.
-	\return ÕûÊıÔÚ\f$b\f$½øÖÆ±íÊ¾ÏÂµÄ³¤¶È.
+	\return æ•´æ•°åœ¨\f$b\f$è¿›åˆ¶è¡¨ç¤ºä¸‹çš„é•¿åº¦.
 */
 uint IntegerLength(const Integer& x, uint y) {
     return mpz_sizeinbase(x.mpz, y);
 }
 
-/** \brief ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª1.
-	\param n ÕûÊı.
-	\param k ·Ç¸ºÕûÊı.
-	\return ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª1.
+/** \brief è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º1.
+	\param n æ•´æ•°.
+	\param k éè´Ÿæ•´æ•°.
+	\return è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º1.
 */
 var BitSet(const Integer& x, uint y) {
     Integer* r = new Integer(x);
@@ -62,10 +62,10 @@ var BitSet(const Integer& x, uint y) {
     return r;
 }
 
-/** \brief ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª0.
-\param n ÕûÊı.
-\param k ·Ç¸ºÕûÊı.
-\return ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª0.
+/** \brief è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º0.
+\param n æ•´æ•°.
+\param k éè´Ÿæ•´æ•°.
+\return è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º0.
 */
 var BitClear(const Integer& x, uint y) {
     Integer* r = new Integer(x);
@@ -73,35 +73,35 @@ var BitClear(const Integer& x, uint y) {
     return r;
 }
 
-/** \brief Çó\f$n\f$µÄ\f$2^k\f$Î».
-\param n, k ÕıÕûÊı.
-\return \f$n\f$µÄ\f$2^k\f$Î».
+/** \brief æ±‚\f$n\f$çš„\f$2^k\f$ä½.
+\param n, k æ­£æ•´æ•°.
+\return \f$n\f$çš„\f$2^k\f$ä½.
 */
 bool BitGet(const Integer& x, uint y) {
     return mpz_tstbit(x.mpz, y) != 0;
 }
 
-/** \brief ÅĞ¶ÏÒ»¸öÕûÊıÊÇ·ñÎªÆæÊı.
-	\param n ÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
+/** \brief åˆ¤æ–­ä¸€ä¸ªæ•´æ•°æ˜¯å¦ä¸ºå¥‡æ•°.
+	\param n æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
 */
 bool OddQ(const Integer& x) {
     return mpz_odd_p(x.mpz) != 0;
 }
 
-/** \brief ÅĞ¶ÏÒ»¸öÕûÊıÊÇ·ñÎªÅ¼Êı.
-	\param n ÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
+/** \brief åˆ¤æ–­ä¸€ä¸ªæ•´æ•°æ˜¯å¦ä¸ºå¶æ•°.
+	\param n æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
 */
 bool EvenQ(const Integer& x) {
     return mpz_even_p(x.mpz) != 0;
 }
 
-/** \brief ÇóÕûÊıµÄ¾ø¶ÔÖµ.
-	\param n ÕûÊı
-	\return nµÄ¾ø¶ÔÖµ.
+/** \brief æ±‚æ•´æ•°çš„ç»å¯¹å€¼.
+	\param n æ•´æ•°
+	\return nçš„ç»å¯¹å€¼.
 */
 var Abs(const Integer& x) {
     Integer* r = new Integer();
@@ -109,11 +109,11 @@ var Abs(const Integer& x) {
     return r;
 }
 
-/** \brief ÕûÊı¿ªÆ½·½.
-	\param n ÕûÊı.
-	\return Æ½·½¸ùµÄÕûÊı²¿·Ö\f$\lfloor\sqrt{n}\rfloor\f$.
-	\note Ê¹ÓÃKaratsubaÆ½·½¸ùËã·¨.
-	\todo ²¹³äÎÄµµ.
+/** \brief æ•´æ•°å¼€å¹³æ–¹.
+	\param n æ•´æ•°.
+	\return å¹³æ–¹æ ¹çš„æ•´æ•°éƒ¨åˆ†\f$\lfloor\sqrt{n}\rfloor\f$.
+	\note ä½¿ç”¨Karatsubaå¹³æ–¹æ ¹ç®—æ³•.
+	\todo è¡¥å……æ–‡æ¡£.
 */
 var Sqrt(const Integer& x) {
     Integer* r = new Integer();
@@ -121,12 +121,12 @@ var Sqrt(const Integer& x) {
     return r;
 }
 
-/** \brief ÅĞ¶ÏÒ»¸öÕûÊıÊÇ·ñÎªÍêÈ«Æ½·½Êı.
-	\param n ÊäÈëÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
-	\note Ê¹ÓÃ\f$\mathbb{Z}/k\mathbb{Z}\f$ÉÏÆ½·½Êı·½·¨.
-	ÒÔ256£¬45£¬17£¬13£¬7ÎªÄ£, ±ÈÂÊ99.25%, Ê¹ÓÃ»ã±àĞ´µÄmpn_mod_34lsub1¼ÓËÙ.
+/** \brief åˆ¤æ–­ä¸€ä¸ªæ•´æ•°æ˜¯å¦ä¸ºå®Œå…¨å¹³æ–¹æ•°.
+	\param n è¾“å…¥æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
+	\note ä½¿ç”¨\f$\mathbb{Z}/k\mathbb{Z}\f$ä¸Šå¹³æ–¹æ•°æ–¹æ³•.
+	ä»¥256ï¼Œ45ï¼Œ17ï¼Œ13ï¼Œ7ä¸ºæ¨¡, æ¯”ç‡99.25%, ä½¿ç”¨æ±‡ç¼–å†™çš„mpn_mod_34lsub1åŠ é€Ÿ.
 */
 bool SquareQ(const Integer& x) {
     return mpz_perfect_square_p(x.mpz) != 0;

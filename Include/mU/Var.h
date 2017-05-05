@@ -10,6 +10,11 @@
 #pragma once
 #include <climits>
 #include <external/gmp.h>
+#if __EMSCRIPTEN__
+#include <emscripten.h>
+#else
+#define EMSCRIPTEN_KEEPALIVE
+#endif
 
 namespace mU {
 struct var_t;
@@ -98,17 +103,17 @@ namespace stdext
 #ifdef _WIN32
 #define CAPI extern "C" __declspec(dllexport)
 #else
-#define CAPI extern "C"
+#define CAPI extern "C" EMSCRIPTEN_KEEPALIVE
 #endif
 
 namespace mU {
 //////////////////////////////////////
 /*!
  * \brief
- * ±äÁ¿»ùÀà
+ * å˜é‡åŸºç±»
  *
  * \remarks
- * Ä¬ÈÏ²ÉÓÃ¾ä±úĞÍ¸´ÖÆ¿ØÖÆ£¬¿É¸²¸ÇÎªÖµĞÍ¸´ÖÆ¿ØÖÆ¡£
+ * é»˜è®¤é‡‡ç”¨å¥æŸ„å‹å¤åˆ¶æ§åˆ¶ï¼Œå¯è¦†ç›–ä¸ºå€¼å‹å¤åˆ¶æ§åˆ¶ã€‚
  */
 #define TYPE(x) type_##x
 enum type_t
@@ -157,10 +162,10 @@ inline void intrusive_ptr_release(var_t *pv)
 
 /*!
  * \brief
- * ¾ä±ú
+ * å¥æŸ„
  *
  * \remarks
- * ÎªÖ¸ÕëVarÌá¹©×Ô¶¯¸´ÖÆ¿ØÖÆ£¬±ãÓÚ±ê×¼¿âÈİÆ÷Ê¹ÓÃ¡£
+ * ä¸ºæŒ‡é’ˆVaræä¾›è‡ªåŠ¨å¤åˆ¶æ§åˆ¶ï¼Œä¾¿äºæ ‡å‡†åº“å®¹å™¨ä½¿ç”¨ã€‚
  */
 
 class var
@@ -182,10 +187,10 @@ public:
 //////////////////////////////////////
 /*!
 * \brief
-* ¶ÔÏó
+* å¯¹è±¡
 *
 * \remarks
-* ÎªÆäËû¶ÔÏóÌá¹©×Ô¶¯ÄÚ´æ¹ÜÀí¡£
+* ä¸ºå…¶ä»–å¯¹è±¡æä¾›è‡ªåŠ¨å†…å­˜ç®¡ç†ã€‚
 */
 struct obj_t : var_t
 {
@@ -205,7 +210,7 @@ inline bool ObjQ(Var x, Var y) { return ObjQ(x) && CObj<obj_t>(x).tag() == y; }
 
 /*!
 * \brief
-* ÕûÊı
+* æ•´æ•°
 *
 * \remarks
 * mpz_t
@@ -246,7 +251,7 @@ inline int_t::rep_t& CInt(Var x) { return INT_REP(x); }
 
 /*!
 * \brief
-* ÓĞÀíÊı
+* æœ‰ç†æ•°
 *
 * \remarks
 * mpq_t
@@ -303,7 +308,7 @@ inline rat_t::rep_t& CRat(Var x) { return RAT_REP(x); }
 
 /*!
 * \brief
-* ¸¡µãÊı
+* æµ®ç‚¹æ•°
 *
 * \remarks
 * mpf_t
@@ -338,7 +343,7 @@ inline flt_t::rep_t& CFlt(Var x) { return FLT_REP(x); }
 
 /*!
 * \brief
-* ×Ö·û´®
+* å­—ç¬¦ä¸²
 *
 * \remarks
 * wstring
@@ -366,10 +371,10 @@ inline str_t::rep_t& CStr(Var x) { return STR_REP(x); }
 
 /*!
 * \brief
-* ·ûºÅ±í¡°ÉÏÏÂÎÄ£¨context£©¡±
+* ç¬¦å·è¡¨â€œä¸Šä¸‹æ–‡ï¼ˆcontextï¼‰â€
 *
 * \remark
-* ´æ´¢´Ó·ûºÅÃû³Æµ½·ûºÅsym_t±äÁ¿µÄÓ³Éä¹ØÏµ
+* å­˜å‚¨ä»ç¬¦å·åç§°åˆ°ç¬¦å·sym_tå˜é‡çš„æ˜ å°„å…³ç³»
 */
 struct tab_t : obj_t
 {
@@ -385,10 +390,10 @@ inline tab_t::rep_t& CTab(Var x) { return TAB_REP(x); }
 
 /*!
  * \brief
- * ·ûºÅ
+ * ç¬¦å·
  *
  * \remarks
- * ½ö´æ´¢·ûºÅÃû³Æ¼°·ûºÅËùÊôµÄ¡°ÉÏÏÂÎÄ£¨context£©¡±
+ * ä»…å­˜å‚¨ç¬¦å·åç§°åŠç¬¦å·æ‰€å±çš„â€œä¸Šä¸‹æ–‡ï¼ˆcontextï¼‰â€
  */
 struct sym_t : var_t
 {
@@ -421,10 +426,10 @@ Global, System, Null, True, False, Nil, Aborted, Failed;
 
 /*!
 * \brief
-* ÏòÁ¿
+* å‘é‡
 *
 * \remarks
-* °ü×°±ê×¼¿âvectorÒÔĞÎ³É¹ãÒå±íÇ¶Ì×½á¹¹£¬±í´ïÊ½ÒÔÆäÎªÖ÷Ìå¡£
+* åŒ…è£…æ ‡å‡†åº“vectorä»¥å½¢æˆå¹¿ä¹‰è¡¨åµŒå¥—ç»“æ„ï¼Œè¡¨è¾¾å¼ä»¥å…¶ä¸ºä¸»ä½“ã€‚
 *
 * \see
 * ex_t
@@ -486,10 +491,10 @@ inline bool ListQ(Var x) { return Type(x) == TYPE(vec); }
 
 /*!
 * \brief
-* ±í´ïÊ½
+* è¡¨è¾¾å¼
 *
 * \remarks
-* °üÀ¨headÓëÏòÁ¿¹¹³ÉµÄbodyÁ½²¿·Ö£¬×¢ÒâheadÒ²¿ÉÄÜÎª±í´ïÊ½¡£
+* åŒ…æ‹¬headä¸å‘é‡æ„æˆçš„bodyä¸¤éƒ¨åˆ†ï¼Œæ³¨æ„headä¹Ÿå¯èƒ½ä¸ºè¡¨è¾¾å¼ã€‚
 *
 * \see
 * vec_t

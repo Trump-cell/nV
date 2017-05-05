@@ -151,7 +151,8 @@ CAPI CPROC(System_Not)
 		? True
 		: 0;
 }
-CPROC_ATOMIC(System_Inequality) {
+CPROC_ATOMIC(System_Inequality)
+{
 	var r = Vec();
 	int n = Size(x);
 	for(int i = 0; i < n - 1; i += 2)

@@ -88,9 +88,9 @@ var operator>>(const Integer& x, int y) {
 
 using namespace nV;
 
-/** \brief Î»ÓëÔËËã.
-	\param n, m ÕûÊı.
-	\return \f$n\f$, \f$m\f$µÄÎ»ÓëÔËËã.
+/** \brief ä½ä¸è¿ç®—.
+	\param n, m æ•´æ•°.
+	\return \f$n\f$, \f$m\f$çš„ä½ä¸è¿ç®—.
 */
 CAPI void CVALUE(System, BitAnd)(Kernel& k, var& r, Tuple& x) {
     if (x.size == 1 || !x[1].isObject($.Integer))
@@ -101,9 +101,9 @@ CAPI void CVALUE(System, BitAnd)(Kernel& k, var& r, Tuple& x) {
             r = Z(r) & Z(x[i]);
 }
 
-/** \brief Î»»òÔËËã.
-	\param n, m ÕûÊı.
-	\return \f$n\f$, \f$m\f$µÄÎ»»òÔËËã.
+/** \brief ä½æˆ–è¿ç®—.
+	\param n, m æ•´æ•°.
+	\return \f$n\f$, \f$m\f$çš„ä½æˆ–è¿ç®—.
 */
 CAPI void CVALUE(System, BitOr)(Kernel& k, var& r, Tuple& x) {
     if (x.size == 1 || !x[1].isObject($.Integer))
@@ -114,9 +114,9 @@ CAPI void CVALUE(System, BitOr)(Kernel& k, var& r, Tuple& x) {
             r = Z(r) | Z(x[i]);
 }
 
-/** \brief Î»Òì»òÔËËã.
-	\param n, m ÕûÊı.
-	\return \f$n\f$, \f$m\f$µÄÎ»Òì»òÔËËã.
+/** \brief ä½å¼‚æˆ–è¿ç®—.
+	\param n, m æ•´æ•°.
+	\return \f$n\f$, \f$m\f$çš„ä½å¼‚æˆ–è¿ç®—.
 */
 CAPI void CVALUE(System, BitXor)(Kernel& k, var& r, Tuple& x) {
     if (x.size == 1 || !x[1].isObject($.Integer))
@@ -127,9 +127,9 @@ CAPI void CVALUE(System, BitXor)(Kernel& k, var& r, Tuple& x) {
             r = Z(r) ^ Z(x[i]);
 }
 
-/** \brief Î»·ÇÔËËã.
-	\param n ÕûÊı.
-	\return \f$n\f$µÄÎ»·ÇÔËËã.
+/** \brief ä½éè¿ç®—.
+	\param n æ•´æ•°.
+	\return \f$n\f$çš„ä½éè¿ç®—.
 */
 CAPI void CVALUE(System, BitNot)(Kernel& k, var& r, Tuple& x) {
     if (x.size != 2 || !x[1].isObject($.Integer))
@@ -138,9 +138,9 @@ CAPI void CVALUE(System, BitNot)(Kernel& k, var& r, Tuple& x) {
     r = ~Z(x[1]);
 }
 
-/** \brief ½«\f$n\f$×óÒÆ\f$k\f$Î».
-	\param n, k ÕûÊı. Ä¬ÈÏ\f$k=1\f$.
-	\return ½«\f$n\f$×óÒÆ\f$k\f$Î». µ±\f$k\f$Îª¸ºÊıÊ±ÎªÓÒÒÆ.
+/** \brief å°†\f$n\f$å·¦ç§»\f$k\f$ä½.
+	\param n, k æ•´æ•°. é»˜è®¤\f$k=1\f$.
+	\return å°†\f$n\f$å·¦ç§»\f$k\f$ä½. å½“\f$k\f$ä¸ºè´Ÿæ•°æ—¶ä¸ºå³ç§».
 */
 CAPI void CVALUE(System, BitShiftLeft)(Kernel& k, var& r, Tuple& x) {
     if (x.size != 3 || !x[1].isObject($.Integer) || !x[2].isObject($.Integer))
@@ -148,9 +148,9 @@ CAPI void CVALUE(System, BitShiftLeft)(Kernel& k, var& r, Tuple& x) {
     r = Z(x[1]) << Z(x[2]).toSI();
 }
 
-/** \brief ½«\f$n\f$ÓÒÒÆ\f$k\f$Î».
-	\param n, k ÕûÊı. Ä¬ÈÏ\f$k=1\f$.
-	\return ½«\f$n\f$ÓÒÒÆ\f$k\f$Î». µ±\f$k\f$Îª¸ºÊıÊ±Îª×óÒÆ.
+/** \brief å°†\f$n\f$å³ç§»\f$k\f$ä½.
+	\param n, k æ•´æ•°. é»˜è®¤\f$k=1\f$.
+	\return å°†\f$n\f$å³ç§»\f$k\f$ä½. å½“\f$k\f$ä¸ºè´Ÿæ•°æ—¶ä¸ºå·¦ç§».
 */
 CAPI void CVALUE(System, BitShiftRight)(Kernel& k, var& r, Tuple& x) {
     if (x.size != 3 || !x[1].isObject($.Integer) || !x[2].isObject($.Integer))

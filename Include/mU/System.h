@@ -17,7 +17,7 @@ namespace mU {
 
 SYSTEM_API void BoxPrint(Var,wostream& = wcout,size_t = 0);
 
-// ËÄÔòÔËËã
+// å››åˆ™è¿ç®—
 SYSTEM_API var Power(Var,Var);
 SYSTEM_API var Mod(Var,Var);
 SYSTEM_API var Dot(Var);
@@ -28,7 +28,7 @@ SYSTEM_API var Table(Var,size_t,const var*);
 SYSTEM_API var Array(Var,Var,size_t,const var*);
 SYSTEM_API var Array(Var,Var,size_t,const var*,const var*);
 
-// »ù±¾ÊıÖµ¼ÆËã
+// åŸºæœ¬æ•°å€¼è®¡ç®—
 SYSTEM_API var Evalf(Var);
 SYSTEM_API var Evalf(Var,size_t);
 SYSTEM_API var IntegerPart(Var);
@@ -36,7 +36,7 @@ SYSTEM_API var Floor(Var);
 SYSTEM_API var Ceiling(Var);
 SYSTEM_API var Round(Var);
 
-// ¶àÏîÊ½»ù±¾²Ù×÷
+// å¤šé¡¹å¼åŸºæœ¬æ“ä½œ
 SYSTEM_API var Expand(Var,Var);
 SYSTEM_API var Expand(Var);
 SYSTEM_API var Variables(Var);

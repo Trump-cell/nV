@@ -111,10 +111,10 @@ void ParametricCurve3D::makePoints() {
         arrayT = new ArrayList<double>;
         lineStrips.add(linestrip);
         arrayTtotal.add(arrayT);
-        if(i == 0) {    //ÏßÖĞ
+        if(i == 0) {    //çº¿ä¸­
             linestrip->vert.push_back(Point3d(x[i], y[i], z[i]));
             (*arrayT).add(t[i]);
-        } else {    //ÏßÎ²
+        } else {    //çº¿å°¾
             double newt = getPointOnRangeFromLeft(fx, fy, fz, t[i - 1], t[i], 1);
             double newx = fx->getSingleData(newt);
             double newy = fy->getSingleData(newt);
@@ -285,7 +285,7 @@ void ParametricCurve3D::addVerts(LineStrip* lineStrip, ArrayList<double> &arrayT
             } else {
                 i++;
             }
-        } else { //³¢ÊÔÌí¼Ó
+        } else { //å°è¯•æ·»åŠ 
             double t = (arrayT[i] + arrayT[i+1]) / 2;
             Vector3D v3 = *(getVector(t, -dt));
             if ((v1*v3)*(v2*v3) < 0) {
@@ -360,7 +360,7 @@ void ParametricCurve3D::makeplotrange(F1P *f, bool havenanrange, std::vector<dom
     }
 
     //
-    //È¥³ıĞ±ÂÊÌ«´óµÄµã
+    //å»é™¤æ–œç‡å¤ªå¤§çš„ç‚¹
     //
     bool singularity = false;
     bool vrm = true; //vert removed
@@ -497,7 +497,7 @@ void ParametricCurve3D::getyrange(double &ymax_f, double &ymin_f, double &graphS
         spy_f = ymax_f - ymin_f;
         graphScale_f = spy_f / spx_f;
 }
-//»ñµÃÇĞÏòÁ¿
+//è·å¾—åˆ‡å‘é‡
 Vector3D* ParametricCurve3D::getVector(double t, double dt) {
     return new Vector3D(fx->getDerivative(t, dt) / spx, fy->getDerivative(t, dt) / spy, fz->getDerivative(t, dt) / spz);
 }

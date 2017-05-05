@@ -1,7 +1,7 @@
 #include "common.h"
 /** \file
-\brief һԪ����ʽ������������
-\todo �д��޸Ĳ���,�������㺯����Ŀ���Դ�Ƿ��Ϊͬһ��ַ�ı�ע
+\brief 一元多项式基本算术运算
+\todo 有待修改补充,基本运算函数的目标和源是否可为同一地址的标注
 */
 #include <mU/Polynomial_impl.h>
 #include <algorithm>

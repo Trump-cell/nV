@@ -1,5 +1,6 @@
 #include <cstdarg>
 #include <cstring>
+#include <ctime>
 #include <gmp.h>
 #include <sstream>
 #include <nV/Kernel.h>
@@ -170,7 +171,11 @@ string dump_path() {
 	return dump_path + "\\";
 }
 wstring to_wstring(const char *src, size_t len)
-#if !defined(_WIN32) | defined(BOOST_ALL_DYN_LINK)
+#if __EMSCRIPTEN__
+{
+	return wstring(src, src + len);
+}
+#else
 {
 	using namespace std;
 	using namespace boost;
@@ -191,7 +196,7 @@ wstring to_wstring(const char *src, size_t len)
 		case ERROR_NO_UNICODE_TRANSLATION:
 			throw InvalidCodePointException();
 		default:
-			throw RuntimeException();	// FIXME: È·ÇĞµÄ´íÎóÀàĞÍ
+			throw RuntimeException();	// FIXME: ç¡®åˆ‡çš„é”™è¯¯ç±»å‹
 		}
 	}
 #else
@@ -215,19 +220,20 @@ wstring to_wstring(const char *src, size_t len)
 	case codecvt_base::noconv:
 		throw InvalidCodePointException();
 	default:
-		throw RuntimeException();	// FIXME: È·ÇĞµÄ´íÎóÀàĞÍ
+		throw RuntimeException();	// FIXME: ç¡®åˆ‡çš„é”™è¯¯ç±»å‹
 	}
 	count = out_next - buffer.get();
 #endif
 	return wstring(buffer.get(), count);
 }
-#else
-{
-	return wstring(src, src + len);
-}
 #endif
+
 string to_string(const wchar *src, size_t len)
-#if !defined(_WIN32) | defined(BOOST_ALL_DYN_LINK)
+#if __EMSCRIPTEN__
+{
+	return string(src, src + len);
+}
+#else
 {
 	using namespace std;
 	using namespace boost;
@@ -241,8 +247,8 @@ string to_string(const wchar *src, size_t len)
 	BOOL used_def_char = false;
 	count = WideCharToMultiByte(CP_ACP,
 #ifdef __MINGW32__
-			// FIXME: Ó¦¸ÃÊÇWC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS
-			//        µ«mingw²»Ö§³Ö
+			// FIXME: åº”è¯¥æ˜¯WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS
+			//        ä½†mingwä¸æ”¯æŒ
 			0
 #else
 			WC_ERR_INVALID_CHARS | WC_NO_BEST_FIT_CHARS
@@ -263,7 +269,7 @@ string to_string(const wchar *src, size_t len)
 		case ERROR_NO_UNICODE_TRANSLATION:
 			throw InvalidCodePointException();
 		default:
-			throw RuntimeException();	// FIXME: ??§Ö????????
+			throw RuntimeException();	// FIXME: ??Ğµ????????
 		}
 	}
 #else
@@ -287,17 +293,14 @@ string to_string(const wchar *src, size_t len)
 	case codecvt_base::noconv:
 		throw InvalidCodePointException();
 	default:
-		throw RuntimeException();	// FIXME: ??§Ö????????
+		throw RuntimeException();	// FIXME: ??Ğµ????????
 	}
 	count = out_next - buffer.get();
 #endif
 	return string(buffer.get(), count);
 }
-#else
-{
-	return string(src, src + len);
-}
 #endif
+
 void gdb_print(Kernel & k,const var& x){
 	k.print(x);
 }

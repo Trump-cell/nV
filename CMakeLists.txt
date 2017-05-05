@@ -7,9 +7,25 @@ set (VERSION_PATCH "0")
 
 # Configurable options
 
+if(MSVC) # MSVC compiler (Win32 only)
+    # Display more warnings
+    #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /w")
+elseif(UNIX OR CMAKE_COMPILER_IS_GNUCXX) # Clang OR Gcc (Linux, Mac OS or Win32 with MingW)
+    if (DEFINED EMCC)
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -Wno-c++11-narrowing -std=c++11")
+    else ()
+    # Enable C++11 and displays all warnings
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -w -std=c++11 -lpthread")
+    if(APPLE) # Clang / Mac OS only
+        # Required on OSX to compile c++11
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -stdlib=libc++ -mmacosx-version-min=10.7")
+    endif(APPLE)
+    endif()
+endif()
+
 include (config.cmake)
 
-if (MSVC_IDE)
+if (MSVC)
 	set(PROJECT_STAGE_DIR "${PROJECT_BINARY_DIR}/stage")
 else ()
 	set(PROJECT_STAGE_DIR "${PROJECT_BINARY_DIR}/${CMAKE_BUILD_TYPE}")
@@ -37,17 +53,16 @@ include (Utils)
 
 # Overall -I s
 
-include_directories (BEFORE ${PROJECT_SOURCE_DIR}/Include/external)
 include_directories (${PROJECT_SOURCE_DIR}/Include)
-if (MSVC_IDE)
-	include_directories(${PROJECT_BINARY_DIR}/Include/$(Configuration))
+if (MSVC)
+	include_directories(${PROJECT_BINARY_DIR}/Include/$(ConfigurationName))
 else ()
 	include_directories(${PROJECT_BINARY_DIR}/Include)
 endif ()
 include_directories (${EXTRA_INCLUDE})
 
 # Project Headers
-if (MSVC_IDE)
+if (MSVC)
 	set (MU_HOME ${CMAKE_INSTALL_PREFIX})
 	set (NV_HOME ${CMAKE_INSTALL_PREFIX})
 	foreach (release_configuration "Release" "RelWithDebInfo" "MinSizeRel")
@@ -79,8 +94,18 @@ add_definitions(-DUNICODE)
 
 # Depenences
 
+if (USE_BOOST_LIB)
 find_package (Boost REQUIRED thread system date_time regex)
-include_directories(${Boost_INCLUDE_DIRS})
+include_directories (${Boost_INCLUDE_DIRS})
+elseif (NOT DEFINED EMCC)
+find_package (Boost REQUIRED)
+include_directories (${Boost_INCLUDE_DIRS})
+endif ()
+
+if (NOT DEFINED USE_SYS)
+include_directories (${PROJECT_SOURCE_DIR}/Include/external)
+endif ()
+
 find_library (gmp_LIBRARIES gmp REQUIRED)
 find_library (mpfr_LIBRARIES mpfr REQUIRED)
 find_library (mpfi_LIBRARIES mpfi REQUIRED)
@@ -136,15 +161,15 @@ if (USE_MU0)
 endif ()
 
 # NSIS installer script
-if (MSVC_IDE)
-	string(REPLACE ".lib" ".dll" Boost_THREAD_LIBRARY_RELEASE_DLL ${Boost_THREAD_LIBRARY_RELEASE})
-	file(TO_NATIVE_PATH ${Boost_THREAD_LIBRARY_RELEASE_DLL} Boost_THREAD_LIBRARY_RELEASE_DLL)
-	string(REPLACE ".lib" ".dll" Boost_SYSTEM_LIBRARY_RELEASE_DLL ${Boost_SYSTEM_LIBRARY_RELEASE})
-	file(TO_NATIVE_PATH ${Boost_SYSTEM_LIBRARY_RELEASE_DLL} Boost_SYSTEM_LIBRARY_RELEASE_DLL)
-	string(REPLACE ".lib" ".dll" Boost_DATE_TIME_LIBRARY_RELEASE_DLL ${Boost_DATE_TIME_LIBRARY_RELEASE})
-	file(TO_NATIVE_PATH ${Boost_DATE_TIME_LIBRARY_RELEASE_DLL} Boost_DATE_TIME_LIBRARY_RELEASE_DLL)
-	string(REPLACE ".lib" ".dll" Boost_REGEX_LIBRARY_RELEASE_DLL ${Boost_REGEX_LIBRARY_RELEASE})
-	file(TO_NATIVE_PATH ${Boost_REGEX_LIBRARY_RELEASE_DLL} Boost_REGEX_LIBRARY_RELEASE_DLL)
+if (MSVC)
+	#string(REPLACE ".lib" ".dll" Boost_THREAD_LIBRARY_RELEASE_DLL ${Boost_THREAD_LIBRARY_RELEASE})
+	#file(TO_NATIVE_PATH ${Boost_THREAD_LIBRARY_RELEASE_DLL} Boost_THREAD_LIBRARY_RELEASE_DLL)
+	#string(REPLACE ".lib" ".dll" Boost_SYSTEM_LIBRARY_RELEASE_DLL ${Boost_SYSTEM_LIBRARY_RELEASE})
+	#file(TO_NATIVE_PATH ${Boost_SYSTEM_LIBRARY_RELEASE_DLL} Boost_SYSTEM_LIBRARY_RELEASE_DLL)
+	#string(REPLACE ".lib" ".dll" Boost_DATE_TIME_LIBRARY_RELEASE_DLL ${Boost_DATE_TIME_LIBRARY_RELEASE})
+	#file(TO_NATIVE_PATH ${Boost_DATE_TIME_LIBRARY_RELEASE_DLL} Boost_DATE_TIME_LIBRARY_RELEASE_DLL)
+	#string(REPLACE ".lib" ".dll" Boost_REGEX_LIBRARY_RELEASE_DLL ${Boost_REGEX_LIBRARY_RELEASE})
+	#file(TO_NATIVE_PATH ${Boost_REGEX_LIBRARY_RELEASE_DLL} Boost_REGEX_LIBRARY_RELEASE_DLL)
 	
 	string(REPLACE ".lib" ".dll" gmp_LIBRARIES_DLL ${gmp_LIBRARIES})
 	file(TO_NATIVE_PATH ${gmp_LIBRARIES_DLL} gmp_LIBRARIES_DLL)
@@ -152,8 +177,8 @@ if (MSVC_IDE)
 	string(REPLACE ".lib" ".dll" mpfr_LIBRARIES_DLL ${mpfr_LIBRARIES})
 	file(TO_NATIVE_PATH ${mpfr_LIBRARIES_DLL} mpfr_LIBRARIES_DLL)
 
-	string(REPLACE ".lib" ".dll" mpfi_LIBRARIES_DLL ${mpfi_LIBRARIES})
-	file(TO_NATIVE_PATH ${mpfi_LIBRARIES_DLL} mpfi_LIBRARIES_DLL)
+	#string(REPLACE ".lib" ".dll" mpfi_LIBRARIES_DLL ${mpfi_LIBRARIES})
+	#file(TO_NATIVE_PATH ${mpfi_LIBRARIES_DLL} mpfi_LIBRARIES_DLL)
 
 	configure_file(EnvVarUpdate.nsh EnvVarUpdate.nsh COPYONLY)
 	configure_file(setup.nsi.in setup.nsi @ONLY)
@@ -166,7 +191,7 @@ add_subdirectory(mUKernel)
 add_subdirectory(mUSystem)
 add_subdirectory(mUScript)
 add_subdirectory(mULink)
-# add_subdirectory(mUTest)
+#add_subdirectory(mUTest)
 
 add_subdirectory(nV)
 add_subdirectory(nVKernel)
@@ -178,7 +203,7 @@ add_subdirectory(nVSystem)
 add_subdirectory(nVCalculus)
 add_subdirectory(nVGraphics)
 add_subdirectory(nVString)
-add_subdirectory(nVTest)
+#add_subdirectory(nVTest)
 add_subdirectory(nVLink)
 
 # from orignal CMake files

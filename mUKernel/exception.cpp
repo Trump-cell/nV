@@ -2,24 +2,34 @@
 #include <mU/Exceptions.h>
 #include <mU/Kernel.h>
 
+#if __cplusplus >= 199711L && _MSC_VER != 1500
+using namespace std;
+#else
 using namespace boost;
+#endif
+
+#if defined(BOOST_NO_EXCEPTIONS)
+void boost::throw_exception(std::exception const& e) { throw e; }
+#endif
 
 namespace mU
 {
-	boost::thread_specific_ptr<bool> abortion_requested;
+	//boost::thread_specific_ptr<bool> abortion_requested;
 	std::stack<var> AtomicSymbolStack;
+
 
 	void check_for_abortion()
 	{
-		this_thread::interruption_point();
+		/*this_thread::interruption_point();
 
 		if (*abortion_requested)
 		{
 			*abortion_requested = false;
 			throw thread_interrupted();
-		}
+		}*/
 	}
 
+#if 0
 	void abort(thread *t)
 	{
 		t->interrupt();
@@ -36,6 +46,7 @@ namespace mU
 			*abortion_requested = true;
 		}
 	}
+#endif
 
 	std::deque<std::vector<KernelMessage> > MessageLists;
 

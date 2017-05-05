@@ -1,6 +1,6 @@
 #include "common.h"
 /** \file
-\brief »ù´¡ÊıÂÛº¯Êı.
+\brief åŸºç¡€æ•°è®ºå‡½æ•°.
 */
 
 #include "objects/integer.h"
@@ -21,7 +21,7 @@ namespace Modules
 namespace NumberTheory
 {
 
-int32_t IntegerLength(Var n, uint32_t b)
+maTHmU::int32_t IntegerLength(Var n, maTHmU::uint32_t b)
 {
 	assert(Type(n)==TYPE(int));
 	assert(b >= 2 && b <= 62);
@@ -101,42 +101,42 @@ namespace
 	}
 }
 namespace Modules {
-/** \brief ÊıÂÛÄ£¿é
+/** \brief æ•°è®ºæ¨¡å—
 
-°üº¬¸÷ÖÖÊıÂÛº¯Êı.
+åŒ…å«å„ç§æ•°è®ºå‡½æ•°.
 */
 namespace NumberTheory {
 
-gmp_randstate_t rstate; /**< Ëæ»ú×´Ì¬±äÁ¿. */
+gmp_randstate_t rstate; /**< éšæœºçŠ¶æ€å˜é‡. */
 
-/** \brief Ëæ»úÊı³õÊ¼»¯.
-	\note ĞèÔÚµ÷ÓÃ::RandomIntegerÖ®Ç°Ö´ĞĞ.
+/** \brief éšæœºæ•°åˆå§‹åŒ–.
+	\note éœ€åœ¨è°ƒç”¨::RandomIntegerä¹‹å‰æ‰§è¡Œ.
 */
 void Randomize() {
 	gmp_randinit_default(rstate);
 	gmp_randseed_ui(rstate,time(NULL));
 }
 
-/** \brief Ê¹ÓÃ\f$n\f$×÷ÎªËæ»úÊıÖÖ×ÓÖØÖÃËæ»úÊıÉú³ÉÆ÷.
-	\param n ÕûÊı.
+/** \brief ä½¿ç”¨\f$n\f$ä½œä¸ºéšæœºæ•°ç§å­é‡ç½®éšæœºæ•°ç”Ÿæˆå™¨.
+	\param n æ•´æ•°.
 */
 void SeedRandom(VAR n) {
 	gmp_randseed(rstate,PTR(n));
 }
 
-/** \brief Ê¹ÓÃÏµÍ³Ê±¼ä×÷ÎªËæ»úÊıÖÖ×ÓÖØÖÃËæ»úÊıÉú³ÉÆ÷.
+/** \brief ä½¿ç”¨ç³»ç»Ÿæ—¶é—´ä½œä¸ºéšæœºæ•°ç§å­é‡ç½®éšæœºæ•°ç”Ÿæˆå™¨.
 */
 void SeedRandom() {
 	gmp_randseed_ui(rstate,time(NULL));
 }
 
-/** \brief ²úÉúËæ»úÕûÊı.
-	\param n ÕıÕûÊı.
-	\return 0µ½nÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úÊı.
-	\param {a,b} ÕıÕûÊı¶Ô.
-	\return aµ½bÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úÊı.
-	\note ĞèÏÈÖ´ĞĞ::Randomize.
-	\todo ÅĞ¶Ï½ç.
+/** \brief äº§ç”Ÿéšæœºæ•´æ•°.
+	\param n æ­£æ•´æ•°.
+	\return 0åˆ°nä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºæ•°.
+	\param {a,b} æ­£æ•´æ•°å¯¹.
+	\return aåˆ°bä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºæ•°.
+	\note éœ€å…ˆæ‰§è¡Œ::Randomize.
+	\todo åˆ¤æ–­ç•Œ.
 */
 Z RandomInteger(VAR n) {
 	var r=Z(0);
@@ -151,13 +151,13 @@ Z RandomInteger(VAR n) {
 	return Z::cast(r);
 }
 
-/** \brief ²úÉúËæ»úËØÊı.
-\param n ´óÓÚ1µÄÕûÊı.
-\return 0µ½nÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úËØÊı.
-\param {a,b} °üº¬ËØÊıµÄÕıÕûÊı¶Ô.
-\return aµ½bÖ®¼äÒ»ÖÂ·Ö²¼µÄËæ»úËØÊı.
-\note ĞèÏÈÖ´ĞĞ::Randomize.
-\todo ÅĞ¶Ï½ç.
+/** \brief äº§ç”Ÿéšæœºç´ æ•°.
+\param n å¤§äº1çš„æ•´æ•°.
+\return 0åˆ°nä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºç´ æ•°.
+\param {a,b} åŒ…å«ç´ æ•°çš„æ­£æ•´æ•°å¯¹.
+\return aåˆ°bä¹‹é—´ä¸€è‡´åˆ†å¸ƒçš„éšæœºç´ æ•°.
+\note éœ€å…ˆæ‰§è¡Œ::Randomize.
+\todo åˆ¤æ–­ç•Œ.
 */
 Z RandomPrime(VAR n) {
 	var m;
@@ -180,10 +180,10 @@ Z RandomPrime(VAR n) {
 	}
 }
 
-/** \brief Çó´óÓÚ\f$n\f$µÄµÚÒ»¸öËØÊı.
-	\param n ÕûÊı.
-	\return ´óÓÚ\f$n\f$µÄµÚÒ»¸öËØÊı.
-	\todo ·ÇÕûÊıÅĞ¶Ï.
+/** \brief æ±‚å¤§äº\f$n\f$çš„ç¬¬ä¸€ä¸ªç´ æ•°.
+	\param n æ•´æ•°.
+	\return å¤§äº\f$n\f$çš„ç¬¬ä¸€ä¸ªç´ æ•°.
+	\todo éæ•´æ•°åˆ¤æ–­.
 */
 Z NextPrime(VAR n) {
 	if (n<=Z(1) && Z(-2)<=n) return Z(2);
@@ -195,11 +195,11 @@ Z NextPrime(VAR n) {
 		else m=m+Z(2);
 	}
 }
-/** \brief Çó´óÓÚ\f$n\f$µÄµÚ\f$k\f$¸öËØÊı.
-\param n ÕûÊı.
-\param k ÕûÊı.
-\return ´óÓÚ\f$n\f$µÄµÚ\f$k\f$¸öËØÊı. µ±\f$k\f$Îª¸ºÊıÊ±¸ø³öĞ¡ÓÚ\f$n\f$µÄµÚ\f$k\f$¸öËØÊı.
-\todo ·ÇÕûÊıÅĞ¶Ï.
+/** \brief æ±‚å¤§äº\f$n\f$çš„ç¬¬\f$k\f$ä¸ªç´ æ•°.
+\param n æ•´æ•°.
+\param k æ•´æ•°.
+\return å¤§äº\f$n\f$çš„ç¬¬\f$k\f$ä¸ªç´ æ•°. å½“\f$k\f$ä¸ºè´Ÿæ•°æ—¶ç»™å‡ºå°äº\f$n\f$çš„ç¬¬\f$k\f$ä¸ªç´ æ•°.
+\todo éæ•´æ•°åˆ¤æ–­.
 */
 Z NextPrime(VAR n, VAR k) {
 	var count=k;
@@ -219,18 +219,18 @@ Z NextPrime(VAR n, VAR k) {
 	else return Z::cast(temp2);
 }
 
-/** \brief ÇóÕûÊı\f$n\f$ÔÚ\f$b\f$½øÖÆ±íÊ¾ÏÂµÄ³¤¶È.
-	\param n ÕûÊı.
+/** \brief æ±‚æ•´æ•°\f$n\f$åœ¨\f$b\f$è¿›åˆ¶è¡¨ç¤ºä¸‹çš„é•¿åº¦.
+	\param n æ•´æ•°.
 	\param b 2 - 62.
-	\return ÕûÊıÔÚ\f$b\f$½øÖÆ±íÊ¾ÏÂµÄ³¤¶È.
+	\return æ•´æ•°åœ¨\f$b\f$è¿›åˆ¶è¡¨ç¤ºä¸‹çš„é•¿åº¦.
 */
 int32_t IntegerLength(VAR n, uint32_t b) {
 	return mpz_sizeinbase(PTR(n),b);
 }
 
-/** \brief Î»ÓëÔËËã.
-	\param n, m ÕûÊı.
-	\return \f$n\f$, \f$m\f$µÄÎ»ÓëÔËËã.
+/** \brief ä½ä¸è¿ç®—.
+	\param n, m æ•´æ•°.
+	\return \f$n\f$, \f$m\f$çš„ä½ä¸è¿ç®—.
 */
 Z BitAnd(VAR n, VAR m) {
 	Z r;
@@ -238,9 +238,9 @@ Z BitAnd(VAR n, VAR m) {
 	return r;
 }
 
-/** \brief Î»»òÔËËã.
-	\param n, m ÕûÊı.
-	\return \f$n\f$, \f$m\f$µÄÎ»»òÔËËã.
+/** \brief ä½æˆ–è¿ç®—.
+	\param n, m æ•´æ•°.
+	\return \f$n\f$, \f$m\f$çš„ä½æˆ–è¿ç®—.
 */
 Z BitOr(VAR n, VAR m) {
 	Z r;
@@ -248,9 +248,9 @@ Z BitOr(VAR n, VAR m) {
 	return r;
 }
 
-/** \brief Î»Òì»òÔËËã.
-	\param n, m ÕûÊı.
-	\return \f$n\f$, \f$m\f$µÄÎ»Òì»òÔËËã.
+/** \brief ä½å¼‚æˆ–è¿ç®—.
+	\param n, m æ•´æ•°.
+	\return \f$n\f$, \f$m\f$çš„ä½å¼‚æˆ–è¿ç®—.
 */
 Z BitXor(VAR n, VAR m) {
 	Z r;
@@ -258,9 +258,9 @@ Z BitXor(VAR n, VAR m) {
 	return r;
 }
 
-/** \brief Î»·ÇÔËËã.
-	\param n ÕûÊı.
-	\return \f$n\f$µÄÎ»·ÇÔËËã.
+/** \brief ä½éè¿ç®—.
+	\param n æ•´æ•°.
+	\return \f$n\f$çš„ä½éè¿ç®—.
 */
 Z BitNot(VAR n) {
 	Z r;
@@ -268,10 +268,10 @@ Z BitNot(VAR n) {
 	return r;
 }
 
-/** \brief ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª1.
-	\param n ÕûÊı.
-	\param k ·Ç¸ºÕûÊı.
-	\return ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª1.
+/** \brief è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º1.
+	\param n æ•´æ•°.
+	\param k éè´Ÿæ•´æ•°.
+	\return è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º1.
 */
 Z BitSet(VAR n, uint32_t k) {
 	var r=n;
@@ -279,10 +279,10 @@ Z BitSet(VAR n, uint32_t k) {
 	return Z::cast(r);
 }
 
-/** \brief ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª0.
-\param n ÕûÊı.
-\param k ·Ç¸ºÕûÊı.
-\return ÉèÖÃ\f$n\f$µÄ\f$2^k\f$Î»Îª0.
+/** \brief è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º0.
+\param n æ•´æ•°.
+\param k éè´Ÿæ•´æ•°.
+\return è®¾ç½®\f$n\f$çš„\f$2^k\f$ä½ä¸º0.
 */
 Z BitClear(VAR n, uint32_t k) {
 	var r=n;
@@ -291,17 +291,17 @@ Z BitClear(VAR n, uint32_t k) {
 }
 
 
-/** \brief Çó\f$n\f$µÄ\f$2^k\f$Î».
-\param n, k ÕıÕûÊı.
-\return \f$n\f$µÄ\f$2^k\f$Î».
+/** \brief æ±‚\f$n\f$çš„\f$2^k\f$ä½.
+\param n, k æ­£æ•´æ•°.
+\return \f$n\f$çš„\f$2^k\f$ä½.
 */
 int32_t BitGet(VAR n, uint32_t k) {
 	return mpz_tstbit(PTR(n),k);
 }
 
-/** \brief ½«\f$n\f$×óÒÆ\f$k\f$Î».
-	\param n, k ÕûÊı. Ä¬ÈÏ\f$k=1\f$.
-	\return ½«\f$n\f$×óÒÆ\f$k\f$Î». µ±\f$k\f$Îª¸ºÊıÊ±ÎªÓÒÒÆ.
+/** \brief å°†\f$n\f$å·¦ç§»\f$k\f$ä½.
+	\param n, k æ•´æ•°. é»˜è®¤\f$k=1\f$.
+	\return å°†\f$n\f$å·¦ç§»\f$k\f$ä½. å½“\f$k\f$ä¸ºè´Ÿæ•°æ—¶ä¸ºå³ç§».
 */
 Z BitShiftLeft(VAR n, int32_t k) {
 	Z r;
@@ -310,9 +310,9 @@ Z BitShiftLeft(VAR n, int32_t k) {
 	return r;
 }
 
-/** \brief ½«\f$n\f$ÓÒÒÆ\f$k\f$Î».
-	\param n, k ÕûÊı. Ä¬ÈÏ\f$k=1\f$.
-	\return ½«\f$n\f$ÓÒÒÆ\f$k\f$Î». µ±\f$k\f$Îª¸ºÊıÊ±Îª×óÒÆ.
+/** \brief å°†\f$n\f$å³ç§»\f$k\f$ä½.
+	\param n, k æ•´æ•°. é»˜è®¤\f$k=1\f$.
+	\return å°†\f$n\f$å³ç§»\f$k\f$ä½. å½“\f$k\f$ä¸ºè´Ÿæ•°æ—¶ä¸ºå·¦ç§».
 */
 Z BitShiftRight(VAR n, int32_t k) {
 	Z r;
@@ -321,27 +321,27 @@ Z BitShiftRight(VAR n, int32_t k) {
 	return r;
 }
 
-/** \brief ÅĞ¶ÏÒ»¸öÕûÊıÊÇ·ñÎªÆæÊı.
-	\param n ÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
+/** \brief åˆ¤æ–­ä¸€ä¸ªæ•´æ•°æ˜¯å¦ä¸ºå¥‡æ•°.
+	\param n æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
 */
 int32_t OddQ(VAR n) {
 	return mpz_odd_p(PTR(n));
 }
 
-/** \brief ÅĞ¶ÏÒ»¸öÕûÊıÊÇ·ñÎªÅ¼Êı.
-	\param n ÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
+/** \brief åˆ¤æ–­ä¸€ä¸ªæ•´æ•°æ˜¯å¦ä¸ºå¶æ•°.
+	\param n æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
 */
 int32_t EvenQ(VAR n) {
 	return mpz_even_p(PTR(n));
 }
 
-/** \brief ÇóÕûÊıµÄ¾ø¶ÔÖµ.
-	\param n ÕûÊı
-	\return nµÄ¾ø¶ÔÖµ.
+/** \brief æ±‚æ•´æ•°çš„ç»å¯¹å€¼.
+	\param n æ•´æ•°
+	\return nçš„ç»å¯¹å€¼.
 */
 Z Abs(VAR n) {
 	Z r;
@@ -349,11 +349,11 @@ Z Abs(VAR n) {
 	return r;
 }
 
-/** \brief ÕûÊı¿ªÆ½·½.
-	\param n ÕûÊı.
-	\return Æ½·½¸ùµÄÕûÊı²¿·Ö\f$\lfloor\sqrt{n}\rfloor\f$.
-	\note Ê¹ÓÃKaratsubaÆ½·½¸ùËã·¨.
-	\todo ²¹³äÎÄµµ.
+/** \brief æ•´æ•°å¼€å¹³æ–¹.
+	\param n æ•´æ•°.
+	\return å¹³æ–¹æ ¹çš„æ•´æ•°éƒ¨åˆ†\f$\lfloor\sqrt{n}\rfloor\f$.
+	\note ä½¿ç”¨Karatsubaå¹³æ–¹æ ¹ç®—æ³•.
+	\todo è¡¥å……æ–‡æ¡£.
 */
 Z Sqrt(VAR n) {
 	Z r;
@@ -361,23 +361,23 @@ Z Sqrt(VAR n) {
 	return r;
 }
 
-/** \brief ÅĞ¶ÏÒ»¸öÕûÊıÊÇ·ñÎªÍêÈ«Æ½·½Êı.
-	\param n ÊäÈëÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
-	\note Ê¹ÓÃ\f$\mathbb{Z}/k\mathbb{Z}\f$ÉÏÆ½·½Êı·½·¨.
-	ÒÔ256£¬45£¬17£¬13£¬7ÎªÄ£, ±ÈÂÊ99.25%, Ê¹ÓÃ»ã±àĞ´µÄmpn_mod_34lsub1¼ÓËÙ.
+/** \brief åˆ¤æ–­ä¸€ä¸ªæ•´æ•°æ˜¯å¦ä¸ºå®Œå…¨å¹³æ–¹æ•°.
+	\param n è¾“å…¥æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
+	\note ä½¿ç”¨\f$\mathbb{Z}/k\mathbb{Z}\f$ä¸Šå¹³æ–¹æ•°æ–¹æ³•.
+	ä»¥256ï¼Œ45ï¼Œ17ï¼Œ13ï¼Œ7ä¸ºæ¨¡, æ¯”ç‡99.25%, ä½¿ç”¨æ±‡ç¼–å†™çš„mpn_mod_34lsub1åŠ é€Ÿ.
 */
 int32_t SquareQ(VAR n) {
 	return mpz_perfect_square_p(PTR(n));
 }
 
-/** \brief ÅĞ¶Ï\f$m\f$ÊÇ·ñÄÜÕû³ı\f$n\f$.
-	\param n ÕûÊı.
-	\param m ·ÇÁãÕûÊı.
-	\retval 1 ÊÇ.
-	\retval 0 ·ñ.
-	\todo ÅĞ¶Ïm·ÇÁã.
+/** \brief åˆ¤æ–­\f$m\f$æ˜¯å¦èƒ½æ•´é™¤\f$n\f$.
+	\param n æ•´æ•°.
+	\param m éé›¶æ•´æ•°.
+	\retval 1 æ˜¯.
+	\retval 0 å¦.
+	\todo åˆ¤æ–­méé›¶.
 */
 int32_t Divisible(VAR n, VAR m) {
 	if (mpz_fits_uint_p(PTR(m))) {
@@ -388,23 +388,23 @@ int32_t Divisible(VAR n, VAR m) {
 	}
 }
 
-/** \brief ÅĞ¶Ï\f$m\f$ÊÇ·ñÄÜÕû³ı\f$n\f$.
-\param n ÕûÊı.
-\param m ·ÇÁãÕûÊı.
-\retval 1 ÊÇ.
-\retval 0 ·ñ.
-\todo ÅĞ¶Ïm·ÇÁã.
+/** \brief åˆ¤æ–­\f$m\f$æ˜¯å¦èƒ½æ•´é™¤\f$n\f$.
+\param n æ•´æ•°.
+\param m éé›¶æ•´æ•°.
+\retval 1 æ˜¯.
+\retval 0 å¦.
+\todo åˆ¤æ–­méé›¶.
 */
 int32_t Divisible(VAR n, uint32_t m) {
 	return mpz_divisible_ui_p(PTR(n),m);
 }
 
-/** \brief Çó\f$m\f$³ıÒÔ\f$n\f$µÄÉÌ.
-	\param m ÕûÊı.
-	\param n ·ÇÁãÕûÊı.
-	\return ÉÌ\f$\lfloor m/n\rfloor\f$.
-	\todo Ôö¼Ó·ÇÁãÅĞ¶Ï, Ôö¼Ó·ÇÕûÊı´¦Àí.
-	\todo ĞèÒªÎÄµµ²¹³ä.
+/** \brief æ±‚\f$m\f$é™¤ä»¥\f$n\f$çš„å•†.
+	\param m æ•´æ•°.
+	\param n éé›¶æ•´æ•°.
+	\return å•†\f$\lfloor m/n\rfloor\f$.
+	\todo å¢åŠ éé›¶åˆ¤æ–­, å¢åŠ éæ•´æ•°å¤„ç†.
+	\todo éœ€è¦æ–‡æ¡£è¡¥å…….
 */
 Z Quotient(VAR m, VAR n) {
 	Z r;
@@ -417,9 +417,9 @@ Z Quotient(VAR m, VAR n) {
 	return r;
 }
 
-/** \brief Çó\f$m\f$³ıÒÔ\f$n\f$µÄÉÌ(ÒÑÖª\f$n\f$Õû³ı\f$m\f$).
-	\param m ÕûÊı.
-	\param n ·ÇÁãÕûÊı.
+/** \brief æ±‚\f$m\f$é™¤ä»¥\f$n\f$çš„å•†(å·²çŸ¥\f$n\f$æ•´é™¤\f$m\f$).
+	\param m æ•´æ•°.
+	\param n éé›¶æ•´æ•°.
 	\return \f$m/n\f$.
 */
 Z ExactQuotient(VAR m, uint32_t n) {
@@ -427,13 +427,13 @@ Z ExactQuotient(VAR m, uint32_t n) {
 	mpz_divexact_ui(PTR(r),PTR(m),n);
 	return r;
 }
-/** \brief Çó\f$m\f$³ıÒÔ\f$n\f$µÄÓàÊı.
-	\param m ÕûÊı.
-	\param n ·ÇÁãÕûÊı.
-	\return ÓàÊı\f$m \bmod n\f$.
+/** \brief æ±‚\f$m\f$é™¤ä»¥\f$n\f$çš„ä½™æ•°.
+	\param m æ•´æ•°.
+	\param n éé›¶æ•´æ•°.
+	\return ä½™æ•°\f$m \bmod n\f$.
 	\note
-	\todo Ôö¼Ó·ÇÁãÅĞ¶Ï, Ôö¼Ó·ÇÕûÊı´¦Àí.
-	\todo ĞèÒªÎÄµµ²¹³ä.
+	\todo å¢åŠ éé›¶åˆ¤æ–­, å¢åŠ éæ•´æ•°å¤„ç†.
+	\todo éœ€è¦æ–‡æ¡£è¡¥å…….
 */
 Z Mod(VAR m, VAR n) {
 	Z r;
@@ -445,11 +445,11 @@ Z Mod(VAR m, VAR n) {
 	}
 	return r;
 }
-/** \brief ÇóÕûÊıµÄÕûÊı´ÎÃİ.
-	\param a ÕûÊı.
-	\param b ·Ç¸ºÕûÊı.
+/** \brief æ±‚æ•´æ•°çš„æ•´æ•°æ¬¡å¹‚.
+	\param a æ•´æ•°.
+	\param b éè´Ÿæ•´æ•°.
 	\return \f$a^b\f$.
-	\note Ê¹ÓÃ×Ô×óÏòÓÒµÄ¶ş½ø·½·¨.
+	\note ä½¿ç”¨è‡ªå·¦å‘å³çš„äºŒè¿›æ–¹æ³•.
 	\todo a=0
 */
 Z Power(VAR a, uint32_t b) {
@@ -463,13 +463,13 @@ Z Power(VAR a, uint32_t b) {
 	return r;
 }
 
-/** \brief Çó\f$a^b \bmod m\f$.
-	\param a,b ÕûÊı.
-	\param m ·ÇÁãÕûÊı.
+/** \brief æ±‚\f$a^b \bmod m\f$.
+	\param a,b æ•´æ•°.
+	\param m éé›¶æ•´æ•°.
 	\return \f$a^b \bmod m\f$.
-	\note Ä£Ãİmpz_powm²ÉÓÃ\f$2^k\f$½ø´°¿Ú·½·¨£¬\f$k\f$¸ù¾İÖ¸ÊıÑ¡Ôñ.
-	\note ¶ÔĞ¡Ä£Ê¹ÓÃÁËMontgomeryÔ¼»¯¹ı³Ì(Ö»Õë¶ÔÆæÊıÄ£),
-	²¢ÇÒ¶ÔPOWM_THRESHOLDÒÔÉÏÄ£Ê¹ÓÃ´øÓà³ı·¨.
+	\note æ¨¡å¹‚mpz_powmé‡‡ç”¨\f$2^k\f$è¿›çª—å£æ–¹æ³•ï¼Œ\f$k\f$æ ¹æ®æŒ‡æ•°é€‰æ‹©.
+	\note å¯¹å°æ¨¡ä½¿ç”¨äº†Montgomeryçº¦åŒ–è¿‡ç¨‹(åªé’ˆå¯¹å¥‡æ•°æ¨¡),
+	å¹¶ä¸”å¯¹POWM_THRESHOLDä»¥ä¸Šæ¨¡ä½¿ç”¨å¸¦ä½™é™¤æ³•.
 	\todo a=0.
 */
 
@@ -484,10 +484,10 @@ Z PowerMod(VAR a, VAR b, VAR m) {
 	return r;
 }
 
-/** \brief Çó\f$a\f$Ä£\f$n\f$µÄÄæ.
-	\param a, n ÕûÊı.
-	\return \f$a\f$Ä£\f$n\f$µÄÄæ.
-	\todo »¥ËØÅĞ¶¨.
+/** \brief æ±‚\f$a\f$æ¨¡\f$n\f$çš„é€†.
+	\param a, n æ•´æ•°.
+	\return \f$a\f$æ¨¡\f$n\f$çš„é€†.
+	\todo äº’ç´ åˆ¤å®š.
 */
 Z InverseMod(VAR a, VAR n) {
 	Z r;
@@ -495,11 +495,11 @@ Z InverseMod(VAR a, VAR n) {
 	return r;
 }
 
-/** \brief ÇóÁ½¸öÕûÊıµÄ×î´ó¹«Òò×Ó.
-\param n1, n2 ÕûÊı.
-\return ×î´ó¹«Òò×Ó.
-\note mpz_gcd¶Ô½ÏĞ¡Êı¾İÊ¹ÓÃBinary GCD,
-¶Ô³¬¹ıGCD_ACCEL_THRESHOLDµÄÊı¾İÊ¹ÓÃJebelean-Weber-Sorenson¼ÓËÙËã·¨.
+/** \brief æ±‚ä¸¤ä¸ªæ•´æ•°çš„æœ€å¤§å…¬å› å­.
+\param n1, n2 æ•´æ•°.
+\return æœ€å¤§å…¬å› å­.
+\note mpz_gcdå¯¹è¾ƒå°æ•°æ®ä½¿ç”¨Binary GCD,
+å¯¹è¶…è¿‡GCD_ACCEL_THRESHOLDçš„æ•°æ®ä½¿ç”¨Jebelean-Weber-SorensonåŠ é€Ÿç®—æ³•.
 */
 Z GCD(VAR n1, VAR n2) {
 	Z r;
@@ -517,9 +517,9 @@ Z GCD(VAR n1, VAR n2) {
 	return r;
 }
 
-/** \brief Çó\f$n_i\f$µÄ×î´ó¹«Òò×Ó.
+/** \brief æ±‚\f$n_i\f$çš„æœ€å¤§å…¬å› å­.
 	\param n \f$\{n_1,n_2,\ldots\}\f$.
-	\return \f$n_i\f$µÄ×î´ó¹«Òò×Ó.
+	\return \f$n_i\f$çš„æœ€å¤§å…¬å› å­.
 */
 Z GCD(LIST n) {
 	var t=n[0];
@@ -531,9 +531,9 @@ Z GCD(LIST n) {
 	return Z::cast(t);
 }
 
-/** \brief ÇóÁ½¸öÕûÊıµÄ×îĞ¡¹«±¶Êı.
-\param n1, n2 ÕûÊı.
-\return ×îĞ¡¹«±¶Êı.
+/** \brief æ±‚ä¸¤ä¸ªæ•´æ•°çš„æœ€å°å…¬å€æ•°.
+\param n1, n2 æ•´æ•°.
+\return æœ€å°å…¬å€æ•°.
 */
 Z LCM(VAR n1, VAR n2) {
 	Z r;
@@ -551,9 +551,9 @@ Z LCM(VAR n1, VAR n2) {
 	return r;
 }
 
-/** \brief Çó\f$n_i\f$µÄ×îĞ¡¹«±¶Êı.
+/** \brief æ±‚\f$n_i\f$çš„æœ€å°å…¬å€æ•°.
 \param n \f$\{n_1,n_2,\ldots\}\f$.
-\return \f$n_i\f$µÄ×îĞ¡¹«±¶Êı.
+\return \f$n_i\f$çš„æœ€å°å…¬å€æ•°.
 */
 Z LCM(LIST n) {
 	var t=n[0];
@@ -564,11 +564,11 @@ Z LCM(LIST n) {
 	return Z::cast(t);
 }
 
-/** \brief ÇóÁ½¸öÕûÊıµÄÀ©Õ¹×î´ó¹«Òò×Ó.
-\param n1, n2 ÕûÊı.
-\return À©Õ¹×î´ó¹«Òò×Ó\f$\{g,\{r_1,r_2\}\}\f$, Âú×ã\f$g=r_1n_1+r_2n_2\f$.
-\note ÔÚGCDEXT_THRESHOLDÒÔÉÏÊ¹ÓÃLehmer¼ÓËÙËã·¨.
-\todo À©Õ¹µ½ÈÎÒâ¸ö.
+/** \brief æ±‚ä¸¤ä¸ªæ•´æ•°çš„æ‰©å±•æœ€å¤§å…¬å› å­.
+\param n1, n2 æ•´æ•°.
+\return æ‰©å±•æœ€å¤§å…¬å› å­\f$\{g,\{r_1,r_2\}\}\f$, æ»¡è¶³\f$g=r_1n_1+r_2n_2\f$.
+\note åœ¨GCDEXT_THRESHOLDä»¥ä¸Šä½¿ç”¨LehmeråŠ é€Ÿç®—æ³•.
+\todo æ‰©å±•åˆ°ä»»æ„ä¸ª.
 */
 list ExtendedGCD(VAR n1, VAR n2) {
 	Z g=GCD(n1,n2);
@@ -577,10 +577,10 @@ list ExtendedGCD(VAR n1, VAR n2) {
 	return list(g,list(r1,r2));
 }
 
-/** \brief ÅĞ¶ÏÁ½¸öÕûÊıÊÇ·ñ»¥ËØ.
-\param n1,n2 ÕûÊı.
-\retval 1 ÊÇ.
-\retval 0 ·ñ.
+/** \brief åˆ¤æ–­ä¸¤ä¸ªæ•´æ•°æ˜¯å¦äº’ç´ .
+\param n1,n2 æ•´æ•°.
+\retval 1 æ˜¯.
+\retval 0 å¦.
 */
 int32_t CoprimeQ(VAR n1, VAR n2) {
 	return (GCD(n1, n2)==1);
@@ -611,13 +611,13 @@ bool CoprimeQ(LIST l) {
 
 	return true;
 }
-/** \brief Çó¶ş´ÎÎŞÀíÊıµÄÁ¬·ÖÊıÕ¹Ê½Ç°\f$n\f$Ïî.
-	\param d ·Ç¸ºÕûÊıÇÒ·ÇÍêÈ«Æ½·½.
-	\param P ÕûÊı.
-	\param Q ·ÇÁãÕûÊı.
-	\param n ÕıÕûÊı.
-	\return \f$(\sqrt{d}+P)/Q\f$µÄÁ¬·ÖÊıÕ¹Ê½µÄÇ°\f$n\f$Ïî\f$\{a_0,a_1,\ldots,a_{n-1}\}\f$.
-	\note Ê¹ÓÃÈ«ÕûÊıÔËËãµÄµİÍÆ¹ØÏµ.
+/** \brief æ±‚äºŒæ¬¡æ— ç†æ•°çš„è¿åˆ†æ•°å±•å¼å‰\f$n\f$é¡¹.
+	\param d éè´Ÿæ•´æ•°ä¸”éå®Œå…¨å¹³æ–¹.
+	\param P æ•´æ•°.
+	\param Q éé›¶æ•´æ•°.
+	\param n æ­£æ•´æ•°.
+	\return \f$(\sqrt{d}+P)/Q\f$çš„è¿åˆ†æ•°å±•å¼çš„å‰\f$n\f$é¡¹\f$\{a_0,a_1,\ldots,a_{n-1}\}\f$.
+	\note ä½¿ç”¨å…¨æ•´æ•°è¿ç®—çš„é€’æ¨å…³ç³».
 */
 list ContinuedFraction(VAR d, VAR P, VAR Q, uint32_t n) {
 	list a;
@@ -647,13 +647,13 @@ list ContinuedFraction(VAR d, VAR P, VAR Q, uint32_t n) {
 	return a;
 }
 
-/** \brief Çó¶ş´ÎÎŞÀíÊıµÄÁ¬·ÖÊıÕ¹Ê½.
-	\param d ·Ç¸ºÕûÊıÇÒ·ÇÍêÈ«Æ½·½.
-	\param P ÕûÊı.
-	\param Q ·ÇÁãÕûÊı.
+/** \brief æ±‚äºŒæ¬¡æ— ç†æ•°çš„è¿åˆ†æ•°å±•å¼.
+	\param d éè´Ÿæ•´æ•°ä¸”éå®Œå…¨å¹³æ–¹.
+	\param P æ•´æ•°.
+	\param Q éé›¶æ•´æ•°.
 	\return \f$\{\{a_0,a_1,\ldots,a_m\},\{a_{m+1},\ldots,a_{m+l}\}\}\f$.
-	\f$(\sqrt{d}+P)/Q\f$µÄÁ¬·ÖÊıÕ¹Ê½. ±íÖĞµÄµÚÒ»ÏîÎª·ÇÑ­»·²¿·Ö, µÚ¶şÏîÎªÑ­»·²¿·Ö.
-	\note ÏÈÊ¹ÓÃFloydËã·¨Çó³ö·ÇÑ­»·²¿·Ö, ÔÙÇó³ö×îĞ¡Ñ­»·ÖÜÆÚ.
+	\f$(\sqrt{d}+P)/Q\f$çš„è¿åˆ†æ•°å±•å¼. è¡¨ä¸­çš„ç¬¬ä¸€é¡¹ä¸ºéå¾ªç¯éƒ¨åˆ†, ç¬¬äºŒé¡¹ä¸ºå¾ªç¯éƒ¨åˆ†.
+	\note å…ˆä½¿ç”¨Floydç®—æ³•æ±‚å‡ºéå¾ªç¯éƒ¨åˆ†, å†æ±‚å‡ºæœ€å°å¾ªç¯å‘¨æœŸ.
 */
 list ContinuedFraction(VAR d, VAR P, VAR Q) {
 	list p,q,a;
@@ -702,13 +702,13 @@ list ContinuedFraction(VAR d, VAR P, VAR Q) {
 	return list(a.mid(0,j),a.mid(j,j+l));
 }
 
-/** \brief Çó¶ş´ÎÎŞÀíÊıµÄ½¥½ø·ÖÊı.
-	\param d ·Ç¸ºÕûÊıÇÒ·ÇÍêÈ«Æ½·½.
-	\param P ÕûÊı.
-	\param Q ·ÇÁãÕûÊı.
-	\param n ÕıÕûÊı.
-	\return \f$(\sqrt{d}+P)/Q\f$µÄÇ°\f$n\f$¸ö½¥½ø·ÖÊı×é³ÉµÄ±í.
-	\note Ê¹ÓÃµİÍÆ¹ØÏµ.
+/** \brief æ±‚äºŒæ¬¡æ— ç†æ•°çš„æ¸è¿›åˆ†æ•°.
+	\param d éè´Ÿæ•´æ•°ä¸”éå®Œå…¨å¹³æ–¹.
+	\param P æ•´æ•°.
+	\param Q éé›¶æ•´æ•°.
+	\param n æ­£æ•´æ•°.
+	\return \f$(\sqrt{d}+P)/Q\f$çš„å‰\f$n\f$ä¸ªæ¸è¿›åˆ†æ•°ç»„æˆçš„è¡¨.
+	\note ä½¿ç”¨é€’æ¨å…³ç³».
 */
 list Convergents(VAR d, VAR P, VAR Q, uint32_t n) {
 	list h,k;
@@ -731,12 +731,12 @@ list Convergents(VAR d, VAR P, VAR Q, uint32_t n) {
 	return r;
 }
 
-/** \brief Çó½âÏßĞÔÍ¬Óà·½³Ì×é\f$x\equiv x_i\pmod{m_i}\f$.
-\param x ±í\f$\{x_1,\ldots,x_n\}\f$.
-\param m ±í\f$\{m_1,\ldots,m_n\}\f$.
-\return ÏßĞÔÍ¬Óà·½³Ì×é×îĞ¡ÕıÕûÊı½â.
-\note Ê¹ÓÃ¸Ä½øµÄÖĞ¹úÊ£Óà¶¨ÀíËã·¨.
-\todo ²âÊÔĞ§ÂÊ.
+/** \brief æ±‚è§£çº¿æ€§åŒä½™æ–¹ç¨‹ç»„\f$x\equiv x_i\pmod{m_i}\f$.
+\param x è¡¨\f$\{x_1,\ldots,x_n\}\f$.
+\param m è¡¨\f$\{m_1,\ldots,m_n\}\f$.
+\return çº¿æ€§åŒä½™æ–¹ç¨‹ç»„æœ€å°æ­£æ•´æ•°è§£.
+\note ä½¿ç”¨æ”¹è¿›çš„ä¸­å›½å‰©ä½™å®šç†ç®—æ³•.
+\todo æµ‹è¯•æ•ˆç‡.
 */
 Z ChineseRemainder(LIST x, LIST m) {
 	uint32_t n=m.size();
@@ -760,39 +760,39 @@ Z ChineseRemainder(LIST x, LIST m) {
 	return Z::cast(r);
 }
 
-/** \brief ÇóLegendre·ûºÅ\f$\legendre{n}{m}\f$.
-\param n ÕûÊı.
-\param m ÕıÆæËØÊı.
-\return Legendre·ûºÅ\f$\legendre{n}{m}\f$.
-\note Ê¹ÓÃ¶ş½ø·½·¨.
-\todo Ôö¼ÓÕıÆæËØÊıÅĞ¶Ï.
+/** \brief æ±‚Legendreç¬¦å·\f$\legendre{n}{m}\f$.
+\param n æ•´æ•°.
+\param m æ­£å¥‡ç´ æ•°.
+\return Legendreç¬¦å·\f$\legendre{n}{m}\f$.
+\note ä½¿ç”¨äºŒè¿›æ–¹æ³•.
+\todo å¢åŠ æ­£å¥‡ç´ æ•°åˆ¤æ–­.
 */
 Z LegendreSymbol(VAR n, VAR m) {
 	return Z(mpz_legendre(PTR(n),PTR(m)));
 }
-/** \brief ÇóJacobi·ûºÅ\f$\legendre{n}{m}\f$.
-\param n ÕûÊı.
-\param m ÕıÆæÊı.
-\return Jacobi·ûºÅ\f$\legendre{n}{m}\f$.
-\note Ê¹ÓÃ¶ş½ø·½·¨.
-\todo Ôö¼ÓÕıÆæÊıÅĞ¶Ï.
+/** \brief æ±‚Jacobiç¬¦å·\f$\legendre{n}{m}\f$.
+\param n æ•´æ•°.
+\param m æ­£å¥‡æ•°.
+\return Jacobiç¬¦å·\f$\legendre{n}{m}\f$.
+\note ä½¿ç”¨äºŒè¿›æ–¹æ³•.
+\todo å¢åŠ æ­£å¥‡æ•°åˆ¤æ–­.
 */
 Z JacobiSymbol(VAR n, VAR m) {
 	return Z(mpz_legendre(PTR(n),PTR(m)));
 }
 
-/** \brief ÇóKronecker·ûºÅ\f$\legendre{n}{m}\f$.
-\param n,m ÕûÊı.
-\return Kronecker·ûºÅ\f$\legendre{n}{m}\f$.
-\note Ê¹ÓÃ¶ş½ø·½·¨.
+/** \brief æ±‚Kroneckerç¬¦å·\f$\legendre{n}{m}\f$.
+\param n,m æ•´æ•°.
+\return Kroneckerç¬¦å·\f$\legendre{n}{m}\f$.
+\note ä½¿ç”¨äºŒè¿›æ–¹æ³•.
 */
 Z KroneckerSymbol(VAR n, VAR m) {
 	return Z(mpz_kronecker(PTR(n),PTR(m)));
 }
 
-/** \brief ÇóEulerº¯Êı\f$\varphi(n)\f$.
-	\param n ÕûÊı.
-	\return Eulerº¯Êı\f$\varphi(n)\f$.
+/** \brief æ±‚Eulerå‡½æ•°\f$\varphi(n)\f$.
+	\param n æ•´æ•°.
+	\return Eulerå‡½æ•°\f$\varphi(n)\f$.
 */
 Z EulerPhi(VAR n) {
 	if (n==Z(0)) return Z(0);
@@ -806,16 +806,16 @@ Z EulerPhi(VAR n) {
 	return Z::cast(m);
 }
 
-/** \brief ÇóMoebiusº¯Êı\f$\mU(n)\f$.
-\param n ÕûÊı.
-\return Moebiusº¯Êı\f$\mU(n)\f$.
+/** \brief æ±‚Moebiuså‡½æ•°\f$\mU(n)\f$.
+\param n æ•´æ•°.
+\return Moebiuså‡½æ•°\f$\mU(n)\f$.
 */
 Z MoebiusMu(VAR n) {
 	list r;
 	var m=Abs(n);
 	if (m==Z(0)) { return Z(0); }
 	if (m==Z(1)) { return Z(1); }
-	/* Ö±½ÓÅĞ¶ÏÊÇ·ñÓĞÖØËØÒò×Ó */
+	/* ç›´æ¥åˆ¤æ–­æ˜¯å¦æœ‰é‡ç´ å› å­ */
 	try {
 		r=FactorInteger(m,1);
 	}
@@ -833,16 +833,16 @@ inline var first(VAR x) {return list::cast(x)[0];}
 inline var second(VAR x) {return list::cast(x)[1];}
 /** \endcond */
 
-/** \brief Çó\f$n\f$µÄËùÓĞÒò×Ó.
-	\param n ·ÇÁãÕûÊı.
-	\return \f$n\f$µÄËùÓĞÒò×Ó.
-	\todo ÅĞ¶ÏÁã.
+/** \brief æ±‚\f$n\f$çš„æ‰€æœ‰å› å­.
+	\param n éé›¶æ•´æ•°.
+	\return \f$n\f$çš„æ‰€æœ‰å› å­.
+	\todo åˆ¤æ–­é›¶.
 */
 list Divisors(VAR n) {
 	if (Abs(n)==Z(1)) return list().push(Z(1));
 	list f=FactorInteger(Abs(n));
-	list p=list::map(first,f);	/* Òò×Ó */
-	list e=list::map(second,f);	/* ´ÎÊı */
+	list p=list::map(first,f);	/* å› å­ */
+	list e=list::map(second,f);	/* æ¬¡æ•° */
 	list r;
 	uint32_t t,l;
 	r.push(Z(1));
@@ -863,21 +863,21 @@ list Divisors(VAR n) {
 	return r;
 }
 
-/** \brief Çó\f$n\f$µÄ²»Í¬ËØÒò×Ó¸öÊı\f$\nu(n)\f$.
-\param n ·ÇÁãÕûÊı.
-\return \f$n\f$µÄ²»Í¬ËØÒò×Ó¸öÊı\f$\nu(n)\f$.
-\todo ÅĞ¶ÏÁã.
+/** \brief æ±‚\f$n\f$çš„ä¸åŒç´ å› å­ä¸ªæ•°\f$\nu(n)\f$.
+\param n éé›¶æ•´æ•°.
+\return \f$n\f$çš„ä¸åŒç´ å› å­ä¸ªæ•°\f$\nu(n)\f$.
+\todo åˆ¤æ–­é›¶.
 */
 Z PrimeNu(VAR n) {
 	if (Abs(n)==Z(1)) return Z(0);
 	return Z(FactorInteger(Abs(n)).size());
 }
 
-/** \brief ÅĞ¶Ï\f$n\f$ÊÇ·ñÎªËØÊı.
-	\param n ÕûÊı.
-	\retval >0 ÊÇ.
-	\retval 0 ·ñ.
-	\note Ê¹ÓÃRabin-MillerÇ¿Î±ËØÊı¼ì²â.
+/** \brief åˆ¤æ–­\f$n\f$æ˜¯å¦ä¸ºç´ æ•°.
+	\param n æ•´æ•°.
+	\retval >0 æ˜¯.
+	\retval 0 å¦.
+	\note ä½¿ç”¨Rabin-Millerå¼ºä¼ªç´ æ•°æ£€æµ‹.
 */
 int32_t PrimeQ(VAR n) {
 	return mpz_probab_prime_p(PTR(n),10);

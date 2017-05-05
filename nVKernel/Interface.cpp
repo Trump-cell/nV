@@ -30,22 +30,30 @@ string cpath(const char* x) {
 }
 void* cload(const char* x) {
 	string s = cpath(x);
+#if __EMSCRIPTEN__
+    return dlopen(NULL, 0);
+#else
 #ifdef _WIN32
 	void *r = LoadLibraryA((Kernel::nv_home() + "/bin/" + s).c_str());
 	return r ? r : LoadLibraryA(s.c_str());
 #else
     void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY);
-	return r ? r : dlopen(s.c_str(), RTLD_LAZY);
+    return r ? r : dlopen(s.c_str(), RTLD_LAZY);
+#endif
 #endif
 }
 void* cnoload(const char* x) {
 	string s = cpath(x);
+#if __EMSCRIPTEN__
+    return dlopen(NULL, 0);
+#else
 #ifdef _WIN32
-	void *r = GetModuleHandleA((Kernel::nv_home() + "/bin/" + s).c_str());
+    void *r = GetModuleHandleA((Kernel::nv_home() + "/bin/" + s).c_str());
     return r ? r : GetModuleHandleA(s.c_str());
 #else
-	void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
+    void *r = dlopen((Kernel::nv_home() + "/lib/" + s).c_str(), RTLD_LAZY | RTLD_NOLOAD);
     return r ? r : dlopen(s.c_str(), RTLD_LAZY | RTLD_NOLOAD);
+#endif
 #endif
 }
 void cunload(void* x) {
@@ -69,7 +77,7 @@ bool cinstall(Kernel& k, const char* x) {
     void* m = cload(x);
     if (!m)
         return false;
-    void* ptr = csym(m, "Install");
+    void* ptr = csym(m, (string(x) + "_Install").c_str());
     if (ptr) {
 		try {
 			reinterpret_cast<Ptr>(ptr)(k);
@@ -85,7 +93,7 @@ bool cuninstall(Kernel& k, const char* x) {
     void* m = cnoload(x);
     if (!m)
         return false;
-    void* ptr = csym(m, "Uninstall");
+    void* ptr = csym(m, (string(x) + "_Uninstall").c_str());
     if (ptr)
         reinterpret_cast<Ptr>(ptr)(k);
     cunload(m);
@@ -98,6 +106,9 @@ string cname(sym x) {
         s = x->name() + s;
         x = x->context;
     }
+#if __EMSCRIPTEN__
+    std::replace(s.begin(), s.end(), _W('$'),_W('_'));
+#endif
     return cstr(s.c_str());
 }
 string csig(const Tuple& x) {

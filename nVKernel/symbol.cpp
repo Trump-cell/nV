@@ -50,7 +50,7 @@ bool Kernel::endPackage() {
     return true;
 }
 void Kernel::destroy(sym x) {
-    // TODO: Recycle实例symbol垃圾回收
+    // TODO: Recycle瀹炰緥symbol鍨冨溇鍥炴敹
     //x=$F;x=3
     //F.ref=1,F`#1.ref=2,why?
     if (!x || x->refcount() > 1)
@@ -59,7 +59,7 @@ void Kernel::destroy(sym x) {
     const_cast<Symbol*>(x)->discard();
 }
 void Kernel::clear(sym x) {
-    // TODO: ClearAll清除context下所有symbol
+    // TODO: ClearAll娓呴櫎context涓嬫墍鏈塻ymbol
     owns.erase(x);
     values.erase(x);
     assigns.erase(x);

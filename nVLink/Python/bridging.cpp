@@ -18,7 +18,7 @@ static var py_list_convert(PyObject *o)
 
 static var py_tuple_convert (PyObject *o)
 {
-	//ÔİÊ±ÈÏÎªlistºÍtupleÏàÍ¬
+	//æš‚æ—¶è®¤ä¸ºlistå’Œtupleç›¸åŒ
 	var r = py_list_convert(o);
 	return r;
 }
@@ -39,13 +39,13 @@ var py_convert( PyObject *o)
 		char *s;
 		Py_ssize_t len;
 		PyString_AsStringAndSize(o, &s, &len);
-		//ÕâÖÖ¸³Öµ·½Ê½ÍêÈ«Âğ£¿
+		//è¿™ç§èµ‹å€¼æ–¹å¼å®Œå…¨å—ï¼Ÿ
 		r = new String(mbs2wcs(s));
 	} else if (PyInt_Check(o)) {
 		r = new Integer(PyInt_AsLong(o));
 	}
 	else if (PyLong_Check(o)) {
-		//¿ÉÒÔ¿¼ÂÇÓÃ_PyLong_AsByteArray£¬¿ÉÄÜ±È½Ï¿ì
+		//å¯ä»¥è€ƒè™‘ç”¨_PyLong_AsByteArrayï¼Œå¯èƒ½æ¯”è¾ƒå¿«
 		PyObject* pys = _PyLong_Format(o,10,0,0);
 		char* s = PyString_AsString(pys);
 		r = new Integer(s, 10);
@@ -53,7 +53,7 @@ var py_convert( PyObject *o)
 	else if (PyFloat_Check(o)) {
 		char s[120];
 		PyFloat_AsString(s, (PyFloatObject*)o);
-		r = new Real(s,10,0);		//ĞèÒªĞŞ¸Ä
+		r = new Real(s,10,0);		//éœ€è¦ä¿®æ”¹
 	}
 	else if ( PyList_Check(o) ){
 		r = py_list_convert(o);
@@ -74,7 +74,7 @@ PyObject *nVConvert(const sym x)
 	printf("enter in nVConvert symbol\n");
 	var r = kinpython.value(var(x));
 		
-	//ÕâÀïĞèÒªÖØĞÂ¿¼ÂÇ£¬Èç¹û·ûºÅ¹ØÁªµÄÊÇÒ»¸ö×ÖÃæÖµ£¬ÄÇÎÒÃÇÓ¦¸Ã·µ»ØÕâ¸ö×ÖÃæÖµ£¬Èç¹û·ûºÅ¹ØÁªµÄÊÇÒ»¸öº¯Êı£¬ÔòÓ¦¸Ã·µ»ØÕâ¸öº¯Êı
+	//è¿™é‡Œéœ€è¦é‡æ–°è€ƒè™‘ï¼Œå¦‚æœç¬¦å·å…³è”çš„æ˜¯ä¸€ä¸ªå­—é¢å€¼ï¼Œé‚£æˆ‘ä»¬åº”è¯¥è¿”å›è¿™ä¸ªå­—é¢å€¼ï¼Œå¦‚æœç¬¦å·å…³è”çš„æ˜¯ä¸€ä¸ªå‡½æ•°ï¼Œåˆ™åº”è¯¥è¿”å›è¿™ä¸ªå‡½æ•°
 	ret =  nVObject_New(r);
 	printf("leave nVConvert symbol\n");
 	return ret;
@@ -88,7 +88,7 @@ PyObject *nVConvert(const Object& x)
 	if (x.type == $.Integer){
 		const mpz_t& mpz = x.cast<Integer>().mpz;
 
-		//ÕâÀïĞèÒªÅĞ¶ÏÊÇ×ª»»µ½PyInt»¹ÊÇPyLong
+		//è¿™é‡Œéœ€è¦åˆ¤æ–­æ˜¯è½¬æ¢åˆ°PyIntè¿˜æ˜¯PyLong
 
 /*		if (mpz_cmp_si(mpz, 0x7fffffff)>0  || mpz_cmp_si(mpz, -0x7fffffff) <0) {
 		char* buf = mpz_get_str(0, 10, mpz);
@@ -114,7 +114,7 @@ PyObject *nVConvert(const Object& x)
 		}
     }
 	else if (x.type == $.Rational){
-		//Ä¿Ç°ÏÈ×ª»»Îª×Ö·û´®
+		//ç›®å‰å…ˆè½¬æ¢ä¸ºå­—ç¬¦ä¸²
 		const mpq_t& mpq = x.cast<Rational>().mpq;
 		char* gbuf = mpq_get_str(0, 10, mpq);
 		ret = PyString_FromString(gbuf);
@@ -125,10 +125,10 @@ PyObject *nVConvert(const Object& x)
 	    if (mpf_get_prec(mpf) == mpf_get_default_prec()) {
 			ret = PyFloat_FromDouble((double)mpf_get_d(mpf));
 		}
-		//¾«¶È±È½Ï´ó£¬×ª»»µ½×Ö·û´®
+		//ç²¾åº¦æ¯”è¾ƒå¤§ï¼Œè½¬æ¢åˆ°å­—ç¬¦ä¸²
 		else {
 			char *gbuf = mpf_get_str(0,0,10,0,mpf);
-			//ÔõÃ´Ïú»Ùpys
+			//æ€ä¹ˆé”€æ¯pys
 			PyObject* pys = PyString_FromString(gbuf);
 			ret = PyFloat_FromString(pys,0);
 		}
@@ -172,7 +172,7 @@ PyObject *nVConvert(const Tuple& x)
 	PyObject *ret = NULL;
 
 	printf("enter in nVConvert tuple\n");
-	if (x.tuple[0].symbol() == $.List){			//ÕâÖÖÅĞ¶Ï·½Ê½¶ÔÂğ£¿
+	if (x.tuple[0].symbol() == $.List){			//è¿™ç§åˆ¤æ–­æ–¹å¼å¯¹å—ï¼Ÿ
 		ret = PyList_New(x.size-1);
 		for (uint i = 1; i < x.size; ++i){
 			PyList_SetItem(ret, i-1, nVConvert((x.tuple[i])));

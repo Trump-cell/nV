@@ -62,7 +62,7 @@ namespace nV {
             m_line.clear();
         }
 
-        /* free_all: free allthe memory we¡¯ve allocated (except cubetable) */
+        /* free_all: free allthe memory weâ€™ve allocated (except cubetable) */
         void ImplicitCurve::free_all () {
             int index;
             CORNERLIST *l, *lnext;

@@ -4,7 +4,7 @@
 
 using namespace mU;
 
-CAPI void mUInstall()
+CAPI void nvmatrix_mUInstall()
 {
 	static bool Initialized = false;
 	if(Initialized) return;
@@ -12,7 +12,7 @@ CAPI void mUInstall()
 
 	Initialized = true;
 }
-CAPI void mUUninstall() {
+CAPI void nvmatrix_mUUninstall() {
 	wcout << "#Matrix# mUUninstall Successfully!" << std::endl;
 }
 
@@ -67,7 +67,7 @@ CAPI CPROC(System_LinearSolve)
 {
 	//var t=Rat();
 	//Q::SetZ(t,At(x,1));
-	//ÊäÈëÒªÇóÎªAÎªÊýÀà£¬bÎªÈÎÒâ±í´ïÊ½£¬»¹ÒÅÁôÒ»¸öÎÊÌâ£¬¾ÍÊÇÎÞ·¨ÅÐ¶Ï±í´ïÊ½ÎªÁãµÄÇé¿ö
+	//è¾“å…¥è¦æ±‚ä¸ºAä¸ºæ•°ç±»ï¼Œbä¸ºä»»æ„è¡¨è¾¾å¼ï¼Œè¿˜é—ç•™ä¸€ä¸ªé—®é¢˜ï¼Œå°±æ˜¯æ— æ³•åˆ¤æ–­è¡¨è¾¾å¼ä¸ºé›¶çš„æƒ…å†µ
 	return LinearSolve(At(x,0),At(x,1));
 }
 CAPI CPROC(System_StrassenMM)
@@ -76,7 +76,7 @@ CAPI CPROC(System_StrassenMM)
 }
 CAPI CPROC(System_MDot)
 {
-	//¿ÉÒÔ´¦Àí·ûºÅ¾ØÕó¡¢¾«È·ÓÐÀíÊý¡¢¸¡µãÊýµÄÀàÐÍ
+	//å¯ä»¥å¤„ç†ç¬¦å·çŸ©é˜µã€ç²¾ç¡®æœ‰ç†æ•°ã€æµ®ç‚¹æ•°çš„ç±»åž‹
 	return Matrix::Dot(At(x,0),At(x,1));
 }
 CAPI CPROC(System_MInverse)

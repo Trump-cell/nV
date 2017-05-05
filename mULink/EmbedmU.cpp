@@ -3,11 +3,11 @@
 
 using namespace nV;
 
-CAPI void Install(Kernel& k) {
+CAPI void mulink_Install(Kernel& k) {
 	mUObject::Init(k);	
     // wcout << "#EmbedmU# Install Successfully!" << endl;
 }
-CAPI void Uninstall(Kernel& k) {
+CAPI void mulink_Uninstall(Kernel& k) {
     mUObject::Close();
     wcout << "#EmbedmU# Uninstall Successfully!" << endl;
 }

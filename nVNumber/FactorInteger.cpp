@@ -1,6 +1,6 @@
 #include "common.h"
 /** \file
-\brief ÕûÊıÒò×Ó·Ö½â.
+\brief æ•´æ•°å› å­åˆ†è§£.
 */
 #include <nV/Number.h>
 #include <algorithm>
@@ -9,7 +9,7 @@
 namespace nV {
 namespace Number {
 
-/** Ğ¡ËØÊı±í. */
+/** å°ç´ æ•°è¡¨. */
 uint const small_primes[] = {
     2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61,
     67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137,
@@ -958,22 +958,22 @@ uint const small_primes[] = {
     99961, 99971, 99989, 99991
 };
 
-uint small_prime_count = 1227; /**< ÊÔ³ı·¨ËØÊı¸öÊı. */
+uint small_prime_count = 1227; /**< è¯•é™¤æ³•ç´ æ•°ä¸ªæ•°. */
 
-uint per_round = 32; /**< Ã¿ÂÖÔËËã´ÎÊı. */
-uint rounds_min = 14; /**< ×îĞ¡ÂÖÊı. */
-uint repeats_max = 4; /**< ×î´óÖØÊÔ´ÎÊı. */
+uint per_round = 32; /**< æ¯è½®è¿ç®—æ¬¡æ•°. */
+uint rounds_min = 14; /**< æœ€å°è½®æ•°. */
+uint repeats_max = 4; /**< æœ€å¤§é‡è¯•æ¬¡æ•°. */
 
-uint b1_min = 10; /**< B1×îĞ¡Öµ. */
-uint b2_min = 50; /**< B2×îĞ¡Öµ. */
-uint b1_inc = 30; /**< B1ÔöÁ¿. */
-uint b2_inc = 150; /**< B2ÔöÁ¿. */
-uint curves_max = 30; /**< ×î´óÖØÊÔ´ÎÊı. */
+uint b1_min = 10; /**< B1æœ€å°å€¼. */
+uint b2_min = 50; /**< B2æœ€å°å€¼. */
+uint b1_inc = 30; /**< B1å¢é‡. */
+uint b2_inc = 150; /**< B2å¢é‡. */
+uint curves_max = 30; /**< æœ€å¤§é‡è¯•æ¬¡æ•°. */
 
-/** \brief ·Ö½âÒò×ÓµÄPollard \f$\rho\f$·½·¨.
-	\param n, a, x0, rounds ÕûÊı.
-	\return 1»òÒ»¸ö·ÇÆ½·²Òò×Ó.
-	\todo BrentµÄ¸Ä½ø.
+/** \brief åˆ†è§£å› å­çš„Pollard \f$\rho\f$æ–¹æ³•.
+	\param n, a, x0, rounds æ•´æ•°.
+	\return 1æˆ–ä¸€ä¸ªéå¹³å‡¡å› å­.
+	\todo Brentçš„æ”¹è¿›.
 */
 void PollardRho(mpz_ptr r, mpz_srcptr n, mpz_srcptr a, mpz_srcptr x0, uint rounds) {
     mpz_t x, y, q, t;
@@ -1026,12 +1026,12 @@ var PollardRho(const Integer& n, sint a, uint x0, uint rounds) {
     return r;
 }
 
-/** \brief ÍÖÔ²ÇúÏßÆ½·½ÔËËã.
-	\param p \f$\{x,y\}\f$ÎªÍÖÔ²ÇúÏßÉÏÒ»µã.
-	\param n, a ÕûÊı.
-	\retval {-1,g} \f$g\f$Îª·ÇÆ½·²Òò×Ó.
-	\retval {x,y} ·µ»Ø\f$p\f$ÔÚÍÖÔ²ÇúÏß\f$y^2=x^3+ax+1\f$ÉÏµÄÆ½·½.
-	\retval {0,0} Ëã·¨Ê§°Ü.
+/** \brief æ¤­åœ†æ›²çº¿å¹³æ–¹è¿ç®—.
+	\param p \f$\{x,y\}\f$ä¸ºæ¤­åœ†æ›²çº¿ä¸Šä¸€ç‚¹.
+	\param n, a æ•´æ•°.
+	\retval {-1,g} \f$g\f$ä¸ºéå¹³å‡¡å› å­.
+	\retval {x,y} è¿”å›\f$p\f$åœ¨æ¤­åœ†æ›²çº¿\f$y^2=x^3+ax+1\f$ä¸Šçš„å¹³æ–¹.
+	\retval {0,0} ç®—æ³•å¤±è´¥.
 */
 
 void ECMSquare(mpz_ptr rx, mpz_ptr ry, mpz_srcptr x, mpz_srcptr y, mpz_srcptr n, mpz_srcptr a) {
@@ -1082,12 +1082,12 @@ void ECMSquare(mpz_ptr rx, mpz_ptr ry, mpz_srcptr x, mpz_srcptr y, mpz_srcptr n,
     mpz_clear(g);
 }
 
-/** \brief ÍÖÔ²ÇúÏß³Ë·¨ÔËËã.
-\param p1, p2 \f$\{x,y\}\f$ÎªÍÖÔ²ÇúÏßÉÏÁ½µã.
-\param n ÕûÊı.
-\retval {-1,g} \f$g\f$Îª·ÇÆ½·²Òò×Ó.
-\retval {x,y} ·µ»Ø\f$p1\cdot p2\f$.
-\retval {0,0} Ëã·¨Ê§°Ü.
+/** \brief æ¤­åœ†æ›²çº¿ä¹˜æ³•è¿ç®—.
+\param p1, p2 \f$\{x,y\}\f$ä¸ºæ¤­åœ†æ›²çº¿ä¸Šä¸¤ç‚¹.
+\param n æ•´æ•°.
+\retval {-1,g} \f$g\f$ä¸ºéå¹³å‡¡å› å­.
+\retval {x,y} è¿”å›\f$p1\cdot p2\f$.
+\retval {0,0} ç®—æ³•å¤±è´¥.
 */
 void ECMProduct(mpz_ptr rx, mpz_ptr ry, mpz_srcptr x1, mpz_srcptr y1, mpz_srcptr x2, mpz_srcptr y2, mpz_srcptr n) {
     mpz_t tempx, tempy, g;
@@ -1137,12 +1137,12 @@ void ECMProduct(mpz_ptr rx, mpz_ptr ry, mpz_srcptr x1, mpz_srcptr y1, mpz_srcptr
     mpz_clear(g);
 }
 
-/** \brief ÍÖÔ²ÇúÏß³ËÃİÔËËã.
-\param p \f$\{x,y\}\f$ÎªÍÖÔ²ÇúÏßÉÏÒ»µã.
-\param n, a, e ÕûÊı.
-\retval {-1,g} \f$g\f$Îª·ÇÆ½·²Òò×Ó.
-\retval {x,y} ·µ»ØÔÚÍÖÔ²ÇúÏß\f$y^2=x^3+ax+1\f$ÉÏµÄ\f$p^e\f$.
-\retval {0,0} Ëã·¨Ê§°Ü.
+/** \brief æ¤­åœ†æ›²çº¿ä¹˜å¹‚è¿ç®—.
+\param p \f$\{x,y\}\f$ä¸ºæ¤­åœ†æ›²çº¿ä¸Šä¸€ç‚¹.
+\param n, a, e æ•´æ•°.
+\retval {-1,g} \f$g\f$ä¸ºéå¹³å‡¡å› å­.
+\retval {x,y} è¿”å›åœ¨æ¤­åœ†æ›²çº¿\f$y^2=x^3+ax+1\f$ä¸Šçš„\f$p^e\f$.
+\retval {0,0} ç®—æ³•å¤±è´¥.
 */
 void ECMPower (mpz_ptr rx, mpz_ptr ry, mpz_srcptr x, mpz_srcptr y, mpz_srcptr n, mpz_srcptr a, uint e) {
     mpz_class t(e), tempx(x), tempy(y);
@@ -1178,14 +1178,14 @@ void ECMPower (mpz_ptr rx, mpz_ptr ry, mpz_srcptr x, mpz_srcptr y, mpz_srcptr n,
     mpz_set(ry, tempy.get_mpz_t());
 }
 
-/** \brief Òò×Ó·Ö½âµÄECMËã·¨.
-	\param p ³õÊ¼µã.
-	\param n ´ı·Ö½âÕûÊı.
-	\param a ÍÖÔ²ÇúÏß²ÎÊı.
-	\param B1, B2 Á½½×¶Î²ÎÊı.
-	\retval >0 1»ò·ÇÆ½·²Òò×Ó.
-	\retval 0 Ëã·¨Ê§°Ü.
-	\todo Ôö¼ÓËØÊıÉÏ½ç£¬¸Ä½øÌø³öÅĞ¶Ï
+/** \brief å› å­åˆ†è§£çš„ECMç®—æ³•.
+	\param p åˆå§‹ç‚¹.
+	\param n å¾…åˆ†è§£æ•´æ•°.
+	\param a æ¤­åœ†æ›²çº¿å‚æ•°.
+	\param B1, B2 ä¸¤é˜¶æ®µå‚æ•°.
+	\retval >0 1æˆ–éå¹³å‡¡å› å­.
+	\retval 0 ç®—æ³•å¤±è´¥.
+	\todo å¢åŠ ç´ æ•°ä¸Šç•Œï¼Œæ”¹è¿›è·³å‡ºåˆ¤æ–­
 */
 void ECM(mpz_ptr c, mpz_srcptr x, mpz_srcptr y, mpz_srcptr n, mpz_srcptr a, uint B1, uint B2) {
     mpz_t tempx, tempy, counts;
@@ -1309,9 +1309,9 @@ var ECM(uint x, uint y, const Integer& n, const Integer& a, uint B1, uint B2) {
 
 void FactorCrack(std::vector<std::pair<var, uint> >& factors, std::vector<var>& remain, int mode);
 
-/** \brief Ê¹ÓÃÒÑ·Ö½â³öµÄËØÊıÊÔ³ıÊ£Óà´ı·Ö½â²¿·Ö.
-	\param factors ÒÑ·Ö½âÒò×Ó.
-	\param remain Ê£Óà´ı·Ö½â²¿·Ö.
+/** \brief ä½¿ç”¨å·²åˆ†è§£å‡ºçš„ç´ æ•°è¯•é™¤å‰©ä½™å¾…åˆ†è§£éƒ¨åˆ†.
+	\param factors å·²åˆ†è§£å› å­.
+	\param remain å‰©ä½™å¾…åˆ†è§£éƒ¨åˆ†.
 */
 void FactorDivide(std::vector<std::pair<var, uint> >& factors, std::vector<var>& remain, int mode) {
     for (size_t i = 0; i < remain.size(); i++) {
@@ -1331,11 +1331,11 @@ void FactorDivide(std::vector<std::pair<var, uint> >& factors, std::vector<var>&
     FactorCrack(factors, remain, mode);
 }
 
-/** \brief Ê¹ÓÃÌ°ĞÄ²ßÂÔ·ÖÀë³öÒ»¸öÒò×Ó.
-	\param factors ÒÑ·Ö½âÒò×Ó.
-	\param remain Ê£Óà´ı·Ö½â²¿·Ö.
-	\note Ê¹ÓÃPollard \f$\rho\f$·½·¨ºÍECM·½·¨.
-	\todo Ôö¼ÓËØÊıÃİÅĞ¶Ï.
+/** \brief ä½¿ç”¨è´ªå¿ƒç­–ç•¥åˆ†ç¦»å‡ºä¸€ä¸ªå› å­.
+	\param factors å·²åˆ†è§£å› å­.
+	\param remain å‰©ä½™å¾…åˆ†è§£éƒ¨åˆ†.
+	\note ä½¿ç”¨Pollard \f$\rho\f$æ–¹æ³•å’ŒECMæ–¹æ³•.
+	\todo å¢åŠ ç´ æ•°å¹‚åˆ¤æ–­.
 */
 void FactorCrack(std::vector<std::pair<var, uint> >& factors, std::vector<var>& remain, int mode) {
     if (remain.empty())
@@ -1349,7 +1349,7 @@ void FactorCrack(std::vector<std::pair<var, uint> >& factors, std::vector<var>& 
         FactorDivide(factors, remain, mode);
         return;
     }
-    /* ²ÎÊıÀ´×Ôpari/gpµÄifactor1.c */
+    /* å‚æ•°æ¥è‡ªpari/gpçš„ifactor1.c */
     uint repeats = 0, rounds;
     int a[] = {1, -1, 3, 5, -5, 7, 11, -11};
     uint s = IntegerLength(Z(n), 2);
@@ -1401,7 +1401,7 @@ void FactorCrack(std::vector<std::pair<var, uint> >& factors, std::vector<var>& 
     var t = new Integer(685243L);
     m=ECM(0L,1L,n.cast<Integer>(),t.cast<Integer>(),B1,B2);
     */
-    /* ·ÖÀëÒò×Ó */
+    /* åˆ†ç¦»å› å­ */
     if (Z(m) > 1) {
         std::pop_heap(remain.begin(), remain.end());
         remain.pop_back();
@@ -1415,12 +1415,12 @@ void FactorCrack(std::vector<std::pair<var, uint> >& factors, std::vector<var>& 
     }
 }
 
-/** \brief ÕûÊıÒò×Ó·Ö½â.
-	\param N ´ı·Ö½âÕûÊı.
-	\param mode Èômode=1Ôò²ÉÓÃMoebiusÄ£Ê½ÔËĞĞ.
-	\return ËØÒò×Ó·Ö½â\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
-	\note Ê¹ÓÃÊÔ³ı·¨ºóµ÷ÓÃ::FactorCrack·ÖÀëÒò×Ó.
-	\todo ÓÅ»¯ÊÔ³ı·¨.
+/** \brief æ•´æ•°å› å­åˆ†è§£.
+	\param N å¾…åˆ†è§£æ•´æ•°.
+	\param mode è‹¥mode=1åˆ™é‡‡ç”¨Moebiusæ¨¡å¼è¿è¡Œ.
+	\return ç´ å› å­åˆ†è§£\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
+	\note ä½¿ç”¨è¯•é™¤æ³•åè°ƒç”¨::FactorCrackåˆ†ç¦»å› å­.
+	\todo ä¼˜åŒ–è¯•é™¤æ³•.
 */
 var FactorInteger(mpz_srcptr N, int mode) {
     if (mpz_cmp_ui(N, 1L) == 0)
@@ -1459,9 +1459,9 @@ var FactorInteger(mpz_srcptr N, int mode) {
     return r;
 }
 
-/** \brief ÕûÊıÒò×Ó·Ö½â.
-	\param N ´ı·Ö½âÕûÊı.
-	\return ËØÒò×Ó·Ö½â\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
+/** \brief æ•´æ•°å› å­åˆ†è§£.
+	\param N å¾…åˆ†è§£æ•´æ•°.
+	\return ç´ å› å­åˆ†è§£\f$\{\{p_1,e_1\},\ldots,\{p_k,e_k\}\}\f$.
 */
 var FactorInteger(mpz_srcptr N) {
     return FactorInteger(N, 0);

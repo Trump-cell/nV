@@ -10,18 +10,18 @@ namespace Modules
 namespace NumberTheory
 {
 
-int32_t IntegerLength(Var n, uint32_t b);
+maTHmU::int32_t IntegerLength(Var n, maTHmU::uint32_t b);
 
 var BitAnd(Var n, Var m);
 var BitOr(Var n, Var m);
 var BitXor(Var n, Var m);
 var BitNot(Var n);
-var BitSet(Var n, uint32_t k);
-var BitClear(Var n, uint32_t k);
-bool BitGet(Var n, uint32_t k);
+var BitSet(Var n, maTHmU::uint32_t k);
+var BitClear(Var n, maTHmU::uint32_t k);
+bool BitGet(Var n, maTHmU::uint32_t k);
 
-var BitShiftLeft(Var n, int32_t k=1);
-var BitShiftRight(Var n, int32_t k=1);
+var BitShiftLeft(Var n, maTHmU::int32_t k=1);
+var BitShiftRight(Var n, maTHmU::int32_t k=1);
 
 }
 }
